@@ -1,4 +1,4 @@
-# ZoteroPortable
+﻿# ZoteroPortable
 Zotero in PortableApps.com Format
 
 With Mozilla switching to webextensions, Zotero had to adapt. The developpers dropped support of the legacy extension for firefox, and focused their efforts on Zotero Standalone.
@@ -6,6 +6,12 @@ Unfortunately, the version created by <a href="https://portableapps.com/node/365
 
 With my version, version 5 of Zotero is portable.
 This version of Zotero is not officially endorsed by Zotero Team. <a href="https://forums.zotero.org/discussion/64050/5-0-portable-zotero">Do not expect official support for portable version issues.</a></p>
+
+Few modifications compared to official Zotero are included:
+In profile\locate :
+CrossRef Favicon is present
+engines.json is modified to handle this favicon
+engines.json is modified to add <a href="https://github.com/Impactstory/oadoi/pull/1" target="_blank">oaDOI support</a>
 
 History:
 2017-10-23. Version 5.0.23 - Development Test 1: Initial release
