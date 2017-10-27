@@ -1,0 +1,45 @@
+#!/bin/bash
+
+CWD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+SYMLINK_LOCATION="$CWD/../build/lib/libreoffice-sdk"
+
+if [[ -e $SYMLINK_LOCATION ]]; then
+	if [[ -L $SYMLINK_LOCATION ]]; then
+		rm $SYMLINK_LOCATION
+	else
+		echo "$SYMLINK_LOCATION already exists and is not a symlink."
+		exit 1
+	fi
+fi
+
+SDK_LOCATION=""
+if [[ "`uname`" = "Darwin" ]]; then
+	SDK_LOCATION="/Applications/LibreOffice.app/Contents/Resources/java"
+elif [[ "`uname`" = "Linux" ]]; then
+	SDK_LOCATION="$(echo /opt/libreoffice*/program/classes)"
+fi
+
+SEARCH=""
+if [[ ! -e "$SDK_LOCATION/java_uno.jar" ]]; then
+	read -e -p "LibreOffice SDK directory not found under default location. Perform search (might take a while) [Y/n]? " SEARCH
+
+	if [[ $SEARCH =~ ^[Yy]*$ ]]; then
+		JAVA_UNO="$(locate java_uno.jar | tail -n 1)"
+		if [[ ! -z $JAVA_UNO ]]; then
+			SDK_LOCATION=$(dirname "$JAVA_UNO")
+		fi
+	fi
+fi
+
+
+if [[ ! -e "$SDK_LOCATION/java_uno.jar" ]]; then
+	read -e -p "LibreOffice SDK files not found. Specify a directory that contains java_uno.jar: " SDK_LOCATION
+fi
+
+if [[ ! -e "$SDK_LOCATION/java_uno.jar" ]]; then
+	echo "LibreOffice SDK files not found. They should be located in your libreoffice installation directory under 'java' or 'classes'."
+	exit 1
+else
+	
+	ln -s $SDK_LOCATION $SYMLINK_LOCATION && { echo "LibreOffice SDK ($SDK_LOCATION) symlinked for development with Eclipse."; }
+fi

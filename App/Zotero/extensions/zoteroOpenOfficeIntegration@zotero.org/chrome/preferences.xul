@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<overlay id="openOfficeIntegration"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script>
+	<![CDATA[
+	(function() {
+		function showPane() {
+			try {
+				var installer = Components.utils.import("resource://zotero-openoffice-integration/installer.jsm").Installer;
+				(new installer(true)).showPreferences(document);
+			} catch(e) {
+				Zotero.logError(e);
+			}
+		}
+
+		document.addEventListener("DOMContentLoaded", function() {
+			var citePane = document.getElementById("zotero-prefpane-cite");
+			if(citePane.hasAttribute("src")) {
+				citePane.addEventListener("paneload", showPane, false);
+			} else {
+				showPane();
+			}
+		}, false);
+	})();
+	]]>
+	</script>
+</overlay>

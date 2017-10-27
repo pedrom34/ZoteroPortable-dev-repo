@@ -1,0 +1,10 @@
+overlay    chrome://browser/content/browser.xul chrome://zotero-winword-integration/content/overlay.xul
+overlay    chrome://zotero/content/standalone/standalone.xul chrome://zotero-winword-integration/content/overlay.xul
+overlay    chrome://zotero/content/preferences/preferences.xul chrome://zotero-winword-integration/content/preferences.xul
+overlay    chrome://zotero/content/preferences/preferences.xul#cite chrome://zotero-winword-integration/content/preferences.xul
+
+content		zotero-winword-integration chrome/
+resource	zotero-winword-integration resource/
+
+component	{c7a7eec5-f073-4db4-b383-f866f4b96b1c}							components/zoteroWinWordIntegration.js
+contract	@zotero.org/Zotero/integration/application?agent=WinWord;1 	{c7a7eec5-f073-4db4-b383-f866f4b96b1c}

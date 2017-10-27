@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+    <script type="application/x-javascript">
+    	window.addEventListener("load", function() {
+    		// initialize server
+    		Components.classes["@zotero.org/Zotero/integration/initializer?agent=OpenOffice;1"].
+				getService(Components.interfaces.nsISupports);
+				
+			// start plug-in installer
+    		window.setTimeout(function() {
+				var Installer = Components.utils.import("resource://zotero-openoffice-integration/installer.jsm").Installer;
+				new Installer();
+			}, 1000);
+	    }, false);
+    </script>
+</overlay>

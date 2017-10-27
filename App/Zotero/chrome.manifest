@@ -1,0 +1,103 @@
+content	zotero				jar:zotero.jar!/chrome/content/zotero/
+content	zotero-platform		jar:zotero.jar!/chrome/content/zotero-platform/mac/       os=Darwin
+content	zotero-platform		jar:zotero.jar!/chrome/content/zotero-platform/win/       os=WINNT
+content	zotero-platform		jar:zotero.jar!/chrome/content/zotero-platform/unix/      os=Linux
+content	zotero-platform		jar:zotero.jar!/chrome/content/zotero-platform/unix/      os=SunOS
+content	zotero-platform		jar:zotero.jar!/chrome/content/zotero-platform/unix/      os=FreeBSD
+content	zotero-platform		jar:zotero.jar!/chrome/content/zotero-platform/unix/      os=OpenBSD
+
+resource zotero				jar:zotero.jar!/resource/
+
+locale	zotero	en-US		jar:zotero.jar!/chrome/locale/en-US/zotero/
+#locale	zotero	af-ZA		jar:zotero.jar!/chrome/locale/af-ZA/zotero/
+locale	zotero	ar		jar:zotero.jar!/chrome/locale/ar/zotero/
+locale	zotero	bg-BG		jar:zotero.jar!/chrome/locale/bg-BG/zotero/
+locale	zotero	ca-AD		jar:zotero.jar!/chrome/locale/ca-AD/zotero/
+locale	zotero	cs-CZ		jar:zotero.jar!/chrome/locale/cs-CZ/zotero/
+locale	zotero	da-DK		jar:zotero.jar!/chrome/locale/da-DK/zotero/
+locale	zotero	de		jar:zotero.jar!/chrome/locale/de/zotero/
+#locale	zotero	el-GR		jar:zotero.jar!/chrome/locale/el-GR/zotero/
+locale	zotero	es-ES		jar:zotero.jar!/chrome/locale/es-ES/zotero/
+locale	zotero	et-EE		jar:zotero.jar!/chrome/locale/et-EE/zotero/
+#locale	zotero	eu-ES		jar:zotero.jar!/chrome/locale/eu-ES/zotero/
+locale	zotero	fa		jar:zotero.jar!/chrome/locale/fa/zotero/
+locale	zotero	fi-FI		jar:zotero.jar!/chrome/locale/fi-FI/zotero/
+locale	zotero	fr-FR		jar:zotero.jar!/chrome/locale/fr-FR/zotero/
+locale	zotero	gl-ES		jar:zotero.jar!/chrome/locale/gl-ES/zotero/
+#locale	zotero	he-IL		jar:zotero.jar!/chrome/locale/he-IL/zotero/
+#locale	zotero	hr-HR		jar:zotero.jar!/chrome/locale/hr-HR/zotero/
+locale	zotero	hu-HU		jar:zotero.jar!/chrome/locale/hu-HU/zotero/
+locale	zotero	id-ID		jar:zotero.jar!/chrome/locale/id-ID/zotero/
+locale	zotero	is-IS		jar:zotero.jar!/chrome/locale/is-IS/zotero/
+locale	zotero	it-IT		jar:zotero.jar!/chrome/locale/it-IT/zotero/
+locale	zotero	ja-JP		jar:zotero.jar!/chrome/locale/ja-JP/zotero/
+locale	zotero	km			jar:zotero.jar!/chrome/locale/km/zotero/
+locale	zotero	ko-KR		jar:zotero.jar!/chrome/locale/ko-KR/zotero/
+locale  zotero  lt-LT           jar:zotero.jar!/chrome/locale/lt-LT/zotero/
+#locale	zotero	mn-MN		jar:zotero.jar!/chrome/locale/mn-MN/zotero/
+#locale	zotero	nb-NO		jar:zotero.jar!/chrome/locale/nb-NO/zotero/
+#locale	zotero	nn-NO		jar:zotero.jar!/chrome/locale/nn-NO/zotero/
+locale	zotero	nl-NL		jar:zotero.jar!/chrome/locale/nl-NL/zotero/
+locale	zotero	pl-PL		jar:zotero.jar!/chrome/locale/pl-PL/zotero/
+locale	zotero	pt-BR		jar:zotero.jar!/chrome/locale/pt-BR/zotero/
+locale	zotero	pt-PT		jar:zotero.jar!/chrome/locale/pt-PT/zotero/
+locale	zotero	ro-RO		jar:zotero.jar!/chrome/locale/ro-RO/zotero/
+locale	zotero	ru-RU		jar:zotero.jar!/chrome/locale/ru-RU/zotero/
+locale  zotero  sk-SK		jar:zotero.jar!/chrome/locale/sk-SK/zotero/
+locale	zotero	sl-SI		jar:zotero.jar!/chrome/locale/sl-SI/zotero/
+locale	zotero	sr-RS		jar:zotero.jar!/chrome/locale/sr-RS/zotero/
+locale	zotero	sv-SE		jar:zotero.jar!/chrome/locale/sv-SE/zotero/
+locale	zotero	th-TH		jar:zotero.jar!/chrome/locale/th-TH/zotero/
+locale	zotero	tr-TR		jar:zotero.jar!/chrome/locale/tr-TR/zotero/
+locale	zotero	uk-UA		jar:zotero.jar!/chrome/locale/uk-UA/zotero/
+locale	zotero	vi-VN		jar:zotero.jar!/chrome/locale/vi-VN/zotero/
+locale	zotero	zh-CN		jar:zotero.jar!/chrome/locale/zh-CN/zotero/
+locale	zotero	zh-TW		jar:zotero.jar!/chrome/locale/zh-TW/zotero/
+
+skin		zotero	default		jar:zotero.jar!/chrome/skin/default/zotero/
+
+overlay	chrome://browser/content/browser.xul	chrome://zotero/content/overlay.xul
+
+overlay chrome://zotero/content/preferences/preferences.xul chrome://zotero/content/preferences/preferences_firefox.xul application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
+overlay	chrome://zotero/content/preferences/preferences.xul#cite	chrome://zotero/content/preferences/preferences_firefox.xul application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
+overlay chrome://zotero/content/preferences/preferences_general.xul chrome://zotero/content/preferences/preferences_general_firefox.xul application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
+overlay chrome://zotero/content/preferences/preferences_export.xul chrome://zotero/content/preferences/preferences_export_firefox.xul application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
+overlay chrome://zotero/content/preferences/preferences_keys.xul chrome://zotero/content/preferences/preferences_keys_firefox.xul application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
+overlay chrome://zotero/content/preferences/preferences_advanced.xul chrome://zotero/content/preferences/preferences_advanced_firefox.xul application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
+
+overlay chrome://mozapps/content/downloads/unknownContentType.xul chrome://zotero/content/downloadOverlay.xul
+
+style	chrome://browser/content/browser.xul	chrome://zotero/skin/zotero.css
+style	chrome://global/content/customizeToolbar.xul	chrome://zotero/skin/zotero.css
+
+component	{e4c61080-ec2d-11da-8ad9-0800200c9a66}			components/zotero-service.js
+component	{531828f8-a16c-46be-b9aa-14845c3b010f}			components/zotero-service.js
+contract	@zotero.org/Zotero;1 							{e4c61080-ec2d-11da-8ad9-0800200c9a66}
+contract	@mozilla.org/commandlinehandler/general-startup;1?type=zotero 	{531828f8-a16c-46be-b9aa-14845c3b010f}
+category	command-line-handler 	m-zotero	@mozilla.org/commandlinehandler/general-startup;1?type=zotero
+
+component	{06a2ed11-d0a4-4ff0-a56f-a44545eee6ea}			components/zotero-autocomplete.js
+contract	@mozilla.org/autocomplete/search;1?name=zotero 	{06a2ed11-d0a4-4ff0-a56f-a44545eee6ea}
+
+component	{9BC3D762-9038-486A-9D70-C997AF848A7C}			components/zotero-protocol-handler.js
+contract	@mozilla.org/network/protocol;1?name=zotero 	{9BC3D762-9038-486A-9D70-C997AF848A7C}
+
+locale	branding en-US		jar:zotero.jar!/chrome/branding/locale/
+content	branding			jar:zotero.jar!/chrome/branding/content/
+skin	browser				preferences		jar:zotero.jar!/chrome/skin/
+
+overlay chrome://mozapps/content/extensions/extensions.xul chrome://zotero/content/standalone/extensionsOverlay.xul
+overlay chrome://mozapps/content/update/updates.xul chrome://zotero/content/standalone/updatesOverlay.xul
+style	chrome://global/content/customizeToolbar.xul	chrome://zotero/skin/zotero.css
+
+component {2cd0c310-e127-44d0-88fc-4435c9ab4d4b} components/jsconsole-clhandler.js
+contract @mozilla.org/toolkit/console-clh;1 {2cd0c310-e127-44d0-88fc-4435c9ab4d4b}
+category command-line-handler t-jsconsole @mozilla.org/toolkit/console-clh;1
+override chrome://global/content/console.xul jar:zotero.jar!/chrome/console/console.xul
+override chrome://global/content/consoleBindings.xml jar:zotero.jar!/chrome/console/consoleBindings.xml
+override chrome://global/content/console.js jar:zotero.jar!/chrome/console/console.js
+override chrome://global/content/console.css jar:zotero.jar!/chrome/console/console.css
+override chrome://global/skin/console/console.css jar:zotero.jar!/chrome/console/skin/console.css
+override chrome://global/locale/console.dtd jar:zotero.jar!/chrome/console/locale/console.dtd
+override chrome://global/locale/console.properties jar:zotero.jar!/chrome/console/locale/console.properties
+
