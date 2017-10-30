@@ -13,7 +13,7 @@ Few modifications compared to official Zotero are included:
 In profile\locate:  
 - CrossRef Favicon is present  
 - engines.json is modified to handle this favicon  
-- engines.json is modified to add <a href="https://github.com/Impactstory/oadoi/pull/1" target="_blank">oaDOI support</a>  
+- engines.json is modified to add <a href="https://github.com/Impactstory/oadoi/pull/1" target="_blank">oaDOI as a search engine</a>  
   
 History:
 -----
