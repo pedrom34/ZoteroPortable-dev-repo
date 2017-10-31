@@ -69,16 +69,17 @@ pref("places.history.enabled", false);
 // Probably not used, but prevent an error in the console
 pref("app.support.baseURL", "https://www.zotero.org/support/");
 
-// Disable Telemetry and Health Report
+// Disable Telemetry, Health Report, and error reporting
 pref("toolkit.telemetry.unified", false);
 pref("toolkit.telemetry.enabled", false);
 pref("datareporting.healthreport.service.enabled", false);
 pref("datareporting.policy.dataSubmissionEnabled", false);
+pref("toolkit.crashreporter.enabled", false);
 
 // Preferences to allow updating add-ons from AMO
 // TODO: Does this work for Standalone, or do we need to pretend to be Firefox?
 pref("extensions.update.enabled", true);
-pref("extensions.update.url", "https://versioncheck.addons.mozilla.org/update/VersionCheck.php?reqVersion=%REQ_VERSION%&id=%ITEM_ID%&version=%ITEM_VERSION%&maxAppVersion=%ITEM_MAXAPPVERSION%&status=%ITEM_STATUS%&appID={ec8030f7-c20a-464f-9b0e-13a3a9e97384}&appVersion=52.4.0esr&appOS=%APP_OS%&appABI=%APP_ABI%&locale=%APP_LOCALE%&currentAppVersion=52.4.0esr&updateType=%UPDATE_TYPE%");
+pref("extensions.update.url", "https://versioncheck.addons.mozilla.org/update/VersionCheck.php?reqVersion=%REQ_VERSION%&id=%ITEM_ID%&version=%ITEM_VERSION%&maxAppVersion=%ITEM_MAXAPPVERSION%&status=%ITEM_STATUS%&appID={ec8030f7-c20a-464f-9b0e-13a3a9e97384}&appVersion=52.4.1esr&appOS=%APP_OS%&appABI=%APP_ABI%&locale=%APP_LOCALE%&currentAppVersion=52.4.1esr&updateType=%UPDATE_TYPE%");
 pref("extensions.update.interval", 86400);
 pref("extensions.update.autoUpdateDefault", true);
 
