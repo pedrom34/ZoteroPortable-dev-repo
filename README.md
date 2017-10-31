@@ -18,7 +18,9 @@ In profile\locate:
 History:
 -----
 2017-10-23. Version 5.0.23 - Development Test 1: Initial release  
-Zotero 5 Portable DevTest1 [47Mb Installer - 113 Installed]  
   
 2017-10-26. Version 5.0.23 - Development Test 2: %appdata% folder is now handled correctly : no traces are left behind. Traces of template are now deleted in installer.  
-Zotero 5 Portable DevTest2 [47Mb Installer - 113 Installed]  
+  
+2017-10-30. Version 5.0.23 - Development Test 3: %appdata% folder and %localappdata% are NOW handled correctly: the empty folders are deleted upon exit.  
+  
+2017-10-30. Version 5.0.24 - Development Test 4: Update to Zotero 5.0.24. Official changelog here: https://www.zotero.org/support/changelog  
