@@ -24,3 +24,5 @@ History:
 - 2017-10-30. Version 5.0.23 - Development Test 3: %appdata% folder and %localappdata% are NOW handled correctly: the empty folders are deleted upon exit.  
   
 - 2017-10-31. Version 5.0.24 - Development Test 4: Update to Zotero 5.0.24. Official changelog here: https://www.zotero.org/support/changelog  
+  
+- 2017-11-15. Version 5.0.25 - Development Test 5: Update to Zotero 5.0.25. Official changelog here: https://www.zotero.org/support/changelog ; SupportsUNC switched from "yes" to "warn" (to warn user that Zotero might not work when launched from a UNC path).
