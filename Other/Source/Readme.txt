@@ -25,6 +25,11 @@ ZoteroPortable.exe. The options in the INI file are as follows:
    DisableSplashScreen=false
    RunLocally=false
 
+Do NOT, at any point, set AllowMultipleInstances=true inside the 
+ZoteroPortable.ini file. This option directs Portable Zotero to be started with
+the -no-remote flag, which disrupts communication between Zotero and the 
+Word/LibreOffice plugins.
+
 (There is no need for an INI header in this file; if you have one, though, it
 won't damage anything.)
 
