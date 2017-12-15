@@ -9,7 +9,7 @@ This version of Zotero is not officially endorsed by Zotero Team. <a href="https
   
 Notes:
 -----
-For official changelog of Zotero, please see: https://www.zotero.org/support/changelog 
+For official changelog of Zotero, please see: https://www.zotero.org/support/changelog  
 Few modifications compared to official Zotero are included:  
 In profile\locate:  
 - CrossRef Favicon is present  
