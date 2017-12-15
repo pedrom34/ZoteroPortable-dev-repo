@@ -9,6 +9,7 @@ This version of Zotero is not officially endorsed by Zotero Team. <a href="https
   
 Notes:
 -----
+For official changelog of Zotero, please see: https://www.zotero.org/support/changelog 
 Few modifications compared to official Zotero are included:  
 In profile\locate:  
 - CrossRef Favicon is present  
@@ -23,14 +24,16 @@ History:
   
 - 2017-10-30. Version 5.0.23 - Development Test 3: %appdata% folder and %localappdata% are NOW handled correctly: the empty folders are deleted upon exit.  
   
-- 2017-10-31. Version 5.0.24 - Development Test 4: Update to Zotero 5.0.24. Official changelog here: https://www.zotero.org/support/changelog  
+- 2017-10-31. Version 5.0.24 - Development Test 4: Update to Zotero 5.0.24.  
   
-- 2017-11-15. Version 5.0.25 - Development Test 5: Update to Zotero 5.0.25. Official changelog here: https://www.zotero.org/support/changelog ; SupportsUNC switched from "yes" to "warn" (to warn user that Zotero might not work when launched from a UNC path).
+- 2017-11-15. Version 5.0.25 - Development Test 5: Update to Zotero 5.0.25 ; SupportsUNC switched from "yes" to "warn" (to warn user that Zotero might not work when launched from a UNC path).
   
-- 2017-11-18. Version 5.0.27 - Development Test 6: Update to Zotero 5.0.27. Official changelog here: https://www.zotero.org/support/changelog  
+- 2017-11-18. Version 5.0.27 - Development Test 6: Update to Zotero 5.0.27.  
   
-- 2017-11-22. Version 5.0.28 - Development Test 7: Update to Zotero 5.0.28. Official changelog here: https://www.zotero.org/support/changelog ; Update engines.json to change oaDOI Lookup icon to base64-encoded favicon ; Update readme.txt and ZoteroPortable.ini according to <a href=https://github.com/pedrom34/ZoteroPortable/issues/1>#1</a>  
+- 2017-11-22. Version 5.0.28 - Development Test 7: Update to Zotero 5.0.28 ; Update engines.json to change oaDOI Lookup icon to base64-encoded favicon ; Update readme.txt and ZoteroPortable.ini according to <a href=https://github.com/pedrom34/ZoteroPortable/issues/1>#1</a>  
   
-- 2017-11-28. Version 5.0.29 - Development Test 8: Update to Zotero 5.0.29. Official changelog here: https://www.zotero.org/support/changelog  
+- 2017-11-28. Version 5.0.29 - Development Test 8: Update to Zotero 5.0.29.  
   
-- 2017-12-04. Version 5.0.30 - Development Test 9: Update to Zotero 5.0.30. Official changelog here: https://www.zotero.org/support/changelog  
+- 2017-12-04. Version 5.0.30 - Development Test 9: Update to Zotero 5.0.30.  
+  
+- 2017-12-15. Version 5.0.31 - Development Test 10: Update to Zotero 5.0.31.
