@@ -18,6 +18,8 @@ In profile\locate:
   
 History:
 -----
+- 2017-12-20. Version 5.0.33 - Development Test 12: Update to Zotero 5.0.33.  
+  
 - 2017-12-18. Version 5.0.32 - Development Test 11: Update to Zotero 5.0.32.  
   
 - 2017-12-15. Version 5.0.31 - Development Test 10: Update to Zotero 5.0.31.  
