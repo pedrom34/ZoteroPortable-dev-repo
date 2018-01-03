@@ -7,7 +7,7 @@ Unfortunately, the portableapp created by <a href="https://portableapps.com/node
 With my version, Zotero 5 is portable.  
 This version of Zotero is not officially endorsed by Zotero Team. <a href="https://forums.zotero.org/discussion/64050/5-0-portable-zotero">Do not expect official support for portable Zotero issues.</a>  
   
-Notes:
+Notes on release:
 -----
 For official changelog of Zotero, please see: https://www.zotero.org/support/changelog  
 Few modifications compared to official Zotero are included:  
@@ -15,7 +15,18 @@ In profile\locate:
 - CrossRef Favicon is present  
 - engines.json is modified to handle this favicon  
 - engines.json is modified to add <a href="https://github.com/Impactstory/oadoi/pull/1" target="_blank">oaDOI as a search engine</a>  
+   
+Updates:
+-----
+This Zotero Portable still contains original Zotero Update module: if you check for updates, Zotero will update, but it might cause some minor issues.  
+If you're afraid or don't really know what you are doing, I recommend to download the last portable release from here, and install the new version on top of the current one. Your data will be safe, only the program will be updated.  
   
+If you want to update on your own, here's what to do:
+- Click on Help > Check for updates in Zotero.  
+- Click on Update Zotero, wait for download.  
+- Click on Restart. Zotero will update, and an error message will appear saying your profile cannot be loaded. This is normal, Zotero tries to start, but since the user data is not in %appdata%, it just crashes. On this step, files and folders will be created in %appdata%\Zotero and in %localappdata%\Zotero. You will have to manualy delete it.
+- Launch Zotero Portable again. Update is installed.
+   
 History:
 -----
 - 2017-12-20. Version 5.0.33 - Development Test 12: Update to Zotero 5.0.33.  
