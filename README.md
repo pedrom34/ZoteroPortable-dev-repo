@@ -25,7 +25,7 @@ If you want to update on your own, here's what to do:
 - Click on Help > Check for updates in Zotero.  
 ![screenshot1](https://user-images.githubusercontent.com/21216829/34518372-44033688-f07f-11e7-999d-d29413d21207.png)  
 - Click on Update Zotero, wait for download.  
-- Click on Restart. Zotero will update, and an error message will appear saying your profile cannot be loaded. This is normal, Zotero tries to start, but not using the PortableApps Launcher (which specifies the path to user data), and since the user data is not in %appdata%, it just crashes.  
+- Click on Restart. Zotero will update, and an error message will appear saying your profile cannot be loaded. This is normal, Zotero tries to start, but not by the PortableApps Launcher (which specifies the path to user data), and since the user data is not in %appdata%, it just crashes.  
 ![screenshot2](https://user-images.githubusercontent.com/21216829/34518371-43e13f06-f07f-11e7-8911-f42aed9c7ded.png)  
 On this step, two Zotero folders that you will have to manually delete will be created in %appdata% and %localappdata% (just type this with the percent signs in any explorer window and delete the two folders called Zotero)  
 - Launch Zotero Portable again. Update is installed.  
