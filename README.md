@@ -7,21 +7,26 @@ Unfortunately, the portableapp created by [orschiro](https://portableapps.com/no
 With my version, Zotero 5 is portable.  
 This version of Zotero is not officially endorsed by Zotero Team. [Do not expect official support for portable Zotero issues](https://forums.zotero.org/discussion/64050/5-0-portable-zotero).  
   
+How to use:
+-----
+- Download last [release here](https://github.com/pedrom34/ZoteroPortable/releases)
+- Unpack Zotero by launching installer and selecting target folder (it could be an USB Key for example)
+- Install [Zotero Connector](https://www.zotero.org/download/) on your browser (I personnaly use [FirefoxPortable](https://portableapps.com/apps/internet/firefox_portable/localization))
+- You're all set.
+  
 Notes on release:
 -----
-For official changelog of Zotero, please see [here](https://www.zotero.org/support/changelog)  
-Few modifications compared to official Zotero are included:  
-In profile\locate:  
+For official changelog of Zotero, please see [here](https://www.zotero.org/support/changelog).  
+Few modifications compared to official Zotero are included in profile\locate:  
 - CrossRef Favicon is present  
 - engines.json is modified to handle this favicon  
 - engines.json is modified to add [oaDOI as a search engine](https://github.com/Impactstory/oadoi/pull/1)  
   
-Updating Zotero:
+Updating:
 -----
-This Zotero Portable still contains original Zotero Update module: if you check for updates, Zotero will update, but it might cause some minor issues.  
-If you're afraid or don't really know what you are doing, I recommend to download the last portable release from here, and install the new version on top of the current one. Your data will be safe, only the program will be updated.  
+I recommend to download the last portable release, and install the new version on top of the current one. Your data will be safe, only the program will be updated.  
   
-If you want to update on your own, here's what to do:
+This Zotero Portable still contains original Zotero Update module: if you check for updates, Zotero will update, but it might cause some minor issues. If you still want to update on your own, here's what to do:  
 - Click on Help > Check for updates in Zotero.  
 ![screenshot1](https://user-images.githubusercontent.com/21216829/34518372-44033688-f07f-11e7-999d-d29413d21207.png)  
   
@@ -33,6 +38,7 @@ On this step, two Zotero folders that you will have to manually delete will be c
   
 - Launch Zotero Portable again. Update is installed.  
 Note that if you do not delete those folders, everything will work as well, only the program cannot be considered as portable, as it leaves two empty folders on the computer it’s launched on.  
+Note also that updating Zotero this way will prevent your to get the modifications I made to the portable app (modifications of ini files related to the portablization for instance).
   
 History:
 -----
