@@ -42,6 +42,8 @@ Note also that updating Zotero this way will prevent your to get the modificatio
   
 History:
 -----
+- 2018-01-12. Version 5.0.34 - Development Test 13: Update to Zotero 5.0.34.  
+  
 - 2017-12-20. Version 5.0.33 - Development Test 12: Update to Zotero 5.0.33.  
   
 - 2017-12-18. Version 5.0.32 - Development Test 11: Update to Zotero 5.0.32.  
