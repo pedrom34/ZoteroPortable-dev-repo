@@ -20,7 +20,6 @@ For official changelog of Zotero, please see [here](https://www.zotero.org/suppo
 Few modifications compared to official Zotero are included in profile\locate:  
 - CrossRef Favicon is present  
 - engines.json is modified to handle this favicon  
-- engines.json is modified to add [oaDOI as a search engine](https://github.com/Impactstory/oadoi/pull/1)  
   
 Updating:
 -----
