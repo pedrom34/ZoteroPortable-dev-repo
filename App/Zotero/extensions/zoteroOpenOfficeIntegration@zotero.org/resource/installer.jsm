@@ -38,6 +38,8 @@ const UNOPKG_LOCATIONS = {
 		"/Applications/OpenOffice.org 2.4.app/Contents/MacOS/unopkg"
 	],
 	Win:[
+		"C:\\Program Files\\LibreOffice 6\\program\\unopkg.exe",
+		"C:\\Program Files (x86)\\LibreOffice 6\\program\\unopkg.exe",
 		"C:\\Program Files\\LibreOffice 5\\program\\unopkg.exe",
 		"C:\\Program Files (x86)\\LibreOffice 5\\program\\unopkg.exe",
 		"C:\\Program Files\\LibreOffice 4\\program\\unopkg.exe",
@@ -126,7 +128,8 @@ const UNOPKG_LOCATIONS = {
 		"/opt/libreoffice5.1/program/unopkg",
 		"/opt/libreoffice5.2/program/unopkg",
 		"/opt/libreoffice5.3/program/unopkg",
-		"/opt/libreoffice5.4/program/unopkg"
+		"/opt/libreoffice5.4/program/unopkg",
+		"/opt/libreoffice6.0/program/unopkg"
 	]
 };
 
@@ -172,7 +175,7 @@ var Plugin = new function() {
 	}];
 	
 	// Bump if you want to trigger auto-update
-	this.LAST_INSTALLED_FILE_UPDATE = "5.0.6pre";
+	this.LAST_INSTALLED_FILE_UPDATE = "5.0.10pre";
 	this.DISABLE_PROGRESS_WINDOW = true;
 	
 	var zoteroPluginInstaller, pathToAddon, installing, prefBranch, wizardWindow;

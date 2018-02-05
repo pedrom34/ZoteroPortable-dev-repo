@@ -44,7 +44,7 @@ var Comm = new function() {
 		mainThread = Zotero.mainThread;
 		
 		if (Zotero.isConnector || Zotero.HTTP.browserIsOffline()) {
-			Zotero.debug('ZoteroOpenOfficeIntegration: Browser is offline or in connector mode -- not initializing communication server');
+			Zotero.debug('LibreOfficePlugin: Browser is offline or in connector mode -- not initializing communication server');
 			_registerObservers();
 			return;
 		}
@@ -64,7 +64,7 @@ var Comm = new function() {
 			serv.init(SERVER_PORT, true, -1);
 			serv.asyncListen({
 				"onSocketAccepted":function(socket, transport) {
-					Zotero.debug("ZoteroOpenOfficeIntegration: Connection received");
+					Zotero.debug("LibreOfficePlugin: Connection received");
 			
 					// Close old data listener
 					if(_lastDataListener) {
@@ -76,10 +76,10 @@ var Comm = new function() {
 					new DataListener(transport);
 				},
 				"onStopListening":function() {
-					Zotero.debug("ZoteroOpenOfficeIntegration: Communication server going offline");
+					Zotero.debug("LibreOfficePlugin: Communication server going offline");
 				}
 			});
-			Zotero.debug("ZoteroOpenOfficeIntegration: Communication server listening on 127.0.0.1:"+serv.port);
+			Zotero.debug("LibreOfficePlugin: Communication server listening on 127.0.0.1:"+serv.port);
 			
 			// Start listener for socket to let user know their LO extension is out of date
 			servCompat.init(19876, true, -1);
@@ -92,13 +92,13 @@ var Comm = new function() {
 			});
 		} catch(e) {
 			Zotero.logError(e);
-			Zotero.debug("ZoteroOpenOfficeIntegration: Not initializing communication server");
+			Zotero.debug("LibreOfficePlugin: Not initializing communication server");
 		}
 		
 		if(Zotero.addShutdownListener) {
-			Zotero.debug("ZoteroOpenOfficeIntegration: Registering shutdown listener");
+			Zotero.debug("LibreOfficePlugin: Registering shutdown listener");
 			Zotero.addShutdownListener(function() {
-				Zotero.debug("ZoteroOpenOfficeIntegration: Shutting down communication server");
+				Zotero.debug("LibreOfficePlugin: Shutting down communication server");
 				
 				// Close sockets
 				if(serv) serv.close();
@@ -197,7 +197,7 @@ var Comm = new function() {
 		 * Called when new data is available
 		 */
 		"onDataAvailable":function(request, context, inputStream, offset, count) {
-			Zotero.debug("ZoteroOpenOfficeIntegration: "+count+" bytes available");
+			// Zotero.debug("LibreOfficePlugin: "+count+" bytes available");
 			
 			// Keep track of the last connection we read on
 			_lastDataListener = this;
@@ -244,7 +244,7 @@ var Comm = new function() {
 			var input = _converter.ConvertToUnicode(this._frameContent);
 			this._frameContent = "";
 			
-			Zotero.debug("ZoteroOpenOfficeIntegration: Read "+this._frameTransactionID+" "+input);
+			Zotero.debug("LibreOfficePlugin: Read "+this._frameTransactionID+" "+input);
 			
 			var callbacks;
 			if((callbacks = this._transactionCallbacks[this._frameTransactionID])) {
@@ -325,7 +325,7 @@ var Comm = new function() {
 		var transactionID = _lastDataListener.beginTransaction(successCallback, errorCallback);
 		
 		// Write to stream
-		Zotero.debug("ZoteroOpenOfficeIntegration: Sending "+transactionID+" "+payload);
+		Zotero.debug("LibreOfficePlugin: Sending "+transactionID+" "+payload);
 		_lastDataListener.boStream.write32(transactionID);
 		_lastDataListener.boStream.write32(payload.length);
 		_lastDataListener.boStream.writeBytes(payload, payload.length);
@@ -478,6 +478,7 @@ var Field = function(documentID, index, code, noteIndex) {
 	this._index = index;
 	this._code = code;
 	this._noteIndex = noteIndex;
+	this._formattedText = null;
 };
 Field.prototype = {};
 
@@ -488,14 +489,30 @@ for (let method of ["delete", "select", "removeCode", "setText", "getText"]) {
 			[this._documentID, this._index].concat(Array.prototype.slice.call(arguments)));
 	};
 }
+Field.prototype.setText = function(text, isRich) {
+	if (isRich) {
+		this._formattedText = text;
+	}
+	return Comm.sendCommand("Field_setText",
+		[this._documentID, this._index, text, isRich]);
+}
 Field.prototype.getCode = function() {
+	Zotero.debug(`LibreOfficePlugin: Field(${this._index}).getCode: ${this._code}`);
 	return this._code;
 }
 Field.prototype.setCode = function(code) {
 	this._code = code;
+	Zotero.debug(`LibreOfficePlugin: Field(${this._index}).setCode: ${this._code}`);
 	Comm.sendCommand("Field_setCode", [this._documentID, this._index, code]);
+	// Setting field codes removes formatting, so we have to do reapply the text again
+	// (Doing this within the LO plugin is not viable)
+	if (this._formattedText) {
+		this.setText(this._formattedText, true);
+		this._formattedText = null;
+	}
 }
 Field.prototype.getNoteIndex = function() {
+	Zotero.debug(`LibreOfficePlugin: Field(${this._index}).getNoteIndex: ${this._noteIndex}`);
 	return this._noteIndex;
 }
 Field.prototype.equals = function(arg) {
