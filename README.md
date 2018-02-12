@@ -41,6 +41,8 @@ Note also that updating Zotero this way will prevent your to get the modificatio
   
 History:
 -----
+- 2018-02-12. Version 5.0.35.1 - Development Test 16: Update to Zotero 5.0.35.1.  
+  
 - 2018-02-12. Version 5.0.35 - Development Test 15: Update to Zotero 5.0.35.  
   
 - 2018-02-05. Version 5.0.34.5 - Development Test 14: Update to Zotero 5.0.34.5. - Removed oaDOI since they deprecated the service.  
