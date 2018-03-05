@@ -35,7 +35,7 @@ This Zotero Portable still contains original Zotero Update module: if you check 
 ![screenshot2](https://i.imgur.com/bih4XXl.png)
 
 - Click on Restart.  
-![screenshot3](https://i.imgur.com/DBuC3vf.png) 
+![screenshot3](https://i.imgur.com/DBuC3vf.png)  
 Zotero will update, and an error message will appear saying your profile cannot be loaded. This is normal, Zotero tries to start, but not by the PortableApps Launcher (which specifies the path to user data), and since the user data is not in %appdata%, it just crashes.  
 ![screenshot4](https://user-images.githubusercontent.com/21216829/34518371-43e13f06-f07f-11e7-8911-f42aed9c7ded.png)  
 On this step, two Zotero folders that you will have to manually delete will be created in %appdata% and %localappdata% (just type this with the percent signs in any explorer window and delete the two folders called Zotero)  
