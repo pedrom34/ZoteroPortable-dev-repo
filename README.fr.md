@@ -1,7 +1,7 @@
 # ZoteroPortable
 Zotero au format PortableApps.com
 
-Lire dans d'autres langues : [English 🇬🇧](README.MD), [Français 🇫🇷](README.fr.MD)  
+Lire dans d'autres langues : [English 🇬🇧](README.md), [Français 🇫🇷](README.fr.md)  
   
 Avec l'abandon des extensions classiques de Firefox, Zotero a dû s'adapter : les développeurs ont arrêté le support de l'extension, et se sont concentrés sur Zotero Standalone : là où il y avait deux programmes, Zotero propose désormais une expérience unifiée.  
 Malheureusement, il n'existait pas de version portable de Zotero. La version créée par [orschiro] (https://portableapps.com/node/36565) n'est plus mise à jour, et n'est plus portable si on force la mise à jour vers la version 5, puisque le profil et les données utilisateur sont stockée dans %appdata%\Zotero  
