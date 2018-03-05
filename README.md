@@ -1,7 +1,7 @@
 # ZoteroPortable
 Zotero in PortableApps.com Format
   
-With Mozilla switching to webextensions, Zotero had to adapt. The developers dropped support of the legacy extension for Firefox, and focused their efforts on Zotero Standalone.  
+With Mozilla switching to webextensions, Zotero had to adapt: the developers dropped support of the legacy extension for Firefox, and focused their efforts on Zotero Standalone: when there was two program, Zotero is now unified.  
 Unfortunately, the portableapp created by [orschiro](https://portableapps.com/node/36565) is out of date, as it's based on version 4, and not fully portable if you update it to 5, as it creates Zotero's profile and store user data in %appdata%\Zotero.  
   
 With my version, Zotero 5 is portable.  
