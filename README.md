@@ -1,5 +1,7 @@
 # ZoteroPortable
 Zotero in PortableApps.com Format
+
+Read in other langages: [Français 🇫🇷](README.fr.MD), [English 🇬🇧](README.MD)  
   
 With Mozilla switching to webextensions, Zotero had to adapt: the developers dropped support of the legacy extension for Firefox, and focused their efforts on Zotero Standalone: when there was two program, Zotero is now unified.  
 Unfortunately, the portableapp created by [orschiro](https://portableapps.com/node/36565) is out of date, as it's based on version 4, and not fully portable if you update it to 5, as it creates Zotero's profile and store user data in %appdata%\Zotero.  
@@ -30,9 +32,12 @@ This Zotero Portable still contains original Zotero Update module: if you check 
 ![screenshot1](https://user-images.githubusercontent.com/21216829/34518372-44033688-f07f-11e7-999d-d29413d21207.png)  
   
 - Click on Update Zotero, wait for download.  
-  
-- Click on Restart. Zotero will update, and an error message will appear saying your profile cannot be loaded. This is normal, Zotero tries to start, but not by the PortableApps Launcher (which specifies the path to user data), and since the user data is not in %appdata%, it just crashes.  
-![screenshot2](https://user-images.githubusercontent.com/21216829/34518371-43e13f06-f07f-11e7-8911-f42aed9c7ded.png)  
+![screenshot2](https://i.imgur.com/bih4XXl.png)
+
+- Click on Restart.  
+![screenshot3](https://i.imgur.com/DBuC3vf.png) 
+Zotero will update, and an error message will appear saying your profile cannot be loaded. This is normal, Zotero tries to start, but not by the PortableApps Launcher (which specifies the path to user data), and since the user data is not in %appdata%, it just crashes.  
+![screenshot4](https://user-images.githubusercontent.com/21216829/34518371-43e13f06-f07f-11e7-8911-f42aed9c7ded.png)  
 On this step, two Zotero folders that you will have to manually delete will be created in %appdata% and %localappdata% (just type this with the percent signs in any explorer window and delete the two folders called Zotero)  
   
 - Launch Zotero Portable again. Update is installed.  
