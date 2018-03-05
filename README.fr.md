@@ -34,7 +34,7 @@ Cette version de Zotero Portable contient toujours le module de mise à jour ori
 - Cliquer sur Update Zotero, patienter pendant le téléchargement.  
 ![screenshot2](https://i.imgur.com/bih4XXl.png)
   
-- Cliquer sur Restart. 
+- Cliquer sur Restart.  
 ![screenshot3](https://i.imgur.com/DBuC3vf.png)  
 Zotero se mettra à jour, et un message d'erreur va apparaitre indiquant que le profil n'a pas pu être chargé. Cela est normal, Zotero essaye de démarrer, mais sans utiliser le Launcher de PortableApps.com (qui spécifie le chemin du dossier contenant les données utilisateur), et puisque le dossier des données n'est pas dans %appdata%, Zotero plante.  
 ![screenshot4](https://user-images.githubusercontent.com/21216829/34518371-43e13f06-f07f-11e7-8911-f42aed9c7ded.png)  
