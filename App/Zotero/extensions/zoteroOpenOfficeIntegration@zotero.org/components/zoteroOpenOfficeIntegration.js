@@ -502,7 +502,6 @@ Field.prototype.getCode = function() {
 }
 Field.prototype.setCode = function(code) {
 	this._code = code;
-	Zotero.debug(`LibreOfficePlugin: Field(${this._index}).setCode: ${this._code}`);
 	Comm.sendCommand("Field_setCode", [this._documentID, this._index, code]);
 	// Setting field codes removes formatting, so we have to do reapply the text again
 	// (Doing this within the LO plugin is not viable)

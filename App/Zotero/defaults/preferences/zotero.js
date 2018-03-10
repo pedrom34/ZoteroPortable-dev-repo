@@ -35,6 +35,9 @@ pref("extensions.zotero.automaticTags", true);
 pref("extensions.zotero.fontSize", "1.0");
 pref("extensions.zotero.layout", "standard");
 pref("extensions.zotero.recursiveCollections", false);
+pref("extensions.zotero.autoRecognizeFiles", true);
+pref("extensions.zotero.autoRenameFiles", true);
+pref("extensions.zotero.autoRenameFiles.fileTypes", "application/pdf");
 pref("extensions.zotero.attachmentRenameFormatString", '{%c - }{%y - }{%t{50}}');
 pref("extensions.zotero.capitalizeTitles", false);
 pref("extensions.zotero.launchNonNativeFiles", false);
@@ -180,6 +183,9 @@ pref("extensions.zotero.ingester.allowedSites", "");
 // Connector
 pref("extensions.zotero.connector.repo.lastCheck.localTime", 0);
 pref("extensions.zotero.connector.repo.lastCheck.repoTime", 0);
+
+// Custom file handlers
+pref("extensions.zotero.fileHandler.pdf", "");
 
 // File/URL opening executable if launch() fails
 pref("extensions.zotero.fallbackLauncher.unix", "/usr/bin/xdg-open");

@@ -170,36 +170,38 @@ function checkJavaCommonPkg(pkgMain, pkgRequired, callback) {
 }
 
 /**
- * Check if JRE is required on Windows
+ * Check if JRE is installed on Windows
  */
 function checkJRE() {
 	var isInstalled = false,
+		keys = ['Java Runtime Environment', 'JRE'],
 		wrk = Components.classes["@mozilla.org/windows-registry-key;1"]
 			.createInstance(Components.interfaces.nsIWindowsRegKey);
-			
-	try {
-		wrk.open(Components.interfaces.nsIWindowsRegKey.ROOT_KEY_LOCAL_MACHINE,
-			"Software\\JavaSoft\\Java Runtime Environment",
-			Components.interfaces.nsIWindowsRegKey.ACCESS_READ | Components.interfaces.nsIWindowsRegKey.WOW64_32);
-		isInstalled = isInstalled || !!wrk.readStringValue("CurrentVersion");
-	} catch (e) {
-		Zotero.debug("32-bit java not found. Checking 64-bit");
-	} finally {
-		wrk.close();
+
+  for (let key of keys) {
+    try {
+        wrk.open(Components.interfaces.nsIWindowsRegKey.ROOT_KEY_LOCAL_MACHINE,
+          `Software\\JavaSoft\\${key}`,
+          Components.interfaces.nsIWindowsRegKey.ACCESS_READ | Components.interfaces.nsIWindowsRegKey.WOW64_32);
+        isInstalled = isInstalled || !!wrk.readStringValue("CurrentVersion");
+    } catch (e) {
+      Zotero.debug(`32-bit java not found under key ${key}.`);
+    }
 	}
+  wrk.close();
 	
 	if (!isInstalled) {
-		try {
-			wrk.open(Components.interfaces.nsIWindowsRegKey.ROOT_KEY_LOCAL_MACHINE,
-				"Software\\JavaSoft\\Java Runtime Environment",
-				Components.interfaces.nsIWindowsRegKey.ACCESS_READ | Components.interfaces.nsIWindowsRegKey.WOW64_64);
-			isInstalled = isInstalled || !!wrk.readStringValue("CurrentVersion");
-		} catch (e) {
-			Zotero.debug("64-bit java not found.");
-		}
-		 finally {
-			wrk.close();
-		}
+    for (let key of keys) {
+      try {
+          wrk.open(Components.interfaces.nsIWindowsRegKey.ROOT_KEY_LOCAL_MACHINE,
+            `Software\\JavaSoft\\${key}`,
+            Components.interfaces.nsIWindowsRegKey.ACCESS_READ | Components.interfaces.nsIWindowsRegKey.WOW64_64);
+          isInstalled = isInstalled || !!wrk.readStringValue("CurrentVersion");
+      } catch (e) {
+        Zotero.debug(`64-bit java not found under key ${key}.`);
+      }
+    }
+    wrk.close();
 	}
 	
 	if (isInstalled) {
