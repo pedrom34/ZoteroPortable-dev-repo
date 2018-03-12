@@ -1,4 +1,4 @@
-# ZoteroPortable
+﻿# ZoteroPortable
 Zotero au format PortableApps.com
 
 Lire dans d'autres langues : [English 🇬🇧](README.md), [Français 🇫🇷](README.fr.md)  
@@ -19,9 +19,6 @@ Mise en place :
 Notes sur le programme :
 -----
 Pour l'historique de version officiel, c'est [ici](https://www.zotero.org/support/changelog).  
-Ma version comprend deux modifications mineures :  
-- Le favicon de CrossRef est présent
-- engines.json est modifié pour prendre en compte cette icone.
   
 Mise à jour :
 -----
@@ -46,6 +43,8 @@ Notez également que mettre à jour le programme de cette façon vous prive des 
   
 Historique :
 -----
+- 2018-03-12. Version 5.0.37 - Development Test 18: Mise à jour vers Zotero 5.0.37.  
+  
 - 2018-03-10. Version 5.0.36 - Development Test 17: Mise à jour vers Zotero 5.0.36.  
   
 - 2018-02-12. Version 5.0.35.1 - Development Test 16: Mise à jour vers Zotero 5.0.35.1.  

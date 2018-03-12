@@ -1,4 +1,4 @@
-# ZoteroPortable
+﻿# ZoteroPortable
 Zotero in PortableApps.com Format
 
 Read in other langages: [Français 🇫🇷](README.fr.md), [English 🇬🇧](README.md)  
@@ -19,9 +19,6 @@ How to use:
 Notes on release:
 -----
 For official changelog of Zotero, please see [here](https://www.zotero.org/support/changelog).  
-Few modifications compared to official Zotero are included in profile\locate:  
-- CrossRef Favicon is present  
-- engines.json is modified to handle this favicon  
   
 Updating:
 -----
@@ -46,6 +43,8 @@ Note also that updating Zotero this way will prevent your to get the modificatio
   
 History:
 -----
+- 2018-03-12. Version 5.0.37 - Development Test 18: Update to Zotero 5.0.37.  
+  
 - 2018-03-10. Version 5.0.36 - Development Test 17: Update to Zotero 5.0.36.  
   
 - 2018-02-12. Version 5.0.35.1 - Development Test 16: Update to Zotero 5.0.35.1.  
