@@ -43,6 +43,8 @@ Note also that updating Zotero this way will prevent your to get the modificatio
   
 History:
 -----
+- 2018-03-22. Version 5.0.38 - Development Test 19: Update to Zotero 5.0.38.  
+  
 - 2018-03-12. Version 5.0.37 - Development Test 18: Update to Zotero 5.0.37.  
   
 - 2018-03-10. Version 5.0.36 - Development Test 17: Update to Zotero 5.0.36.  
