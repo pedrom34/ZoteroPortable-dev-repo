@@ -20,6 +20,8 @@ Notes sur le programme :
 -----
 Pour l'historique de version officiel, c'est [ici](https://www.zotero.org/support/changelog).  
   
+Toutes mes versions sont considérées comme des versions de test car Zotero Portable n'est pas - encore - supporté officiellement par PortableApps.com. J'espère qu'il le sera un jour. Dans l'attente, Zotero Portable est parfaitement opérationnel, je l'utilise tous les jours.
+  
 Mise à jour :
 -----
 Pour mettre à jour Zotero, je vous recommande de télécharger la dernière version proposée ici et de la décompresser sur la version actuellement installée. Vos données ne seront pas touchées, seul le programme sera mis à jour.  

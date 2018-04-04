@@ -20,6 +20,8 @@ Notes on release:
 -----
 For official changelog of Zotero, please see [here](https://www.zotero.org/support/changelog).  
   
+All my releases are considered as 'Pre-release' and 'development tests', because Zotero Portable is not - yet - officially supported by PortableApps.com. I hope it will be someday. In the mean time, Zotero Portable is still fully operational, I use it everyday.  
+  
 Updating:
 -----
 I recommend to download the last portable release, and install the new version on top of the current one. Your data will be safe, only the program will be updated.  
