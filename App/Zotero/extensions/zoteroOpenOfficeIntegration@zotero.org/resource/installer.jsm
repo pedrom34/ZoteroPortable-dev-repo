@@ -154,28 +154,10 @@ var Plugin = new function() {
 	this.EXTENSION_DIR = "zotero-openoffice-integration";
 	this.APP = 'LibreOffice';
 	
-	this.REQUIRED_ADDONS = [{
-		name: "Zotero",
-		url: "zotero.org",
-		id: "zotero@chnm.gmu.edu",
-		minVersion: "2.1b7.SVN",
-		required: true
-	}, {
-		name: "Zotero Word for Mac Integration",
-		url: "zotero.org/support/word_processor_plugin_installation",
-		id: "zoteroMacWordIntegration@zotero.org",
-		minVersion: "3.1.6.SVN",
-		required: false
-	}, {
-		name: "Zotero Word for Windows Integration",
-		url: "zotero.org/support/word_processor_plugin_installation",
-		id: "zoteroWinWordIntegration@zotero.org",
-		minVersion: "3.1.2.SVN",
-		required: false
-	}];
+	this.REQUIRED_ADDONS = [];
 	
 	// Bump if you want to trigger auto-update
-	this.LAST_INSTALLED_FILE_UPDATE = "5.0.10pre";
+	this.LAST_INSTALLED_FILE_UPDATE = "5.0.12pre";
 	this.DISABLE_PROGRESS_WINDOW = true;
 	
 	var zoteroPluginInstaller, pathToAddon, installing, prefBranch, wizardWindow;
