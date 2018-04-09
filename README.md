@@ -3,7 +3,9 @@ Zotero in PortableApps.com Format
 
 Read in other langages: [Français 🇫🇷](README.fr.md), [English 🇬🇧](README.md)  
   
-With Mozilla switching to webextensions, Zotero had to adapt: the developers dropped support of the legacy extension for Firefox, and focused their efforts on Zotero Standalone: when there was two program, Zotero is now unified.  
+Why?
+-----
+With Mozilla switching to webextensions, Zotero had to adapt: the developers dropped support of the legacy extension for Firefox, and focused their efforts on Zotero Standalone: when there was two programs, Zotero is now unified.  
 Unfortunately, the portableapp created by [orschiro](https://portableapps.com/node/36565) is out of date, as it's based on version 4, and not fully portable if you update it to 5, as it creates Zotero's profile and store user data in %appdata%\Zotero.  
   
 With my version, Zotero 5 is portable.  
@@ -41,7 +43,7 @@ On this step, two Zotero folders that you will have to manually delete will be c
   
 - Launch Zotero Portable again. Update is installed.  
 Note that if you do not delete those folders, everything will work as well, only the program cannot be considered as portable, as it leaves two empty folders on the computer it’s launched on.  
-Note also that updating Zotero this way will prevent your to get the modifications I made to the portable app (modifications of ini files related to the portablization for instance).
+Note also that updating Zotero this way will prevent you to get the modifications I made to the portable app (modifications of ini files related to the portablization for instance).
   
 History:
 -----
