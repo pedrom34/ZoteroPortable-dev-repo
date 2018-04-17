@@ -478,7 +478,6 @@ var Field = function(documentID, index, code, noteIndex) {
 	this._index = index;
 	this._code = code;
 	this._noteIndex = noteIndex;
-	this._formattedText = null;
 };
 Field.prototype = {};
 
@@ -490,9 +489,6 @@ for (let method of ["delete", "select", "removeCode", "setText", "getText"]) {
 	};
 }
 Field.prototype.setText = function(text, isRich) {
-	if (isRich) {
-		this._formattedText = text;
-	}
 	return Comm.sendCommand("Field_setText",
 		[this._documentID, this._index, text, isRich]);
 }
@@ -505,9 +501,24 @@ Field.prototype.setCode = function(code) {
 	Comm.sendCommand("Field_setCode", [this._documentID, this._index, code]);
 	// Setting field codes removes formatting, so we have to do reapply the text again
 	// (Doing this within the LO plugin is not viable)
-	if (this._formattedText) {
-		this.setText(this._formattedText, true);
-		this._formattedText = null;
+	let start = code.indexOf('{');
+	if (start == -1) {
+		return;
+	}
+	let json = JSON.parse(code.substring(start, code.lastIndexOf('}')+1));
+	let text = json.properties && json.properties.formattedCitation;
+	if (!text) {
+		return;
+	}
+	let isRich = false;
+	if (text.includes("\\")) {
+		if (text.substr(0,5) != "{\\rtf") {
+			text = "{\\rtf "+text+"}";
+		}
+		isRich = true;
+	}
+	if (isRich) {
+		this.setText(text, isRich);
 	}
 }
 Field.prototype.getNoteIndex = function() {
