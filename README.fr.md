@@ -47,6 +47,8 @@ Notez également que mettre à jour le programme de cette façon vous prive des 
   
 Historique :
 -----
+- 2018-05-01. Version 5.0.46 - Development Test 25: Mise à jour vers Zotero 5.0.46.  
+  
 - 2018-04-17. Version 5.0.45 - Development Test 24: Mise à jour vers Zotero 5.0.45.  
   
 - 2018-04-06. Version 5.0.44 - Development Test 23: Mise à jour vers Zotero 5.0.44.  
