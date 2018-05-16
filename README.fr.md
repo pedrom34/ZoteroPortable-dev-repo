@@ -8,7 +8,7 @@ Pourquoi ?
 Avec l'abandon des extensions classiques de Firefox, Zotero a dû s'adapter : les développeurs ont arrêté le support de l'extension, et se sont concentrés sur Zotero Standalone : là où il y avait deux programmes, Zotero propose désormais une expérience unifiée.  
 Malheureusement, il n'existait pas de version portable de Zotero. La version créée par [orschiro] (https://portableapps.com/node/36565) n'est plus mise à jour, et n'est plus portable si on force la mise à jour vers la version 5, puisque le profil et les données utilisateur sont stockée dans %appdata%\Zotero  
   
-Avec ma version, Zotero 5 est pleinement portable  
+Avec ma version, Zotero 5 est pleinement portable : il est possible de l'installer sans être administrateur, de l'utiliser depuis une clé usb ou autre, il n'y a pas d'inscription dans le registre et aucune trace n'est laissée sur l'ordinateur.  
 Attention, cette version n'est pas officiellement supportée par l’équipe de Zotero. [N'espérez pas un support officiel](https://forums.zotero.org/discussion/64050/5-0-portable-zotero).  
   
 Mise en place :
@@ -30,15 +30,17 @@ Pour mettre à jour Zotero, je vous recommande de télécharger la dernière ver
   
 Cette version de Zotero Portable contient toujours le module de mise à jour original : si vous cherchez des mises à jour, Zotero se mettra à jour, mais cela pourra poser quelques problèmes. Si vous souhaitez mettre à jour sans passer par ma version, voici ce qu'il faudra faire :  
 - Cliquer sur Aide > Vérifier les mises à jour...  
-![screenshot1](https://i.imgur.com/kjEaErP.png)  
+>![screenshot1](https://i.imgur.com/kjEaErP.png)  
   
 - Cliquer sur Update Zotero, patienter pendant le téléchargement.  
-![screenshot2](https://i.imgur.com/bih4XXl.png)
+>![screenshot2](https://i.imgur.com/bih4XXl.png)
   
 - Cliquer sur Restart.  
-![screenshot3](https://i.imgur.com/DBuC3vf.png)  
+>![screenshot3](https://i.imgur.com/DBuC3vf.png)  
+  
 Zotero se mettra à jour, et un message d'erreur va apparaitre indiquant que le profil n'a pas pu être chargé. Cela est normal, Zotero essaye de démarrer, mais sans utiliser le Launcher de PortableApps.com (qui spécifie le chemin du dossier contenant les données utilisateur), et puisque le dossier des données n'est pas dans %appdata%, Zotero plante.  
-![screenshot4](https://user-images.githubusercontent.com/21216829/34518371-43e13f06-f07f-11e7-8911-f42aed9c7ded.png)  
+>![screenshot4](https://user-images.githubusercontent.com/21216829/34518371-43e13f06-f07f-11e7-8911-f42aed9c7ded.png)  
+  
 À cette étape, deux dossiers Zotero qu'il faudra supprimer sont créés dans %appdata% and %localappdata% (tapez simplement ces noms avec les signes pourcentage dans n'importe quelle fenêtre de l'explorateur Windows).  
   
 - Lancez Zotero Portable à nouveau. La mise à jour est appliquée.  
