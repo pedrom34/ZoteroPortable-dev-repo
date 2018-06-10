@@ -48,7 +48,9 @@ Notez que si vous ne supprimez pas ces dossiers, tout fonctionnera normalement, 
 Notez également que mettre à jour le programme de cette façon vous prive des modifications que je peux apporter (modifications des fichiers de configuration [.ini] de la portabilisation par exemple).
   
 Historique :
------
+----
+- 2018-06-10. Version 5.0.48 - Development Test 27: Mise à jour vers Zotero 5.0.48.  
+  
 - 2018-05-03. Version 5.0.47 - Development Test 26: Mise à jour vers Zotero 5.0.47.  
   
 - 2018-05-01. Version 5.0.46 - Development Test 25: Mise à jour vers Zotero 5.0.46.  

@@ -48,7 +48,9 @@ Note that if you do not delete those folders, everything will work as well, only
 Note also that updating Zotero this way will prevent you to get the modifications I made to the portable app (modifications of ini files related to the portablization for instance).
   
 History:
------
+----
+- 2018-06-10. Versi9n 5.0.48 - Development Test 27: Update to Zotero 5.0.48.  
+  
 - 2018-05-03. Version 5.0.47 - Development Test 26: Update to Zotero 5.0.47.  
   
 - 2018-05-01. Version 5.0.46 - Development Test 25: Update to Zotero 5.0.46.  

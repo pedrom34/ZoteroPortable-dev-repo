@@ -389,14 +389,17 @@ Application.prototype = {
 		category: "profile-after-change",
 		service: true
 	}],
-	"service":		true,
-	"getActiveDocument":function() {
+	service:		true,
+	getActiveDocument: async function() {
 		var retVal = Comm.sendCommand("Application_getActiveDocument", [API_VERSION]);
 		if(typeof retVal !== "object" || retVal[0] !== API_VERSION) Comm.incompatibleVersion();
 		return new Document(retVal[1]);
 	},
-	"primaryFieldType":"ReferenceMark",
-	"secondaryFieldType":"Bookmark"
+	primaryFieldType: "ReferenceMark",
+	secondaryFieldType: "Bookmark",
+	supportedNotes: ["footnote", "endnote"],
+	supportsImportExport: true,
+	outputFormat: "rtf"
 };
 
 /**
@@ -407,7 +410,7 @@ var Document = function(documentID) {
 };
 Document.prototype = {};
 for (let method of ["displayAlert", "activate", "canInsertField", "getDocumentData",
-	"setDocumentData", "setBibliographyStyle", "complete"]) {
+	"setDocumentData", "setBibliographyStyle", "complete", "exportDocument", "importDocument"]) {
 	let methodStable = method;
 	Document.prototype[method] = function() {
 		return Comm.sendCommand("Document_"+methodStable,
@@ -425,49 +428,26 @@ Document.prototype.insertField = function(fieldType, noteType) {
 	return new Field(this._documentID, retVal[0], retVal[1], retVal[2]);
 };
 Document.prototype.getFields = function(fieldType) {
-	var retVal = Comm.sendCommand("Document_getFields", [this._documentID, fieldType]);
-	return new FieldEnumerator(this._documentID, retVal[0], retVal[1], retVal[2]);
-};
-Document.prototype.getFieldsAsync = function(fieldType, observer) {
 	var documentID = this._documentID;
-	Comm.sendCommandAsync("Document_getFields", [this._documentID, fieldType],
-		function(retVal) {
-			observer.observe(new FieldEnumerator(documentID, retVal[0], retVal[1], retVal[2]), "fields-available", null);
-		},
-		function(err) {
-			observer.observe(err, "fields-error", null);
-		}
-	);
+	return new Zotero.Promise(function(resolve, reject) {
+		Comm.sendCommandAsync("Document_getFields", [this._documentID, fieldType],
+			function(result) {
+				var fields = [];
+				for (let i = 0; i < result[0].length; i++) {
+					fields.push(new Field(documentID, result[0][i], result[1][i], result[2][i]));
+				}
+				resolve(fields);
+			},
+			reject
+		);
+	}.bind(this));
 };
-Document.prototype.convert = function(enumerator, fieldType, noteTypes) {
+Document.prototype.convert = function(fields, fieldType, noteTypes) {
 	var i = 0;
-	while(enumerator.hasMoreElements()) {
-		Comm.sendCommand("Field_convert", [this._documentID, enumerator.getNext()._index, fieldType, noteTypes[i]]);
+	for (let field of fields) {
+		Comm.sendCommand("Field_convert", [this._documentID, field._index, fieldType, noteTypes[i]]);
 		i++;
 	}
-};
-
-/**
- * An enumerator implementation to handle passing off fields
- */
-var FieldEnumerator = function(documentID, fieldIndices, fieldCodes, noteIndices) {
-	this._documentID = documentID;
-	this._fieldIndices = fieldIndices;
-	this._fieldCodes = fieldCodes;
-	this._noteIndices = noteIndices;
-	this._i = 0;
-};
-FieldEnumerator.prototype = {
-	"hasMoreElements":function() {
-		return this._i < this._fieldIndices.length;
-	}, 
-	"getNext":function() {
-		if(this._i >= this._fieldIndices.length) throw "No more fields!";
-		var field = new Field(this._documentID, this._fieldIndices[this._i], this._fieldCodes[this._i], this._noteIndices[this._i]);
-		this._i++;
-		return field;
-	},
-	QueryInterface: XPCOMUtils.generateQI([Components.interfaces.nsISupports, Components.interfaces.nsISimpleEnumerator])
 };
 
 /**
@@ -527,6 +507,17 @@ Field.prototype.getNoteIndex = function() {
 }
 Field.prototype.equals = function(arg) {
 	return this._index === arg._index;
+}
+
+for (let cls of [Document, Field]) {
+	for (let method in cls.prototype) {
+		if (typeof cls.prototype[method] == 'function') {
+			let syncMethod = cls.prototype[method];
+			cls.prototype[method] = async function() {
+				return syncMethod.apply(this, arguments);
+			}
+		}
+	}
 }
 
 var classes = [
