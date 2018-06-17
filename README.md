@@ -49,7 +49,9 @@ Note also that updating Zotero this way will prevent you to get the modification
   
 History:
 ----
-- 2018-06-10. Version 5.0.50 - Development Test 28: Update to Zotero 5.0.50.  
+- 2018-06-17. Version 5.0.51 - Development Test 29: Update to Zotero 5.0.51.  
+  
+- 2018-06-15. Version 5.0.50 - Development Test 28: Update to Zotero 5.0.50.  
   
 - 2018-06-10. Version 5.0.48 - Development Test 27: Update to Zotero 5.0.48.  
   
