@@ -49,6 +49,8 @@ Notez également que mettre à jour le programme de cette façon vous prive des 
   
 Historique :
 ----
+- 2018-06-21. Version 5.0.52 - Development Test 30: Mise à jour vers Zotero 5.0.52. Mise à jour du fichier ZoteroPortable.ini.  
+  
 - 2018-06-17. Version 5.0.51 - Development Test 29: Mise à jour vers Zotero 5.0.51.  
   
 - 2018-06-15. Version 5.0.50 - Development Test 28: Mise à jour vers Zotero 5.0.50.  
