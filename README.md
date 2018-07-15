@@ -49,6 +49,8 @@ Note also that updating Zotero this way will prevent you to get the modification
   
 History:
 ----
+- 2018-07-15. Version 5.0.54 - Development Test 32: Update to Zotero 5.0.54.
+
 - 2018-07-09. Version 5.0.53 - Development Test 31: Update to Zotero 5.0.53.
 
 - 2018-06-21. Version 5.0.52 - Development Test 30: Update to Zotero 5.0.52. Updated ZoteroPortable.ini.  
