@@ -44,8 +44,9 @@ Zotero se mettra à jour, et un message d'erreur va apparaitre indiquant que le 
 À cette étape, deux dossiers Zotero qu'il faudra supprimer sont créés dans %appdata% and %localappdata% (tapez simplement ces noms avec les signes pourcentage dans n'importe quelle fenêtre de l'explorateur Windows).  
   
 - Lancez Zotero Portable à nouveau. La mise à jour est appliquée.  
+  
 Notez que si vous ne supprimez pas ces dossiers, tout fonctionnera normalement, simplement le programme ne sera plus considéré comme réellement portable, puisqu'il laisse deux dossiers vides sur l'ordinateur.  
-Notez également que mettre à jour le programme de cette façon vous prive des modifications que je peux apporter (modifications des fichiers de configuration [.ini] de la portabilisation par exemple).
+Notez également que mettre à jour le programme de cette façon vous prive des modifications que je peux apporter (modifications des fichiers de configuration [.ini] de la portabilisation par exemple).  
   
 Historique :
 ----
