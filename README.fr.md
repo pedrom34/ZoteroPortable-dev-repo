@@ -41,6 +41,7 @@ Cette version de Zotero Portable contient toujours le module de mise à jour ori
 Zotero se mettra à jour, et un message d'erreur va apparaitre indiquant que le profil n'a pas pu être chargé. Cela est normal, Zotero essaye de démarrer, mais sans utiliser le Launcher de PortableApps.com (qui spécifie le chemin du dossier contenant les données utilisateur), et puisque le dossier des données n'est pas dans %appdata%, Zotero plante.  
 >![screenshot4](https://user-images.githubusercontent.com/21216829/34518371-43e13f06-f07f-11e7-8911-f42aed9c7ded.png)  
   
+(Note : si ce message ne s'affiche pas, Zotero n'est pas mis à jour. Insistez et recommencez la procédure, cela fonctionnera à la longue.)  
 À cette étape, deux dossiers Zotero qu'il faudra supprimer sont créés dans %appdata% and %localappdata% (tapez simplement ces noms avec les signes pourcentage dans n'importe quelle fenêtre de l'explorateur Windows).  
   
 - Lancez Zotero Portable à nouveau. La mise à jour est appliquée.  
@@ -50,6 +51,8 @@ Notez également que mettre à jour le programme de cette façon vous prive des 
   
 Historique :
 ----
+- 2018-08-16. Version 5.0.55 - Development Test 33: Mise à jour vers Zotero 5.0.55. Mise à jour mineure du fichier readme.md.  
+  
 - 2018-07-15. Version 5.0.54 - Development Test 32: Mise à jour vers Zotero 5.0.54.  
   
 - 2018-07-09. Version 5.0.53 - Development Test 31: Mise à jour vers Zotero 5.0.53.  

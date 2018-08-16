@@ -63,6 +63,9 @@ pref("xpinstall.signatures.required", false);
 // Allow installing XPIs from any host
 pref("xpinstall.whitelist.required", false);
 
+// Don't connect to the Mozilla extensions blocklist
+pref("extensions.blocklist.enabled", false);
+
 // Disable places
 pref("places.history.enabled", false);
 

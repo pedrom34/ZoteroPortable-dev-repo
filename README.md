@@ -41,6 +41,7 @@ This Zotero Portable still contains original Zotero Update module: if you check 
 Zotero will update, and an error message will appear saying your profile cannot be loaded. This is normal, Zotero tries to start, but not by the PortableApps Launcher (which specifies the path to user data), and since the user data is not in %appdata%, it just crashes.  
 >![screenshot4](https://user-images.githubusercontent.com/21216829/34518371-43e13f06-f07f-11e7-8911-f42aed9c7ded.png)
   
+(Note: if this message doesn't show, Zotero is not updated. Insist and do the procedure again, it will eventually works.)  
 On this step, two Zotero folders that you will have to manually delete will be created in %appdata% and %localappdata% (just type this with the percent signs in any explorer window and delete the two folders called Zotero)  
   
 - Launch Zotero Portable again. Update is installed.  
@@ -50,8 +51,10 @@ Note also that updating Zotero this way will prevent you to get the modification
   
 History:
 ----
+- 2018-08-16. Version 5.0.55 - Development Test 33: Update to Zotero 5.0.55. Small update of readme.md.
+  
 - 2018-07-15. Version 5.0.54 - Development Test 32: Update to Zotero 5.0.54.
-
+  
 - 2018-07-09. Version 5.0.53 - Development Test 31: Update to Zotero 5.0.53.
 
 - 2018-06-21. Version 5.0.52 - Development Test 30: Update to Zotero 5.0.52. Updated ZoteroPortable.ini.  
