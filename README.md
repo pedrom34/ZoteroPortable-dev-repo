@@ -1,4 +1,4 @@
-﻿# ZoteroPortable
+# ZoteroPortable
 Zotero in PortableApps.com Format
 
 Read in other langages: [Français 🇫🇷](README.fr.md), [English 🇬🇧](README.md)  
@@ -49,70 +49,6 @@ On this step, two Zotero folders that you will have to manually delete will be c
 Note that if you do not delete those folders, everything will work as well, only the program cannot be considered as portable, as it leaves two empty folders on the computer it’s launched on.  
 Note also that updating Zotero this way will prevent you to get the modifications I made to the portable app (modifications of ini files related to the portablization for instance).  
   
-History:
+Versions history:
 ----
-- 2018-08-16. Version 5.0.55 - Development Test 33: Update to Zotero 5.0.55. Small update of readme.md.
-  
-- 2018-07-15. Version 5.0.54 - Development Test 32: Update to Zotero 5.0.54.
-  
-- 2018-07-09. Version 5.0.53 - Development Test 31: Update to Zotero 5.0.53.
-
-- 2018-06-21. Version 5.0.52 - Development Test 30: Update to Zotero 5.0.52. Updated ZoteroPortable.ini.  
-  
-- 2018-06-17. Version 5.0.51 - Development Test 29: Update to Zotero 5.0.51.  
-  
-- 2018-06-15. Version 5.0.50 - Development Test 28: Update to Zotero 5.0.50.  
-  
-- 2018-06-10. Version 5.0.48 - Development Test 27: Update to Zotero 5.0.48.  
-  
-- 2018-05-03. Version 5.0.47 - Development Test 26: Update to Zotero 5.0.47.  
-  
-- 2018-05-01. Version 5.0.46 - Development Test 25: Update to Zotero 5.0.46.  
-  
-- 2018-04-17. Version 5.0.45 - Development Test 24: Update to Zotero 5.0.45.  
-  
-- 2018-04-06. Version 5.0.44 - Development Test 23: Update to Zotero 5.0.44.  
-  
-- 2018-04-03. Version 5.0.43 - Development Test 22: Update to Zotero 5.0.43.  
-  
-- 2018-04-01. Version 5.0.42 - Development Test 21: Update to Zotero 5.0.42.  
-  
-- 2018-03-28. Version 5.0.41 - Development Test 20: Update to Zotero 5.0.41. Zotero team went way too fast for me!  
-  
-- 2018-03-22. Version 5.0.38 - Development Test 19: Update to Zotero 5.0.38.  
-  
-- 2018-03-12. Version 5.0.37 - Development Test 18: Update to Zotero 5.0.37.  
-  
-- 2018-03-10. Version 5.0.36 - Development Test 17: Update to Zotero 5.0.36.  
-  
-- 2018-02-12. Version 5.0.35.1 - Development Test 16: Update to Zotero 5.0.35.1.  
-  
-- 2018-02-12. Version 5.0.35 - Development Test 15: Update to Zotero 5.0.35.  
-  
-- 2018-02-05. Version 5.0.34.5 - Development Test 14: Update to Zotero 5.0.34.5. - Removed oaDOI since they deprecated the service.  
-  
-- 2018-01-12. Version 5.0.34 - Development Test 13: Update to Zotero 5.0.34.  
-  
-- 2017-12-20. Version 5.0.33 - Development Test 12: Update to Zotero 5.0.33.  
-  
-- 2017-12-18. Version 5.0.32 - Development Test 11: Update to Zotero 5.0.32.  
-  
-- 2017-12-15. Version 5.0.31 - Development Test 10: Update to Zotero 5.0.31.  
-  
-- 2017-12-04. Version 5.0.30 - Development Test 9: Update to Zotero 5.0.30.  
-  
-- 2017-11-28. Version 5.0.29 - Development Test 8: Update to Zotero 5.0.29.  
-  
-- 2017-11-22. Version 5.0.28 - Development Test 7: Update to Zotero 5.0.28 ; Update engines.json to change oaDOI Lookup icon to base64-encoded favicon ; Update readme.txt and ZoteroPortable.ini according to [#1]( https://github.com/pedrom34/ZoteroPortable/issues/1)  
-  
-- 2017-11-18. Version 5.0.27 - Development Test 6: Update to Zotero 5.0.27.  
-  
-- 2017-11-15. Version 5.0.25 - Development Test 5: Update to Zotero 5.0.25 ; SupportsUNC switched from "yes" to "warn" (to warn user that Zotero might not work when launched from a UNC path).  
-  
-- 2017-10-31. Version 5.0.24 - Development Test 4: Update to Zotero 5.0.24.  
-  
-- 2017-10-30. Version 5.0.23 - Development Test 3: %appdata% folder and %localappdata% are NOW handled correctly: the empty folders are deleted upon exit.  
-  
-- 2017-10-26. Version 5.0.23 - Development Test 2: %appdata% folder is now handled correctly: no traces are left behind. Traces of template are now deleted in installer.  
-  
-- 2017-10-23. Version 5.0.23 - Development Test 1: Initial release
+[See here](changelog.md).
