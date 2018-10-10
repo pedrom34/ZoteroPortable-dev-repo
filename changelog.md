@@ -1,5 +1,7 @@
 Versions history:
 ----
+- 2018-10-10. Version 5.0.56 - Development Test 34: Update to Zotero 5.0.56.
+  
 - 2018-08-16. Version 5.0.55 - Development Test 33: Update to Zotero 5.0.55. Small update of readme.md.
   
 - 2018-07-15. Version 5.0.54 - Development Test 32: Update to Zotero 5.0.54.
