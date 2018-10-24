@@ -136,7 +136,7 @@ function init() {
 		"cleanup":lib.declare("cleanup", ctypes.stdcall_abi, statusCode, document_t.ptr),
 
 		// statusCode complete(Document *doc);
-		"complete":lib.declare("complete", ctypes.stdcall_abi, statusCode, document_t.ptr),
+		// "complete":lib.declare("complete", ctypes.stdcall_abi, statusCode, document_t.ptr),
 		
 		// statusCode deleteField(Field* field);
 		"deleteField":lib.declare("deleteField", ctypes.stdcall_abi, statusCode, field_t.ptr),
@@ -330,7 +330,7 @@ Document.prototype = {
 	"complete":function() {
 		Zotero.debug("ZoteroWinWordIntegration: complete", 4);
 		if(this._documentStatus.active) {
-			checkStatus(f.complete(this._document_t));
+			// checkStatus(f.complete(this._document_t));
 			f.freeDocument(this._document_t);
 			this._documentStatus.active = false;
 		} else {

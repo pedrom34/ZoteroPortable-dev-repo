@@ -157,7 +157,12 @@ var Comm = new function() {
 	
 		this.pump = Components.classes["@mozilla.org/network/input-stream-pump;1"]
 							 .createInstance(Components.interfaces.nsIInputStreamPump);
-		this.pump.init(this.iStream, -1, -1, 0, 0, false);
+		try {
+			this.pump.init(this.iStream, -1, -1, 0, 0, false);
+		} catch (e) {
+			// Fx60
+			this.pump.init(this.iStream, 0, 0, false);
+		}
 		this.pump.asyncRead(this, null);
 	}
 	
