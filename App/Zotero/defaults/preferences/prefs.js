@@ -62,6 +62,9 @@ pref("xpinstall.signatures.required", false);
 
 // Allow installing XPIs from any host
 pref("xpinstall.whitelist.required", false);
+// Allow installing XPIs when using a custom CA
+pref("extensions.install.requireBuiltInCerts", false);
+pref("extensions.update.requireBuiltInCerts", false);
 
 // Don't connect to the Mozilla extensions blocklist
 pref("extensions.blocklist.enabled", false);

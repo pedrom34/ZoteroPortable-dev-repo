@@ -4,7 +4,7 @@
 <Description about="urn:mozilla:install-manifest">
 	<em:id>zoteroOpenOfficeIntegration@zotero.org</em:id>
 	<em:name>Zotero LibreOffice Integration</em:name>
-	<em:version>5.0.14.SA.5.0.58</em:version>
+	<em:version>5.0.14.SA.5.0.60</em:version>
 	<em:creator>Center for History and New Media<br/>George Mason University</em:creator>
 	<em:developer>Simon Kornblith</em:developer>
 	<em:homepageURL>https://www.zotero.org</em:homepageURL>
