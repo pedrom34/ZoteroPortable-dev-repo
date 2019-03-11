@@ -35,6 +35,7 @@ pref("extensions.zotero.layout", "standard");
 pref("extensions.zotero.recursiveCollections", false);
 pref("extensions.zotero.autoRecognizeFiles", true);
 pref("extensions.zotero.autoRenameFiles", true);
+pref("extensions.zotero.autoRenameFiles.linked", false);
 pref("extensions.zotero.autoRenameFiles.fileTypes", "application/pdf");
 pref("extensions.zotero.attachmentRenameFormatString", "{%c - }{%y - }{%t{50}}");
 pref("extensions.zotero.capitalizeTitles", false);
@@ -69,8 +70,10 @@ pref("extensions.zotero.lastLongTagDelimiter", ";");
 pref("extensions.zotero.fallbackSort", "firstCreator,date,title,dateAdded");
 pref("extensions.zotero.sortCreatorAsString", false);
 
-//Tag Cloud
-pref("extensions.zotero.tagCloud", false);
+
+//Tag Selector
+pref("extensions.zotero.tagSelector.showAutomatic", true);
+pref("extensions.zotero.tagSelector.displayAllTags", false);
 
 // Keyboard shortcuts
 pref("extensions.zotero.keys.openZotero", "Z");

@@ -218,10 +218,10 @@ Application.prototype = {
 		init();
 		var docPtr = new document_t.ptr();
 		// For OneDrive stored documents we receive the in the form:
-		// https://[username]-my.sharepoint.com/personal/[username_url_thin]/Documents\Document1.docx
+		// https://[username]-my.sharepoint.com/personal/[username_url_thing]/Documents\Document1.docx
 		// But the document url is all stored with forward slashes in running-object table
 		if (documentName.indexOf('https://') == 0) {
-			documentName.replace(/\\/g, '/');
+			documentName = documentName.replace(/\\/g, '/');
 		}
 		checkStatus(f.getDocument(documentName, docPtr.address()));
 		return new Document(docPtr);
