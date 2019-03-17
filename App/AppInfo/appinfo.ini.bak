@@ -1,0 +1,27 @@
+[Format]
+Type=PortableAppsFormat
+Version=3.5
+
+[Details]
+Name=Zotero Portable
+AppId=ZoteroPortable
+Publisher=Zotero Team & PortableApps.com
+Homepage=PortableApps.com/Development
+Donate=https://www.zotero.org/getinvolved/
+Category=Office
+Description=A personal research assistant
+Language=Multilingual
+
+[License]
+Shareable=true
+OpenSource=true
+Freeware=true
+CommercialUse=true
+
+[Version]
+PackageVersion=5.0.62.0
+DisplayVersion=5.0
+
+[Control]
+Icons=1
+Start=ZoteroPortable.exe
