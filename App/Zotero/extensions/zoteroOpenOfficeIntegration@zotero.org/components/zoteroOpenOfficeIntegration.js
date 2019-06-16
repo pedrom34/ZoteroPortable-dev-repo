@@ -404,7 +404,8 @@ Application.prototype = {
 	secondaryFieldType: "Bookmark",
 	supportedNotes: ["footnote", "endnote"],
 	supportsImportExport: true,
-	outputFormat: "rtf"
+	outputFormat: "rtf",
+	processorName: "LibreOffice"
 };
 
 /**

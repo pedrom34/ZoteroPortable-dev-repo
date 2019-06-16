@@ -57,6 +57,9 @@ pref("extensions.getAddons.cache.enabled", false);
 //pref("extensions.getAddons.search.url", "https://services.addons.mozilla.org/%LOCALE%/%APP%/api/%API_VERSION%/search/%TERMS%/all/%MAX_RESULTS%/%OS%/%VERSION%?src=thunderbird");
 //pref("extensions.webservice.discoverURL", "https://www.zotero.org/support/plugins");
 
+// Check Windows certificate store for custom CAs
+pref("security.enterprise_roots.enabled", true);
+
 // Disable add-on signature checking with unbranded Firefox build
 pref("xpinstall.signatures.required", false);
 
