@@ -1,5 +1,7 @@
 Versions history:
 ----
+- 2019-11-24. Version 5.0.77 - Development Test 56 : Portable configuration update. No more traces in %appdata%, advanced support for Microsoft Word update, manual update fix, program folders tree update. Thanks to @AndhikaWB. See issue [#14]( https://github.com/pedrom34/ZoteroPortable/issues/14) for more info.
+  
 - 2019-11-02. Version 5.0.77 - Development Test 55: Update to Zotero 5.0.77.
   
 - 2019-10-15. Version 5.0.76 - Development Test 54: Update to Zotero 5.0.76.
