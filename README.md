@@ -28,7 +28,7 @@ Updating:
 -----
 I recommend to download the last portable release, and install the new version on top of the current one. Your data will be safe, only the program will be updated.  
   
-This Zotero Portable still contains original Zotero Update module: if you check for updates, Zotero will update, but it might cause some minor issues. If you still want to update on your own, here's what to do:  
+This Zotero Portable still contains original Zotero Update module: if you check for updates, Zotero will update:  
 - Click on Help > Check for updates in Zotero.  
 >![screenshot1](https://user-images.githubusercontent.com/21216829/34518372-44033688-f07f-11e7-999d-d29413d21207.png)  
   
@@ -38,16 +38,10 @@ This Zotero Portable still contains original Zotero Update module: if you check 
 - Click on Restart.  
 >![screenshot3](https://i.imgur.com/DBuC3vf.png)
   
-Zotero will update, and an error message will appear saying your profile cannot be loaded. This is normal, Zotero tries to start, but not by the PortableApps Launcher (which specifies the path to user data), and since the user data is not in %appdata%, it just crashes.  
->![screenshot4](https://user-images.githubusercontent.com/21216829/34518371-43e13f06-f07f-11e7-8911-f42aed9c7ded.png)
+Update is installed.  
   
-(Note: if this message doesn't show, Zotero is not updated. Insist and do the procedure again, it will eventually works.)  
-On this step, two Zotero folders that you will have to manually delete will be created in %appdata% and %localappdata% (just type this with the percent signs in any explorer window and delete the two folders called Zotero)  
-  
-- Launch Zotero Portable again. Update is installed.  
-  
-Note that if you do not delete those folders, everything will work as well, only the program cannot be considered as portable, as it leaves two empty folders on the computer it’s launched on.  
-Note also that updating Zotero this way will prevent you to get the modifications I made to the portable app (modifications of ini files related to the portablization for instance).  
+
+Note that updating Zotero this way will prevent you to get the modifications I made to the portable app (modifications of ini files related to the portablization for instance).  
   
 Versions history:
 ----
