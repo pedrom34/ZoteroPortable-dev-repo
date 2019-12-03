@@ -13,8 +13,12 @@ pref("network.prefetch-next", false);
 // Let operations run as long as necessary
 pref("dom.max_chrome_script_run_time", 0);
 
-// Use OS locale
-pref("intl.locale.matchOS", true);
+pref("intl.locale.requested", '');
+pref("intl.regional_prefs.use_os_locales", false);
+
+// Fix error initializing login manager after this was changed in Firefox 57
+// Could also disable this with MOZ_LOADER_SHARE_GLOBAL, supposedly
+pref("jsloader.shareGlobal", false);
 
 // Needed due to https://bugzilla.mozilla.org/show_bug.cgi?id=1181977
 pref("browser.hiddenWindowChromeURL", "chrome://zotero/content/standalone/hiddenWindow.xul");
@@ -62,7 +66,8 @@ pref("security.enterprise_roots.enabled", true);
 
 // Disable add-on signature checking with unbranded Firefox build
 pref("xpinstall.signatures.required", false);
-
+// Allow legacy extensions (though this might not be necessary)
+pref("extensions.legacy.enabled", true);
 // Allow installing XPIs from any host
 pref("xpinstall.whitelist.required", false);
 // Allow installing XPIs when using a custom CA
@@ -71,6 +76,8 @@ pref("extensions.update.requireBuiltInCerts", false);
 
 // Don't connect to the Mozilla extensions blocklist
 pref("extensions.blocklist.enabled", false);
+// Avoid warning in console when opening Tools -> Add-ons
+pref("extensions.getAddons.link.url", "");
 
 // Disable places
 pref("places.history.enabled", false);
@@ -88,7 +95,7 @@ pref("toolkit.crashreporter.enabled", false);
 // Preferences to allow updating add-ons from AMO
 // TODO: Does this work for Standalone, or do we need to pretend to be Firefox?
 pref("extensions.update.enabled", true);
-pref("extensions.update.url", "https://versioncheck.addons.mozilla.org/update/VersionCheck.php?reqVersion=%REQ_VERSION%&id=%ITEM_ID%&version=%ITEM_VERSION%&maxAppVersion=%ITEM_MAXAPPVERSION%&status=%ITEM_STATUS%&appID={ec8030f7-c20a-464f-9b0e-13a3a9e97384}&appVersion=52.9.0esr&appOS=%APP_OS%&appABI=%APP_ABI%&locale=%APP_LOCALE%&currentAppVersion=52.9.0esr&updateType=%UPDATE_TYPE%");
+pref("extensions.update.url", "https://versioncheck.addons.mozilla.org/update/VersionCheck.php?reqVersion=%REQ_VERSION%&id=%ITEM_ID%&version=%ITEM_VERSION%&maxAppVersion=%ITEM_MAXAPPVERSION%&status=%ITEM_STATUS%&appID={ec8030f7-c20a-464f-9b0e-13a3a9e97384}&appVersion=60.9.0esr&appOS=%APP_OS%&appABI=%APP_ABI%&locale=%APP_LOCALE%&currentAppVersion=60.9.0esr&updateType=%UPDATE_TYPE%");
 pref("extensions.update.interval", 86400);
 pref("extensions.update.autoUpdateDefault", true);
 
@@ -174,3 +181,11 @@ pref("browser.preferences.instantApply", false);
 
 // Whether to show the Error Console option in the Tools menu
 pref("devtools.errorconsole.enabled", false);
+
+pref("extensions.zoteroWinWordIntegration.version", "");
+pref("extensions.zoteroWinWordIntegration.installed", false);
+pref("extensions.zoteroWinWordIntegration.skipInstallation", false);
+pref("extensions.zoteroOpenOfficeIntegration.unopkgPaths", "{}");
+pref("extensions.zoteroOpenOfficeIntegration.version", "");
+pref("extensions.zoteroOpenOfficeIntegration.installed", false);
+pref("extensions.zoteroOpenOfficeIntegration.skipInstallation", false);

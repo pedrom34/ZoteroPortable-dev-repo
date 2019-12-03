@@ -68,7 +68,7 @@ var Plugin = new function() {
 		// find Word Startup folders (see http://support.microsoft.com/kb/210860)
 		var appData = Components.classes["@mozilla.org/file/directory_service;1"]
 				.getService(Components.interfaces.nsIProperties)
-				.get("AppData", Components.interfaces.nsILocalFile);
+				.get("AppData", Components.interfaces.nsIFile);
 		
 		// first check the registry for a custom startup folder
 		var startupFolders = [];
@@ -94,10 +94,7 @@ var Plugin = new function() {
 			// create nsIFile from path in registry
 			if(path) {
 				try {
-					var startupFolder = Components.classes["@mozilla.org/file/local;1"].
-						createInstance(Components.interfaces.nsILocalFile);
-					startupFolder.initWithPath(path);
-					startupFolders.push(startupFolder);
+					startupFolders.push(Zotero.File.pathToFile(path));
 				} catch(e) {
 					addDefaultStartupFolder = true;
 				}
@@ -108,7 +105,7 @@ var Plugin = new function() {
 						Components.interfaces.nsIWindowsRegKey.ACCESS_READ);
 					try {
 						var startup = wrk.readStringValue("Startup");
-						var startupFolder = appData.clone().QueryInterface(Components.interfaces.nsILocalFile);
+						var startupFolder = appData.clone().QueryInterface(Components.interfaces.nsIFile);
 						startupFolder.appendRelativePath("Microsoft\\Word\\"+startup);
 						startupFolders.push(startupFolder);
 					} finally {
@@ -136,7 +133,7 @@ var Plugin = new function() {
 		
 		if(startupFolders.length == 0 || addDefaultStartupFolder) {
 			// if not in the registry, append Microsoft/Word/Startup to %AppData% (default location)
-			var startupFolder = appData.clone().QueryInterface(Components.interfaces.nsILocalFile);
+			var startupFolder = appData.clone().QueryInterface(Components.interfaces.nsIFile);
 			startupFolder.appendRelativePath("Microsoft\\Word\\Startup");
 			startupFolders.push(startupFolder);
 		}
@@ -145,8 +142,8 @@ var Plugin = new function() {
 		// but it is worth a shot
 		var startupFolder = Components.classes["@mozilla.org/file/directory_service;1"]
 			.getService(Components.interfaces.nsIProperties)
-			.get("LocalAppData", Components.interfaces.nsILocalFile)
-			.QueryInterface(Components.interfaces.nsILocalFile);
+			.get("LocalAppData", Components.interfaces.nsIFile)
+			.QueryInterface(Components.interfaces.nsIFile);
 		startupFolder.appendRelativePath("Packages\\Microsoft.Office.Desktop_8wekyb3d8bbwe\\LocalCache\\Roaming\\Microsoft\\Word\\Startup");
 		startupFolders.push(startupFolder);
 		
@@ -155,7 +152,7 @@ var Plugin = new function() {
 				Zotero.debug(`Potential Word startup location ${startupFolder.path} does not exist. Skipping`);
 				continue;
 			}
-			var oldDot = startupFolder.clone().QueryInterface(Components.interfaces.nsILocalFile);
+			var oldDot = startupFolder.clone().QueryInterface(Components.interfaces.nsIFile);
 			var oldDotm = oldDot.clone();
 			oldDot.append("Zotero.dot");
 			oldDotm.append("Zotero.dotm");

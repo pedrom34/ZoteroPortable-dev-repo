@@ -22,6 +22,9 @@
     ***** END LICENSE BLOCK *****
 */
 
+Components.utils.import("resource://gre/modules/osfile.jsm");
+var FilePicker = require('zotero/filePicker').default;
+
 const UNOPKG_RELPATHS = {
 	Mac:[
 		"Contents/MacOS/unopkg"
@@ -326,53 +329,52 @@ function openofficeInstallationsPageShown() {
 /**
  * Called to add an LibreOffice installation directory
  */
-function openofficeInstallationsAddDirectory() {
-	var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(Components.interfaces.nsIFilePicker);
+async function openofficeInstallationsAddDirectory() {
+	var fp = new FilePicker();
 	
 	// show dialog to select directory
 	if(Zotero.isMac) {
-		fp.init(window, "Select the LibreOffice application", Components.interfaces.nsIFilePicker.modeOpen);
+		fp.init(window, "Select the LibreOffice application", fp.modeOpen);
 		fp.appendFilter("Mac OS X Application Bundle", "*.app");
 	} else {
-		fp.init(window, "Select the LibreOffice installation directory", Components.interfaces.nsIFilePicker.modeGetFolder);
+		fp.init(window, "Select the LibreOffice installation directory", fp.modeGetFolder);
 	}
 	
-	if(fp.show() === Components.interfaces.nsIFilePicker.returnOK) {
-		// find unopkg executable
-		var unopkg = fp.file.clone();
-		unopkg = unopkg.QueryInterface(Components.interfaces.nsILocalFile);
-		unopkg.appendRelativePath(UNOPKG_RELPATHS[ZoteroOpenOfficeIntegration.platform]);
-		
-		if(!unopkg.exists()) {
-			unopkg = fp.file.clone().parent;
-			unopkg = unopkg.QueryInterface(Components.interfaces.nsILocalFile);
-			unopkg.appendRelativePath(UNOPKG_RELPATHS[ZoteroOpenOfficeIntegration.platform]);
-		}
-		
-		if(!unopkg.exists()) {
-			var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-					.getService(Components.interfaces.nsIPromptService);
-			promptService.alert(window, "unopkg Not Found", "The unopkg executable could not be "+
-				"found in the selected LibreOffice installation directory. Please ensure that "+
-				"you have selected the correct directory and try again.");
-		}
-		
-		// ensure unopkg is not already in list
-		var listbox = document.getElementById("installations-listbox");
-		var nodes = listbox.childNodes;
-		for(var i=0; i<nodes.length; i++) {
-			if(nodes[i].label === unopkg.path) return;
-		}
-		
-		// add unopkg to list
-		var itemNode = document.createElement("listitem");
-		itemNode.setAttribute("type", "checkbox");
-		itemNode.setAttribute("label", unopkg.path);
-		itemNode.setAttribute("checked", "true");
-		listbox.appendChild(itemNode);
-		
-		wizard.canAdvance = true;
+	if (await fp.show() != fp.returnOK) {
+		return;
 	}
+	
+	// find unopkg executable
+	var unopkg = OS.Path.join(fp.file, UNOPKG_RELPATHS[ZoteroOpenOfficeIntegration.platform]);
+	
+	if (!await OS.File.exists(unopkg)) {
+		unopkg = OS.Path.join(fp.file, UNOPKG_RELPATHS[ZoteroOpenOfficeIntegration.platform]);
+	}
+	
+	if (!await OS.File.exists(unopkg)) {
+		Services.prompt.alert(
+			window,
+			"unopkg Not Found",
+			"The unopkg executable could not be found in the selected LibreOffice installation "
+				 + "directory. Please ensure that you have selected the correct directory and try again."
+		 );
+	}
+	
+	// ensure unopkg is not already in list
+	var listbox = document.getElementById("installations-listbox");
+	var nodes = listbox.childNodes;
+	for (let i = 0; i < nodes.length; i++) {
+		if (nodes[i].label === unopkg) return;
+	}
+	
+	// add unopkg to list
+	var itemNode = document.createElement("listitem");
+	itemNode.setAttribute("type", "checkbox");
+	itemNode.setAttribute("label", unopkg);
+	itemNode.setAttribute("checked", "true");
+	listbox.appendChild(itemNode);
+	
+	wizard.canAdvance = true;
 }
 
 /**
@@ -387,7 +389,7 @@ function openofficeInstallationsManualInstallation() {
 	var oxtPath = ZoteroOpenOfficeIntegration.getOxtPath();
 	document.getElementById("installation-manual-path").textContent = oxtPath.path;
 	try {
-		oxtPath.QueryInterface(Components.interfaces.nsILocalFile).reveal();
+		oxtPath.QueryInterface(Components.interfaces.nsIFile).reveal();
 	} catch(e) {
 		Zotero.logError(e);
 	}

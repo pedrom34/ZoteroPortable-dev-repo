@@ -224,7 +224,7 @@ var Plugin = new function() {
 	 */
 	this.getFile = function(path) {
 		var file = Components.classes["@mozilla.org/file/local;1"].
-			createInstance(Components.interfaces.nsILocalFile);
+			createInstance(Components.interfaces.nsIFile);
 		file.followLinks = true;
 		file.initWithPath(path);
 		return file;
