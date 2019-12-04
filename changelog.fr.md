@@ -1,5 +1,7 @@
 Historique des versions  :
 ----
+- 2019-12-04. Version 5.0.80 - Development Test 58 : Mise à jour vers Zotero 5.0.80.
+  
 - 2019-12-03. Version 5.0.79 - Development Test 57 : Mise à jour vers Zotero 5.0.79 - mise à jour vers Zotero 5.0.78 sautée.
   
 - 2019-11-24. Version 5.0.77 - Development Test 56 : Mise à jour des paramètres de la version portable. Plus de traces dans %appdata%, support du module pour Microsoft Word, problème de la mise à jour manuelle réglé, changement de l'arborescence du programme. Merci @AndhikaWB. Voir [#14]( https://github.com/pedrom34/ZoteroPortable/issues/14) pour plus d'infos.
