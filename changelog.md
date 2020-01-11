@@ -1,5 +1,7 @@
 Versions history:
 ----
+- 2020-01-11. Version 5.0.81 - Development Test 59 : Update to Zotero 5.0.81.
+  
 - 2019-12-04. Version 5.0.80 - Development Test 58 : Update to Zotero 5.0.80.
   
 - 2019-12-03. Version 5.0.79 - Development Test 57 : Update to Zotero 5.0.79 - update to Zotero 5.0.78 skipped.
