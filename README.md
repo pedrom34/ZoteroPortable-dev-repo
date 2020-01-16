@@ -13,20 +13,20 @@ This version of Zotero is not officially endorsed by Zotero Team. [Do not expect
   
 How to use:
 -----
-- Download last [release here](https://github.com/pedrom34/ZoteroPortable/releases)
-- Unpack Zotero by launching installer and selecting target folder (it could be an USB Key for example)
-- Install [Zotero Connector](https://www.zotero.org/download/) on your browser (I personnaly use [FirefoxPortable](https://portableapps.com/apps/internet/firefox_portable/localization))
+- Download latest [release here](https://github.com/pedrom34/ZoteroPortable/releases/latest)
+- Unpack Zotero by launching installer and selecting target folder (it can be an USB Key or a folder on your desktop...)
+- Install [Zotero Connector](https://www.zotero.org/download/) in your browser (I personnaly use [FirefoxPortable](https://portableapps.com/apps/internet/firefox_portable/localization))
 - You're all set.
   
 Notes on release:
 -----
 For official changelog of Zotero, please see [here](https://www.zotero.org/support/changelog).  
   
-All my releases are considered as 'Pre-release' and 'development tests', because Zotero Portable is not - yet - officially supported by PortableApps.com. I hope it will be someday. In the mean time, Zotero Portable is still fully operational, I use it everyday.  
+Zotero Portable is not - yet - officially supported by PortableApps.com. I hope it will be someday. In the mean time, Zotero Portable is still fully operational, I use it everyday.  
   
 Updating:
 -----
-I recommend to download the last portable release, and install the new version on top of the current one. Your data will be safe, only the program will be updated.  
+I recommend to download the latest portable release, and install the new version on top of the current one. Your data will be safe, only the program will be updated.  
   
 This Zotero Portable still contains original Zotero Update module: if you check for updates, Zotero will update:  
 - Click on Help > Check for updates in Zotero.  
