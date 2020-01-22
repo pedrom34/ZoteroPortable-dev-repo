@@ -8,6 +8,7 @@ content	zotero-platform		jar:zotero.jar!/chrome/content/zotero-platform/unix/   
 
 resource zotero				jar:zotero.jar!/resource/
 
+# Keep in sync with locale.js and zotero-standalone-build:assets/multilocale.txt
 locale	zotero	en-US		jar:zotero.jar!/chrome/locale/en-US/zotero/
 #locale	zotero	af-ZA		jar:zotero.jar!/chrome/locale/af-ZA/zotero/
 locale	zotero	ar		jar:zotero.jar!/chrome/locale/ar/zotero/
@@ -37,7 +38,7 @@ locale	zotero	km			jar:zotero.jar!/chrome/locale/km/zotero/
 locale	zotero	ko-KR		jar:zotero.jar!/chrome/locale/ko-KR/zotero/
 locale  zotero  lt-LT           jar:zotero.jar!/chrome/locale/lt-LT/zotero/
 #locale	zotero	mn-MN		jar:zotero.jar!/chrome/locale/mn-MN/zotero/
-#locale	zotero	nb-NO		jar:zotero.jar!/chrome/locale/nb-NO/zotero/
+locale	zotero	nb-NO		jar:zotero.jar!/chrome/locale/nb-NO/zotero/
 #locale	zotero	nn-NO		jar:zotero.jar!/chrome/locale/nn-NO/zotero/
 locale	zotero	nl-NL		jar:zotero.jar!/chrome/locale/nl-NL/zotero/
 locale	zotero	pl-PL		jar:zotero.jar!/chrome/locale/pl-PL/zotero/
@@ -78,6 +79,7 @@ contract	@mozilla.org/network/protocol;1?name=zotero 	{9BC3D762-9038-486A-9D70-C
 content scaffold             jar:zotero.jar!/chrome/content/scaffold/
 locale  scaffold   en-US     jar:zotero.jar!/chrome/locale/en-US/scaffold/
 skin    scaffold   default   jar:zotero.jar!/chrome/skin/default/scaffold/
+
 locale	branding en-US		jar:zotero.jar!/chrome/branding/locale/
 content	branding			jar:zotero.jar!/chrome/branding/content/
 skin	browser				preferences		jar:zotero.jar!/chrome/skin/
