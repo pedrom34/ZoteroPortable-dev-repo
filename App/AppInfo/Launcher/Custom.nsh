@@ -4,8 +4,9 @@ ${SegmentPre}
 	${SetEnvironmentVariablesPath} PAL:LAUNCHERPATH '$EXEPATH'
 	${SetEnvironmentVariablesPath} PAL:LAUNCHERDIR '$EXEDIR'
 	${SetEnvironmentVariablesPath} PAL:LAUNCHERFILE '$EXEFILE'
-	
-	${If} ${FileExists} '$PROFILE\AppData\LocalLow\*.*'
-		${SetEnvironmentVariablesPath} LOCALAPPDATALOW '$PROFILE\AppData\LocalLow'
-	${EndIf}
+	${SetEnvironmentVariablesPath} LOCALAPPDATALOW '$PROFILE\AppData\LocalLow'
+!macroend
+
+${SegmentPost}
+	Delete '$APPDATA\Microsoft\Word\Startup\Zotero.*'
 !macroend
