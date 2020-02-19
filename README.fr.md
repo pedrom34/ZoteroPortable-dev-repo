@@ -11,6 +11,9 @@ Malheureusement, il n'existait pas de version portable de Zotero. La version cr�
 Avec ma version, Zotero 5 est pleinement portable : il est possible de l'installer sans être administrateur, de l'utiliser depuis une clé usb ou autre, il n'y a pas d'inscription dans le registre et aucune trace n'est laissée sur l'ordinateur.  
 Attention, cette version n'est pas officiellement supportée par l’équipe de Zotero. [N'espérez pas un support officiel](https://forums.zotero.org/discussion/64050/5-0-portable-zotero).  
   
+A noter, j'ai également adapté une version de [Juris-M](https://juris-m.github.io/) Portable, disponible [ici](https://github.com/pedrom34/JurisMPortable) !
+  
+  
 Mise en place :
 -----
 - Téléchargez la [dernière version ici](https://github.com/pedrom34/ZoteroPortable/releases)
