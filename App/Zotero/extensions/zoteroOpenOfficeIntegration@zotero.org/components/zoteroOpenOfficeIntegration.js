@@ -37,17 +37,12 @@ var Comm = new function() {
 	/**
 	 * Observes browser startup to initialize ZoteroOpenOfficeIntegration HTTP server
 	 */
-	this.init = function() {
+	this.init = async function() {
 		Zotero = Components.classes["@zotero.org/Zotero;1"]
 			.getService(Components.interfaces.nsISupports)
 			.wrappedJSObject;
+		await Zotero.initializationPromise;
 		mainThread = Zotero.mainThread;
-		
-		if (Zotero.isConnector || Zotero.HTTP.browserIsOffline()) {
-			Zotero.debug('LibreOfficePlugin: Browser is offline or in connector mode -- not initializing communication server');
-			_registerObservers();
-			return;
-		}
 		
 		// Initialize the converter
 		_converter = Components.classes["@mozilla.org/intl/scriptableunicodeconverter"]
@@ -95,7 +90,7 @@ var Comm = new function() {
 			Zotero.debug("LibreOfficePlugin: Not initializing communication server");
 		}
 		
-		if(Zotero.addShutdownListener) {
+		if (Zotero.addShutdownListener) {
 			Zotero.debug("LibreOfficePlugin: Registering shutdown listener");
 			Zotero.addShutdownListener(function() {
 				Zotero.debug("LibreOfficePlugin: Shutting down communication server");
@@ -111,33 +106,6 @@ var Comm = new function() {
 				}
 			});
 		}
-		
-		_registerObservers();
-	}
-	
-	/**
-	 * Registers an observer to bring the server back online when Firefox comes online
-	 */
-	function _registerObservers() {
-		if (_observersRegistered) return;
-		
-		// Observer to enable integration when we go online
-		var onlineObserver = function(subject, topic, data) {
-			if (data == 'online' && !Zotero.isConnector) Comm.init();
-		};
-		
-		// Observer to enable integration when we leave connector mode
-		var reloadObserver = function(subject, topic, data) {
-			if(!Zotero.isConnector) Comm.init();
-		}
-		
-		var observerService =
-			Components.classes["@mozilla.org/observer-service;1"]
-				.getService(Components.interfaces.nsIObserverService);
-		observerService.addObserver(onlineObserver, "network:offline-status-changed", false);
-		observerService.addObserver(reloadObserver, "zotero-reloaded", false);
-		
-		_observersRegistered = true;
 	}
 		
 	/**

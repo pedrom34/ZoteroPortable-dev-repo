@@ -1,14 +1,16 @@
 Versions history:
 ----
-- 2020-01-22. Version 5.0.82 - Development Test 60 : Update to Zotero 5.0.82.
+- 2020-02-24. Version 5.0.83 - Development Test 61: Update to Zotero 5.0.83. Update of Custom.nsh script to "portabilize" Microsoft Office plugin. Thanks @AndhikaWB.
   
-- 2020-01-11. Version 5.0.81 - Development Test 59 : Update to Zotero 5.0.81.
+- 2020-01-22. Version 5.0.82 - Development Test 60: Update to Zotero 5.0.82.
   
-- 2019-12-04. Version 5.0.80 - Development Test 58 : Update to Zotero 5.0.80.
+- 2020-01-11. Version 5.0.81 - Development Test 59: Update to Zotero 5.0.81.
   
-- 2019-12-03. Version 5.0.79 - Development Test 57 : Update to Zotero 5.0.79 - update to Zotero 5.0.78 skipped.
+- 2019-12-04. Version 5.0.80 - Development Test 58: Update to Zotero 5.0.80.
   
-- 2019-11-24. Version 5.0.77 - Development Test 56 : Portable configuration update. No more traces in %appdata%, advanced support for Microsoft Word update, manual update fix, program folders tree update. Thanks to @AndhikaWB. See issue [#14]( https://github.com/pedrom34/ZoteroPortable/issues/14) for more info.
+- 2019-12-03. Version 5.0.79 - Development Test 57: Update to Zotero 5.0.79 - update to Zotero 5.0.78 skipped.
+  
+- 2019-11-24. Version 5.0.77 - Development Test 56: Portable configuration update. No more traces in %appdata%, advanced support for Microsoft Word update, manual update fix, program folders tree update. Thanks to @AndhikaWB. See issue [#14]( https://github.com/pedrom34/ZoteroPortable/issues/14) for more info.
   
 - 2019-11-02. Version 5.0.77 - Development Test 55: Update to Zotero 5.0.77.
   
