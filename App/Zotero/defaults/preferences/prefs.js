@@ -182,6 +182,9 @@ pref("browser.preferences.instantApply", false);
 // Whether to show the Error Console option in the Tools menu
 pref("devtools.errorconsole.enabled", false);
 
+// Allow elements to be displayed full-screen
+pref("full-screen-api.enabled", true);
+
 pref("extensions.zoteroWinWordIntegration.version", "");
 pref("extensions.zoteroWinWordIntegration.installed", false);
 pref("extensions.zoteroWinWordIntegration.skipInstallation", false);
