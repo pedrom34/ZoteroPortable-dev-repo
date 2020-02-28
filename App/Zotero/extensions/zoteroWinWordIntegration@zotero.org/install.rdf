@@ -4,7 +4,7 @@
 <Description about="urn:mozilla:install-manifest">
 	<em:id>zoteroWinWordIntegration@zotero.org</em:id>
 	<em:name>Zotero Word for Windows Integration</em:name>
-	<em:version>5.0.14.SA.5.0.83</em:version>
+	<em:version>5.0.14.SA.5.0.84</em:version>
 	<em:creator>Center for History and New Media</em:creator>
 	<em:developer>Simon Kornblith</em:developer>
 	<em:homepageURL>https://www.zotero.org</em:homepageURL>
