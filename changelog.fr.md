@@ -1,5 +1,7 @@
 Historique des versions  :
 ----
+- 2020-03-25. Version 5.0.85 - Development Test 63 : Mise à jour vers Zotero 5.0.85.
+  
 - 2020-02-28. Version 5.0.84 - Development Test 62 : Mise à jour vers Zotero 5.0.84.
   
 - 2020-02-24. Version 5.0.83 - Development Test 61 : Mise à jour vers Zotero 5.0.83. Mise à jour du script Custom.nsh pour la "portabilisation" du plugin Zotero pour Microsoft Office. Merci @AndhikaWB.
