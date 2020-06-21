@@ -41,7 +41,8 @@ where they are passed to integration.js.
 Zotero talks to Word via [js-ctype bindings](https://github.com/zotero/zotero-word-for-windows-integration/blob/4f07be4bfaa3f37897a5af5371ea20353214f23e/components/zoteroWinWordIntegration.js#L52-L52)
 to a C++ OLE Automation based [library](https://github.com/zotero/zotero-word-for-windows-integration/blob/8d1807584d02f3b10715dd9895413c04349d45e8/build/zoteroWinWordIntegration/zoteroWinWordIntegration.h).
 To generate new interfaces for Word interop communications you should use the Add New Class wizard in
-Visual Studio and select 'MFC Class from Typelib'. The interop API docs can be found in the [MSDN](https://msdn.microsoft.com/en-us/library/microsoft.office.interop.word(v=office.11).aspx).
-Current version is based on Word 2003 as it remains compatible even with Windows 10 and we thus continue supporting it.
+Visual Studio and select 'MFC Class from Typelib'. The interop API docs can be found in the [MSDN](https://docs.microsoft.com/en-us/dotnet/api/microsoft.office.interop.word._document?view=word-pia).
+The plugin should technically work with Word versions starting with 2003, but we have stopped supporting everything below Word 2010
+due to impossible to fix bugs cropping up as time goes on and Microsoft drops compatibility themselves.
 Some API calls are on a deprecation path, so we may be inevitably be forced to move 
 away or split the library into multiple DLLs.

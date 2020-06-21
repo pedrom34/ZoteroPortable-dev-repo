@@ -15,6 +15,9 @@ fi
 SDK_LOCATION=""
 if [[ "`uname`" = "Darwin" ]]; then
 	SDK_LOCATION="/Applications/LibreOffice.app/Contents/Resources/java"
+elif [[ "`uname -a | cut -d ' ' -f3 | grep Microsoft`" ]]; then
+	SDK_LOCATION="/mnt/c/Program Files/LibreOffice/program/classes"
+	WINDOWS=1
 elif [[ "`uname`" = "Linux" ]]; then
 	SDK_LOCATION="$(echo /opt/libreoffice*/program/classes)"
 fi
@@ -40,6 +43,9 @@ if [[ ! -e "$SDK_LOCATION/java_uno.jar" ]]; then
 	echo "LibreOffice SDK files not found. They should be located in your libreoffice installation directory under 'java' or 'classes'."
 	exit 1
 else
-	
-	ln -s $SDK_LOCATION $SYMLINK_LOCATION && { echo "LibreOffice SDK ($SDK_LOCATION) symlinked for development with Eclipse."; }
+	if [[ $WINDOWS ]]; then
+		cp -r "$SDK_LOCATION" "$SYMLINK_LOCATION" && { echo "LibreOffice SDK ($SDK_LOCATION) copied for development with Eclipse to $SYMLINK_LOCATION."; }
+	else
+		ln -s "$SDK_LOCATION" "$SYMLINK_LOCATION" && { echo "LibreOffice SDK ($SDK_LOCATION) symlinked for development with Eclipse to $SYMLINK_LOCATION."; }
+	fi
 fi
