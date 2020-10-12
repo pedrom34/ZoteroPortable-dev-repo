@@ -59,10 +59,8 @@ var Plugin = new function() {
 	
 	this.install = function(zpi) {
 		// get Zotero.dot file
-		var dot = zpi.getAddonPath(this.EXTENSION_ID);
-		dot.append("install");
-		var dotm = dot.clone();
-		dot.append("Zotero.dot");
+		var dotm = zpi.getAddonPath(this.EXTENSION_ID);
+		dotm.append("install");
 		dotm.append("Zotero.dotm");
 
 		// find Word Startup folders (see http://support.microsoft.com/kb/210860)
@@ -158,7 +156,6 @@ var Plugin = new function() {
 			oldDotm.append("Zotero.dotm");
 
 			for(var template of [oldDot, oldDotm]) {
-				if(template.equals(dot)) continue;
 				if(template.exists()) {
 					try {
 						template.remove(false);

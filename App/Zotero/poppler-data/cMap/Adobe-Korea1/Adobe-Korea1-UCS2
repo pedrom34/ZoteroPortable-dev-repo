@@ -3,9 +3,9 @@
 %%IncludeResource: ProcSet (CIDInit)
 %%BeginResource: CMap (Adobe-Korea1-UCS2)
 %%Title: (Adobe-Korea1-UCS2 Adobe Korea1 2)
-%%Version: 5.003
+%%Version: 5.004
 %%Copyright: -----------------------------------------------------------
-%%Copyright: Copyright 1990-2015 Adobe Systems Incorporated.
+%%Copyright: Copyright 1990-2018 Adobe Systems Incorporated.
 %%Copyright: All rights reserved.
 %%Copyright:
 %%Copyright: Redistribution and use in source and binary forms, with or
@@ -56,7 +56,7 @@ end def
 
 /CMapName /Adobe-Korea1-UCS2 def
 
-/CMapVersion 5.003 def
+/CMapVersion 5.004 def
 /CMapType 2 def
 
 /XUID [1 10 25335 1212] def
@@ -6129,7 +6129,7 @@ endbfchar
 <2056> <002A>
 <2058> <2217>
 <2059> <002A>
-<205A> <CDCDCDCD>
+<205A> <FFFD>
 <205D> <00280028>
 <205E> <00290029>
 <205F> <00280028>
