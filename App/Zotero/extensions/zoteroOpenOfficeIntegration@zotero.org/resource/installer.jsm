@@ -32,10 +32,6 @@ var Installer = function(failSilently=true, force) {
 const UNOPKG_LOCATIONS = {
 	Mac:[
 		"/Applications/LibreOffice.app/Contents/MacOS/unopkg",
-		"/Applications/OpenOffice.org.app/Contents/MacOS/unopkg",
-		"/Applications/OpenOffice.app/Contents/MacOS/unopkg",
-		"/Applications/NeoOffice.app/Contents/MacOS/unopkg",
-		"/Applications/OpenOffice.org 2.4.app/Contents/MacOS/unopkg"
 	],
 	Win:[
 		"C:\\Program Files\\LibreOffice 6\\program\\unopkg.exe",
@@ -60,22 +56,6 @@ const UNOPKG_LOCATIONS = {
 		"C:\\Program Files (x86)\\LibreOffice 3.6\\program\\unopkg.exe",
 		"C:\\Program Files\\LibreOffice 3.7\\program\\unopkg.exe",
 		"C:\\Program Files (x86)\\LibreOffice 3.7\\program\\unopkg.exe",
-		"C:\\Program Files\\OpenOffice 4\\program\\unopkg.exe",
-		"C:\\Program Files (x86)\\OpenOffice 4\\program\\unopkg.exe",
-		"C:\\Program Files\\OpenOffice.org 3.1\\program\\unopkg.exe",
-		"C:\\Program Files (x86)\\OpenOffice.org 3.1\\program\\unopkg.exe",
-		"C:\\Program Files\\OpenOffice.org 3.2\\program\\unopkg.exe",
-		"C:\\Program Files (x86)\\OpenOffice.org 3.2\\program\\unopkg.exe",
-		"C:\\Program Files\\OpenOffice.org 3.3\\program\\unopkg.exe",
-		"C:\\Program Files (x86)\\OpenOffice.org 3.3\\program\\unopkg.exe",
-		"C:\\Program Files\\OpenOffice.org 3.4\\program\\unopkg.exe",
-		"C:\\Program Files (x86)\\OpenOffice.org 3.4\\program\\unopkg.exe",
-		"C:\\Program Files\\OpenOffice.org 3\\program\\unopkg.exe",
-		"C:\\Program Files (x86)\\OpenOffice.org 3\\program\\unopkg.exe",
-		"C:\\Program Files\\OpenOffice.org 2.4\\program\\unopkg.exe",
-		"C:\\Program Files (x86)\\OpenOffice.org 2.4\\program\\unopkg.exe",
-		"C:\\Program Files\\OpenOffice.org 2\\program\\unopkg.exe",
-		"C:\\Program Files (x86)\\OpenOffice.org 2\\program\\unopkg.exe"
 	],
 	Other:[
 		"/usr/bin/unopkg",
@@ -83,37 +63,10 @@ const UNOPKG_LOCATIONS = {
 		"/usr/lib/libreoffice/program/unopkg",
 		"/usr/lib64/libreoffice/program/unopkg",
 		
-		"/usr/lib/openoffice/program/unopkg",
-		"/usr/lib64/openoffice/program/unopkg",
-		
 		"/usr/lib/libreoffice4/program/unopkg",
 		"/usr/lib64/libreoffice4/program/unopkg",
 		"/usr/lib/libreoffice3/program/unopkg",
 		"/usr/lib64/libreoffice3/program/unopkg",
-		
-		"/usr/lib/openoffice.org3/program/unopkg",
-		"/usr/lib64/openoffice.org3/program/unopkg",
-		
-		"/usr/lib/ooo3/program/unopkg",
-		"/usr/lib64/ooo3/program/unopkg",
-		
-		"/opt/openoffice4/program/unopkg",
-		"/opt/openoffice.org3.5/program/unopkg",
-		"/usr/local/opt/openoffice.org3.5/program/unopkg",
-		"/opt/openoffice.org3.4/program/unopkg",
-		"/usr/local/opt/openoffice.org3.4/program/unopkg",
-		"/opt/openoffice.org3.3/program/unopkg",
-		"/usr/local/opt/openoffice.org3.3/program/unopkg",
-		"/opt/openoffice.org3.2/program/unopkg",
-		"/usr/local/opt/openoffice.org3.2/program/unopkg",
-		"/opt/openoffice.org3.1/program/unopkg",
-		"/usr/local/opt/openoffice.org3.1/program/unopkg",
-		"/opt/openoffice.org3/program/unopkg",
-		"/usr/local/opt/openoffice.org3/program/unopkg",
-		"/opt/openoffice.org2.4/program/unopkg",
-		"/usr/local/opt/openoffice.org2.4/program/unopkg",
-		"/opt/openoffice.org2/program/unopkg",
-		"/usr/local/opt/openoffice.org2/program/unopkg",
 		
 		"/opt/libreoffice/program/unopkg",
 		"/opt/libreoffice3/program/unopkg",

@@ -46,7 +46,7 @@ var breadcrumbs = [];
 /**
  * Called on initial wizard load
  */
-function onLoad() {
+async function onLoad() {
 	wizard = document.documentElement;
 	javaCommonCheckRun = false;
 	
@@ -77,13 +77,13 @@ function onLoad() {
 				if(success) wizard.advance();
 			}
 		});
-	} else {
-		checkMacJDK().then(function(success) {
-			if (!success) {
-				wizard.getPageById("intro").next = "jdk-required";
-			}
-		});
 	}
+	else {
+		let jdkFound = await checkMacJDK();
+		if (!jdkFound) {
+			wizard.getPageById("intro").next = "jdk-required";
+		}
+	}	
 }
 
 /**
@@ -124,16 +124,6 @@ function checkJavaCommon(callback) {
 	});
 }
 
-var checkMacJDK = Zotero.Promise.coroutine(function* () {
-	var success = false;
-	try {
-		success = yield Zotero.Utilities.Internal.exec('/bin/bash/', ['-c', '/usr/libexec/java_home | grep -e "jdk"']);
-	} catch (e) {
-		Zotero.logError(e);
-	}
-	return success;
-});
-
 function checkJavaCommonPkg(pkgMain, pkgRequired, callback) {
 	// check for openoffice.org-writer with openoffice.org-java-common available but not installed
 	bashProc.runAsync(["-c", "dpkg -l '"+pkgMain.replace(".", "\\.")+"' | grep '^ii '"], 2, {"observe":function(subject1, topic1) {
@@ -170,6 +160,16 @@ function checkJavaCommonPkg(pkgMain, pkgRequired, callback) {
 			callback(true);
 		}
 	}});
+}
+
+async function checkMacJDK() {
+	var success = false;
+	try {
+		success = await Zotero.Utilities.Internal.exec('/bin/bash/', ['-c', '/usr/libexec/java_home | grep -e "jdk"']);
+	} catch (e) {
+		Zotero.logError(e);
+	}
+	return success;
 }
 
 /**
