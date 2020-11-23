@@ -23,6 +23,7 @@
 */
 
 var EXPORTED_SYMBOLS = ["Installer"];
+Components.utils.import("resource://gre/modules/Services.jsm");
 var Zotero = Components.classes["@zotero.org/Zotero;1"].getService(Components.interfaces.nsISupports).wrappedJSObject;
 var ZoteroPluginInstaller = Components.utils.import("resource://zotero/word-processor-plugin-installer.js").ZoteroPluginInstaller;
 var Installer = function(failSilently, force) {
@@ -145,11 +146,27 @@ var Plugin = new function() {
 		startupFolder.appendRelativePath("Packages\\Microsoft.Office.Desktop_8wekyb3d8bbwe\\LocalCache\\Roaming\\Microsoft\\Word\\Startup");
 		startupFolders.push(startupFolder);
 		
+		var someBadFolders = false;
+		var allBadFolders = true;
+		var installedAt = new Set();
 		for (var startupFolder of startupFolders) {
 			if (!startupFolder.clone().exists()) {
 				Zotero.debug(`Potential Word startup location ${startupFolder.path} does not exist. Skipping`);
 				continue;
 			}
+			
+			// Multiple versions of Word all with the same setting, so we only install there once
+			if (installedAt.has(startupFolder.path)) continue;
+			installedAt.add(startupFolder.path);
+			
+			if (startupFolder.path.includes('Program Files')) {
+				someBadFolders = true;
+				continue;
+			}
+			else {
+				allBadFolders = false;
+			}
+			
 			var oldDot = startupFolder.clone().QueryInterface(Components.interfaces.nsIFile);
 			var oldDotm = oldDot.clone();
 			oldDot.append("Zotero.dot");
@@ -170,9 +187,47 @@ var Plugin = new function() {
 			try {
 				dotm.copyTo(startupFolder, "Zotero.dotm");
 			} catch (e) {
-				Zotero.debug(e);
+				Zotero.debug(e, 1);
 				throw new Error(`Could not copy Zotero.dotm to ${startupFolder.path}`)
 			}
+		}
+
+		if (allBadFolders || someBadFolders) {
+			zpi.failSilently = true;
+			let title;
+			let text;
+			if (allBadFolders) {
+				title = Zotero.getString('general.error');
+				text = Zotero.getString(
+					'integration.error.misconfiguredWordStartupFolder.all',
+					[Zotero.clientName]
+				);
+				zpi.error(text);
+			}
+			else {
+				title = Zotero.getString('general.warning');
+				text = Zotero.getString(
+					'integration.error.misconfiguredWordStartupFolder.some',
+					[Zotero.clientName]
+				);
+				zpi.error(text, false);
+			}
+			text += "\n\n" + Zotero.getString('integration.error.misconfiguredWordStartupFolder.fix');
+			let ps = Services.prompt;
+			let buttonFlags = ps.BUTTON_POS_0 * ps.BUTTON_TITLE_IS_STRING
+				+ ps.BUTTON_POS_1 * ps.BUTTON_TITLE_CANCEL;
+			let index = ps.confirmEx(
+				null,
+				title,
+				text,
+				buttonFlags,
+				Zotero.getString('general.moreInformation'),
+				"", "", "", {}
+			);
+			if (index == 0) {
+				Zotero.launchURL('https://www.zotero.org/support/kb/misconfigured_word_startup_folder');
+			}
+			return;
 		}
 		
 		zpi.success();
