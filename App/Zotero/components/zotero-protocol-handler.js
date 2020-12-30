@@ -1038,7 +1038,7 @@ function ZoteroProtocolHandler() {
       }
 
       if (!path.toLowerCase().endsWith('.pdf') &&
-      Zotero.MIME.sniffForMIMEType((await Zotero.File.getSample(path))) != 'application/pdf') {
+      Zotero.MIME.sniffForMIMEType(await Zotero.File.getSample(path)) != 'application/pdf') {
         Zotero.warn(`${path} is not a PDF`);
         return;
       }
