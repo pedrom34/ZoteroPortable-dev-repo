@@ -8,7 +8,7 @@ Pourquoi ?
 Avec l'abandon des extensions classiques de Firefox, Zotero a dû s'adapter : les développeurs ont arrêté le support de l'extension, et se sont concentrés sur Zotero Standalone : là où il y avait deux programmes, Zotero propose désormais une expérience unifiée.  
 Malheureusement, il n'existait pas de version portable de Zotero. La version créée par [orschiro](https://portableapps.com/node/36565) n'est plus mise à jour, et n'est plus portable si on force la mise à jour vers la version 5, puisque le profil et les données utilisateur sont stockés dans %appdata%\Zotero  
   
-Avec ma version, Zotero 5 est pleinement portable : il est possible de l'installer sans être administrateur, de l'utiliser depuis une clé usb ou autre, il n'y a pas d'inscription dans le registre et aucune trace n'est laissée sur l'ordinateur.  
+Avec ma version, Zotero 5 est pleinement portable : il est possible de l'installer sans être administrateur, de l'utiliser depuis une clé USB ou autre, il n'y a pas d'inscription dans le registre et aucune trace n'est laissée sur l'ordinateur.  
 Attention, cette version n'est pas officiellement supportée par l’équipe de Zotero. [N'espérez pas un support officiel](https://forums.zotero.org/discussion/64050/5-0-portable-zotero).  
   
 A noter, j'ai également adapté une version de [Juris-M](https://juris-m.github.io/) Portable, disponible [ici](https://github.com/pedrom34/JurisMPortable) !
@@ -43,6 +43,22 @@ Cette version de Zotero Portable contient toujours le module de mise à jour ori
 La mise à jour est appliquée.  
   
 Notez que mettre à jour le programme de cette façon vous prive des modifications que je peux apporter (modifications des fichiers de configuration [.ini] de la portabilisation par exemple).  
+  
+Filtre SmartScreen :
+-----
+Windows 10 peut poser problème avec l'installation ou le lancement de Zotero Portable. Si cela vous arrive, il est souvent possible d'indiquer à Windows que l'on souhaite tout de même exécuter le programme. Pour cela, il est d'abord nécessaire de me faire confiance. Puis, cliquez sur Informations complémentaires :  
+>![screenshot4](https://i.imgur.com/CY8S5Hb.png)  
+  
+Et ensuite sur Exécuter quand même :  
+>![screenshot5](https://i.imgur.com/7kOC96A.png)  
+  
+Cependant, certaines organisations bloquent cette possibilité de contournement (voir [#20](https://github.com/pedrom34/ZoteroPortable/issues/20) pour plus d'infos).  
+Si vous souhaitez tout de même utiliser ZoteroPortable, une solution est d'utiliser la [plateforme officielle de PortableApps.org](https://portableapps.com/download). Pour ce faire, téléchargez la plateforme, installez-la (cela ne devrait pas poser de problème car la plateforme possède une signature validée par Microsoft). Une fois installez, lancez la plateforme et cliquez sur Applications, puis Installez une application (paf.exe), et sélectionnez le fichier ZoteroPortable_XX_Development_Test_XX.paf.exe téléchargé sur ce repo.  
+
+>![screenshot6](https://i.imgur.com/neAFjBi.png)  
+  
+ZoteroPortable apparaîtra dans le menu PortableApps, et vous pouvez désormais le lancer par ce raccourci.  
+>![screenshot7](https://i.imgur.com/uWY70Dg.png)  
   
 Historique des versions :
 ----
