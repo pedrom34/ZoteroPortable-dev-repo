@@ -54,7 +54,8 @@ And then on Run anyway:
 >![screenshot5](https://i.imgur.com/7kOC96A.png)  
   
 However, some organizations block this workaround (see [#20](https://github.com/pedrom34/ZoteroPortable/issues/20) for more info).
-If you still want to use ZoteroPortable, one solution is to check "unblock" option in the file properties: see https://github.com/pedrom34/ZoteroPortable/issues/20#issuecomment-854317929  
+If you still want to use ZoteroPortable, one solution is to check "unblock" option in the file properties: see [this comment from AndhikaWB](https://github.com/pedrom34/ZoteroPortable/issues/20#issuecomment-854317929).  
+  
 Another solution is to use the [official PortableApps.org platform](https://portableapps.com/download). To do this, download the platform, install it (this should not be a problem as the platform has a Microsoft validated signature). Once installed, launch the platform and click on Applications, then Install an application (paf.exe), and select the ZoteroPortable_XX_Development_Test_XX.paf.exe file downloaded on this very repo.  
 
 >![screenshot6](https://i.imgur.com/neAFjBi.png)  
