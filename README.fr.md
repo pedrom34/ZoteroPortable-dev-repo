@@ -53,7 +53,10 @@ Et ensuite sur Exécuter quand même :
 >![screenshot5](https://i.imgur.com/7kOC96A.png)  
   
 Cependant, certaines organisations bloquent cette possibilité de contournement (voir [#20](https://github.com/pedrom34/ZoteroPortable/issues/20) pour plus d'infos).  
-Si vous souhaitez tout de même utiliser ZoteroPortable, une solution est d'utiliser la [plateforme officielle de PortableApps.org](https://portableapps.com/download). Pour ce faire, téléchargez la plateforme, installez-la (cela ne devrait pas poser de problème car la plateforme possède une signature validée par Microsoft). Une fois installez, lancez la plateforme et cliquez sur Applications, puis Installez une application (paf.exe), et sélectionnez le fichier ZoteroPortable_XX_Development_Test_XX.paf.exe téléchargé sur ce repo.  
+  
+Si vous souhaitez tout de même utiliser ZoteroPortable, une solution est d'utiliser de cocher la case "Débloquer" dans les propriétés du fichier exécutable, voir [la réponse de AndhikaWB](https://github.com/pedrom34/ZoteroPortable/issues/20#issuecomment-854317929) pour les détails.  
+  
+Une autre est d'utiliser la [plateforme officielle de PortableApps.org](https://portableapps.com/download). Pour ce faire, téléchargez la plateforme, installez-la (cela ne devrait pas poser de problème car la plateforme possède une signature validée par Microsoft). Une fois installez, lancez la plateforme et cliquez sur Applications, puis Installez une application (paf.exe), et sélectionnez le fichier ZoteroPortable_XX_Development_Test_XX.paf.exe téléchargé sur ce repo.  
 
 >![screenshot6](https://i.imgur.com/neAFjBi.png)  
   
