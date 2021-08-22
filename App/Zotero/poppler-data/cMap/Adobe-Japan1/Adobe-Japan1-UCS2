@@ -2,11 +2,10 @@
 %%DocumentNeededResources: ProcSet (CIDInit)
 %%IncludeResource: ProcSet (CIDInit)
 %%BeginResource: CMap (Adobe-Japan1-UCS2)
-%%Title: (Adobe-Japan1-UCS2 Adobe Japan1 6)
-%%Version: 8.004
+%%Title: (Adobe-Japan1-UCS2 Adobe Japan1 7)
+%%Version: 9.002
 %%Copyright: -----------------------------------------------------------
-%%Copyright: Copyright 1990-2015 Adobe Systems Incorporated.
-%%Copyright: All rights reserved.
+%%Copyright: Copyright 1990-2019 Adobe. All rights reserved.
 %%Copyright:
 %%Copyright: Redistribution and use in source and binary forms, with or
 %%Copyright: without modification, are permitted provided that the
@@ -21,10 +20,9 @@
 %%Copyright: disclaimer in the documentation and/or other materials
 %%Copyright: provided with the distribution. 
 %%Copyright:
-%%Copyright: Neither the name of Adobe Systems Incorporated nor the names
-%%Copyright: of its contributors may be used to endorse or promote
-%%Copyright: products derived from this software without specific prior
-%%Copyright: written permission. 
+%%Copyright: Neither the name of Adobe nor the names of its contributors
+%%Copyright: may be used to endorse or promote products derived from
+%%Copyright: this software without specific prior written permission.
 %%Copyright:
 %%Copyright: THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
 %%Copyright: CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
@@ -51,11 +49,11 @@ begincmap
 /CIDSystemInfo 3 dict dup begin
   /Registry (Adobe) def
   /Ordering (Adobe_Japan1_UCS2) def
-  /Supplement 6 def
+  /Supplement 7 def
 end def
 
 /CMapName /Adobe-Japan1-UCS2 def
-/CMapVersion 8.004 def
+/CMapVersion 9.002 def
 /CMapType 2 def
 
 /XUID [1 10 25335 1212] def
@@ -203,7 +201,7 @@ endbfchar
 <0241> <3052>
 <0242> <3054>
 <0243> <3056>
-<0244> <3068>
+<0244> <3058>
 <0245> <305a>
 <0246> <305c>
 <0247> <305e>
@@ -7672,7 +7670,7 @@ endbfchar
 <2419> <3052>
 <241a> <3054>
 <241b> <3056>
-<241c> <3068>
+<241c> <3058>
 <241d> <305a>
 <241e> <305c>
 <241f> <305e>
@@ -17885,7 +17883,7 @@ endbfchar
 <59b8> <9b9a>
 endbfchar
 
-68 beginbfchar
+70 beginbfchar
 <59b9> <9ba9>
 <59ba> <9bb7>
 <59bb> <9bbc>
@@ -17954,6 +17952,8 @@ endbfchar
 <5a0f> <9f96>
 <5a10> <9fa1>
 <5a11> <9fa3>
+<5a12> <32ff>
+<5a13> <32ff>
 endbfchar
 
 100 beginbfrange

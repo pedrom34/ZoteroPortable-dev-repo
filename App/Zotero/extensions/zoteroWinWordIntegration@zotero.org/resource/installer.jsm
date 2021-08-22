@@ -130,11 +130,12 @@ var Plugin = new function() {
 			}
 		}
 		
+		var defaultStartupFolder = appData.clone().QueryInterface(Components.interfaces.nsIFile);
+		defaultStartupFolder.appendRelativePath("Microsoft\\Word\\Startup");
+
 		if(startupFolders.length == 0 || addDefaultStartupFolder) {
 			// if not in the registry, append Microsoft/Word/Startup to %AppData% (default location)
-			var startupFolder = appData.clone().QueryInterface(Components.interfaces.nsIFile);
-			startupFolder.appendRelativePath("Microsoft\\Word\\Startup");
-			startupFolders.push(startupFolder);
+			startupFolders.push(defaultStartupFolder);
 		}
 		
 		// The OEM Word 365 sandboxed location, which we might not have the permissions to write to
@@ -149,10 +150,17 @@ var Plugin = new function() {
 		var someBadFolders = false;
 		var allBadFolders = true;
 		var installedAt = new Set();
-		for (var startupFolder of startupFolders) {
+		for (let startupFolder of startupFolders) {
 			if (!startupFolder.clone().exists()) {
-				Zotero.debug(`Potential Word startup location ${startupFolder.path} does not exist. Skipping`);
-				continue;
+				// Sometimes even with Word installed and having been launched before the Startup folder does not exist
+				// so we create it here if we have detected installed Word versions
+				if (installedVersions.length && startupFolder.path.toLowerCase() == defaultStartupFolder.path.toLowerCase()) {
+					Zotero.File.createDirectoryIfMissing(startupFolder.path);
+				}
+				else {
+					Zotero.debug(`Potential Word startup location ${startupFolder.path} does not exist. Skipping`);
+					continue;
+				}
 			}
 			
 			// Multiple versions of Word all with the same setting, so we only install there once
@@ -213,20 +221,29 @@ var Plugin = new function() {
 				zpi.error(text, false);
 			}
 			text += "\n\n" + Zotero.getString('integration.error.misconfiguredWordStartupFolder.fix');
-			let ps = Services.prompt;
-			let buttonFlags = ps.BUTTON_POS_0 * ps.BUTTON_TITLE_IS_STRING
-				+ ps.BUTTON_POS_1 * ps.BUTTON_TITLE_CANCEL;
-			let index = ps.confirmEx(
-				null,
-				title,
-				text,
-				buttonFlags,
-				Zotero.getString('general.moreInformation'),
-				"", "", "", {}
-			);
-			if (index == 0) {
-				Zotero.launchURL('https://www.zotero.org/support/kb/misconfigured_word_startup_folder');
+			// Only display prompt if force installing (via button press)
+			if (zpi.force) {
+				// Prompts displayed synchronously here fails for some mystical reason
+				// (probably because this runs in a some event handler event loop)
+				// See zpi.success()/zpi.error() which also shows its dialogs in the next loop
+				Zotero.setTimeout(function() {
+					let ps = Services.prompt;
+					let buttonFlags = ps.BUTTON_POS_0 * ps.BUTTON_TITLE_IS_STRING
+						+ ps.BUTTON_POS_1 * ps.BUTTON_TITLE_CANCEL;
+					let index = ps.confirmEx(
+						null,
+						title,
+						text,
+						buttonFlags,
+						Zotero.getString('general.moreInformation'),
+						"", "", "", {}
+					);
+					if (index == 0) {
+						Zotero.launchURL('https://www.zotero.org/support/kb/misconfigured_word_startup_folder');
+					}
+				});
 			}
+			
 			return;
 		}
 		

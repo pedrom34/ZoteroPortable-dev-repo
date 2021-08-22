@@ -1,5 +1,7 @@
 Historique des versions  :
 ----
+- 2021-08-22. Version 5.0.96.3 - Development Test 76 : Mise à jour vers Zotero 5.0.96.3.
+  
 - 2021-04-18. Version 5.0.96.2 - Development Test 75 : Mise à jour vers Zotero 5.0.96.2.
   
 - 2021-03-01. Version 5.0.96 - Development Test 74 : Mise à jour vers Zotero 5.0.96.

@@ -3,7 +3,8 @@ under the COPYING.adobe license
 
 The cidToUnicode, nameToUnicode and unicodeMap data files
 installed by the poppler-data package are Copyright Glyph & Cog, LLC
-and are under the COPYING.gpl2 license
+and are licensed under the GNU General Public License (GPL), version 2
+(COPYING.gpl2) or version 3 (COPYING.gpl3).
 
 The Makefile is licensed under the MIT license:
 
