@@ -5,10 +5,10 @@ Lire dans d'autres langues : [English 🇬🇧](README.md), [Français 🇫🇷]
   
 Pourquoi ?
 -----
-Avec l'abandon des extensions classiques de Firefox, Zotero a dû s'adapter : les développeurs ont arrêté le support de l'extension, et se sont concentrés sur Zotero Standalone : là où il y avait deux programmes, Zotero propose désormais une expérience unifiée.  
+Avec l'abandon des extensions classiques de Firefox, Zotero a dû s'adapter : les développeurs ont arrêté le support de l'extension, et se sont concentrés sur Zotero Standalone : là où il y avait deux programmes, Zotero propose désormais une expérience unifiée (à partir de la version 5).  
 Malheureusement, il n'existait pas de version portable de Zotero. La version créée par [orschiro](https://portableapps.com/node/36565) n'est plus mise à jour, et n'est plus portable si on force la mise à jour vers la version 5, puisque le profil et les données utilisateur sont stockés dans %appdata%\Zotero  
   
-Avec ma version, Zotero 5 est pleinement portable : il est possible de l'installer sans être administrateur, de l'utiliser depuis une clé USB ou autre, il n'y a pas d'inscription dans le registre et aucune trace n'est laissée sur l'ordinateur.  
+Avec ma version, Zotero est pleinement portable : il est possible de l'installer sans être administrateur, de l'utiliser depuis une clé USB ou autre, il n'y a pas d'inscription dans le registre et aucune trace n'est laissée sur l'ordinateur.  
 Attention, cette version n'est pas officiellement supportée par l’équipe de Zotero. [N'espérez pas un support officiel](https://forums.zotero.org/discussion/64050/5-0-portable-zotero).  
   
 A noter, j'ai également adapté une version de [Juris-M](https://juris-m.github.io/) Portable, disponible [ici](https://github.com/pedrom34/JurisMPortable) !

@@ -34,6 +34,8 @@ const ZOTERO_PROTOCOL_NAME = "Zotero Chrome Extension Protocol";
 
 Components.utils.import("resource://gre/modules/Services.jsm");
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
+Components.utils.import("resource://gre/modules/NetUtil.jsm");
+Components.utils.import("resource://gre/modules/osfile.jsm");
 
 const Cc = Components.classes;
 const Ci = Components.interfaces;
@@ -53,10 +55,79 @@ function ZoteroProtocolHandler() {
   this._extensions = {};
 
 
+
   /**
-                          * zotero://data/library/collection/ABCD1234/items?sort=itemType&direction=desc
-                          * zotero://data/groups/12345/collection/ABCD1234/items?sort=title&direction=asc
-                          */
+   * zotero://attachment/library/[itemKey]
+   * zotero://attachment/groups/[groupID]/[itemKey]
+   */
+  var AttachmentExtension = {
+    loadAsChrome: false,
+
+    newChannel: function (uri) {
+      return new AsyncChannel(uri, function* () {
+        try {
+          var uriPath = uri.pathQueryRef;
+          if (!uriPath) {
+            return this._errorChannel('Invalid URL');
+          }
+          uriPath = uriPath.substr('//attachment/'.length);
+
+          var params = {};
+          var router = new Zotero.Router(params);
+          router.add('library/items/:itemKey', function () {
+            params.libraryID = Zotero.Libraries.userLibraryID;
+          });
+          router.add('groups/:groupID/items/:itemKey');
+          router.run(uriPath);
+
+          if (params.groupID) {
+            params.libraryID = Zotero.Groups.getLibraryIDFromGroupID(params.groupID);
+          }
+          if (!params.itemKey) {
+            return this._errorChannel("Item key not provided");
+          }
+          var item = yield Zotero.Items.getByLibraryAndKeyAsync(params.libraryID, params.itemKey);
+
+          if (!item) {
+            return this._errorChannel(`No item found for ${uriPath}`);
+          }
+          if (!item.isFileAttachment()) {
+            return this._errorChannel(`Item for ${uriPath} is not a file attachment`);
+          }
+
+          var path = yield item.getFilePathAsync();
+          if (!path) {
+            return this._errorChannel(`${path} not found`);
+          }
+
+          // Set originalURI so that it seems like we're serving from zotero:// protocol.
+          // This is necessary to allow url() links to work from within CSS files.
+          // Otherwise they try to link to files on the file:// protocol, which isn't allowed.
+          this.originalURI = uri;
+
+          return Zotero.File.pathToFile(path);
+        }
+        catch (e) {
+          return this._errorChannel(e.message);
+        }
+      }.bind(this));
+    },
+
+
+    _errorChannel: function (msg) {
+      Zotero.logError(msg);
+      this.status = Components.results.NS_ERROR_FAILURE;
+      this.contentType = 'text/plain';
+      return msg;
+    } };
+
+
+
+
+  /**
+   * zotero://data/library/collection/ABCD1234/items?sort=itemType&direction=desc
+   * zotero://data/groups/12345/collection/ABCD1234/items?sort=title&direction=asc
+   */
   var DataExtension = {
     loadAsChrome: false,
 
@@ -82,8 +153,8 @@ function ZoteroProtocolHandler() {
 
 
   /*
-          * Report generation extension for Zotero protocol
-          */
+   * Report generation extension for Zotero protocol
+   */
   var ReportExtension = {
     loadAsChrome: false,
 
@@ -154,7 +225,7 @@ function ZoteroProtocolHandler() {
         router.add('items/:ids/html/report.html', function () {
           var ids = this.ids.split('-');
           params.libraryID = ids[0].split('_')[0] || userLibraryID;
-          params.itemKey = ids.map(x => x.split('_')[1]);
+          params.itemKey = ids.map((x) => x.split('_')[1]);
           delete params.ids;
         });
 
@@ -208,15 +279,15 @@ function ZoteroProtocolHandler() {
           }
           // If combining children or standalone note/attachment, add matching parents
           else if (combineChildItems || !results[i].isRegularItem() ||
-            results[i].numChildren() == 0) {
-              itemsHash[results[i].id] = [items.length];
-              items.push(results[i].toJSON({ mode: 'full' }));
-              // Flag item as a search match
-              items[items.length - 1].reportSearchMatch = true;
-            } else
-            {
-              unhandledParents[i] = true;
-            }
+          results[i].numChildren() == 0) {
+            itemsHash[results[i].id] = [items.length];
+            items.push(results[i].toJSON({ mode: 'full' }));
+            // Flag item as a search match
+            items[items.length - 1].reportSearchMatch = true;
+          } else
+          {
+            unhandledParents[i] = true;
+          }
           searchItemIDs.add(results[i].id);
         }
 
@@ -245,13 +316,13 @@ function ZoteroProtocolHandler() {
         // If not including all children, add matching parents,
         // in case they don't have any matching children below
         else {
-            for (var i in unhandledParents) {
-              itemsHash[results[i].id] = [items.length];
-              items.push(results[i].toJSON({ mode: 'full' }));
-              // Flag item as a search match
-              items[items.length - 1].reportSearchMatch = true;
-            }
+          for (var i in unhandledParents) {
+            itemsHash[results[i].id] = [items.length];
+            items.push(results[i].toJSON({ mode: 'full' }));
+            // Flag item as a search match
+            items[items.length - 1].reportSearchMatch = true;
           }
+        }
 
         if (combineChildItems) {
           // Add parents of matches if parents aren't matches themselves
@@ -284,41 +355,41 @@ function ZoteroProtocolHandler() {
         // If not combining children, add a parent/child pair
         // for each matching child
         else {
-            for (let id of searchChildIDs) {
-              var item = yield Zotero.Items.getAsync(id);
-              var parentID = item.parentID;
-              var parentItem = Zotero.Items.get(parentID);
+          for (let id of searchChildIDs) {
+            var item = yield Zotero.Items.getAsync(id);
+            var parentID = item.parentID;
+            var parentItem = Zotero.Items.get(parentID);
 
-              if (!itemsHash[parentID]) {
-                // If parent is a search match and not yet added,
-                // add on its own
-                if (searchItemIDs.has(parentID)) {
-                  itemsHash[parentID] = [items.length];
-                  items.push(parentItem.toJSON({ mode: 'full' }));
-                  items[items.length - 1].reportSearchMatch = true;
-                } else
-                {
-                  itemsHash[parentID] = [];
-                }
-              }
-
-              // Now add parent and child
-              itemsHash[parentID].push(items.length);
-              items.push(parentItem.toJSON({ mode: 'full' }));
-              if (item.isNote()) {
-                items[items.length - 1].reportChildren = {
-                  notes: [item.toJSON({ mode: 'full' })],
-                  attachments: [] };
-
+            if (!itemsHash[parentID]) {
+              // If parent is a search match and not yet added,
+              // add on its own
+              if (searchItemIDs.has(parentID)) {
+                itemsHash[parentID] = [items.length];
+                items.push(parentItem.toJSON({ mode: 'full' }));
+                items[items.length - 1].reportSearchMatch = true;
               } else
-              if (item.isAttachment()) {
-                items[items.length - 1].reportChildren = {
-                  notes: [],
-                  attachments: [item.toJSON({ mode: 'full' })] };
-
+              {
+                itemsHash[parentID] = [];
               }
             }
+
+            // Now add parent and child
+            itemsHash[parentID].push(items.length);
+            items.push(parentItem.toJSON({ mode: 'full' }));
+            if (item.isNote()) {
+              items[items.length - 1].reportChildren = {
+                notes: [item.toJSON({ mode: 'full' })],
+                attachments: [] };
+
+            } else
+            if (item.isAttachment()) {
+              items[items.length - 1].reportChildren = {
+                notes: [],
+                attachments: [item.toJSON({ mode: 'full' })] };
+
+            }
           }
+        }
 
         // Sort items
         // TODO: restore multiple sort fields
@@ -386,15 +457,15 @@ function ZoteroProtocolHandler() {
             // slightly less broken. To do this right, real creator
             // sorting needs to be abstracted from itemTreeView.js.
             else if (sorts[index].field == 'firstCreator') {
-                var itemA = Zotero.Items.getByLibraryAndKey(params.libraryID, a.key);
-                var itemB = Zotero.Items.getByLibraryAndKey(params.libraryID, b.key);
-                valA = itemA.getField('firstCreator');
-                valB = itemB.getField('firstCreator');
-              } else
-              {
-                valA = a[sorts[index].field];
-                valB = b[sorts[index].field];
-              }
+              var itemA = Zotero.Items.getByLibraryAndKey(params.libraryID, a.key);
+              var itemB = Zotero.Items.getByLibraryAndKey(params.libraryID, b.key);
+              valA = itemA.getField('firstCreator');
+              valB = itemB.getField('firstCreator');
+            } else
+            {
+              valA = a[sorts[index].field];
+              valB = b[sorts[index].field];
+            }
 
             // Put empty values last
             if (!valA && valB) {
@@ -439,7 +510,7 @@ function ZoteroProtocolHandler() {
           default:
             this.contentType = 'text/html';
             return Zotero.Utilities.Internal.getAsyncInputStream(
-            Zotero.Report.HTML.listGenerator(items, combineChildItems),
+            Zotero.Report.HTML.listGenerator(items, combineChildItems, params.libraryID),
             function () {
               Zotero.logError(e);
               return '<span style="color: red; font-weight: bold">Error generating report</span>';
@@ -451,20 +522,20 @@ function ZoteroProtocolHandler() {
 
 
   /**
-          * Generate MIT SIMILE Timeline
-          *
-          * Query string key abbreviations: intervals = i
-          *                                 dateType = t
-          *                                 timelineDate = d
-          * 
-          * interval abbreviations:  day = d  |  month = m  |  year = y  |  decade = e  |  century = c  |  millennium = i
-          * dateType abbreviations:  date = d  |  dateAdded = da  |  dateModified = dm
-          * timelineDate format:  shortMonthName.day.year  (year is positive for A.D. and negative for B.C.)
-          * 
-          * Defaults: intervals = month, year, decade
-          *           dateType = date
-          *           timelineDate = today's date
-          */
+   * Generate MIT SIMILE Timeline
+   *
+   * Query string key abbreviations: intervals = i
+   *                                 dateType = t
+   *                                 timelineDate = d
+   * 
+   * interval abbreviations:  day = d  |  month = m  |  year = y  |  decade = e  |  century = c  |  millennium = i
+   * dateType abbreviations:  date = d  |  dateAdded = da  |  dateModified = dm
+   * timelineDate format:  shortMonthName.day.year  (year is positive for A.D. and negative for B.C.)
+   * 
+   * Defaults: intervals = month, year, decade
+   *           dateType = date
+   *           timelineDate = today's date
+   */
   var TimelineExtension = {
     loadAsChrome: true,
 
@@ -713,16 +784,16 @@ function ZoteroProtocolHandler() {
 
 
   /**
-          * Select an item
-          *
-          * zotero://select/library/items/[itemKey]
-          * zotero://select/groups/[groupID]/items/[itemKey]
-          *
-          * Deprecated:
-          *
-          * zotero://select/[type]/0_ABCD1234
-          * zotero://select/[type]/1234 (not consistent across synced machines)
-          */
+   * Select an item
+   *
+   * zotero://select/library/items/[itemKey]
+   * zotero://select/groups/[groupID]/items/[itemKey]
+   *
+   * Deprecated:
+   *
+   * zotero://select/[type]/0_ABCD1234
+   * zotero://select/[type]/1234 (not consistent across synced machines)
+   */
   var SelectExtension = {
     noContent: true,
 
@@ -841,9 +912,9 @@ function ZoteroProtocolHandler() {
         }
         // If collection not specified, select library root
         else {
-            yield zp.collectionsView.selectLibrary(params.libraryID);
-          }
-        return zp.selectItems(results.map(x => x.id));
+          yield zp.collectionsView.selectLibrary(params.libraryID);
+        }
+        return zp.selectItems(results.map((x) => x.id));
       }
     }),
 
@@ -853,8 +924,8 @@ function ZoteroProtocolHandler() {
 
 
   /*
-         	zotero://debug/
-         */
+  	zotero://debug/
+  */
   var DebugExtension = {
     loadAsChrome: false,
 
@@ -936,10 +1007,10 @@ function ZoteroProtocolHandler() {
   };
 
   /**
-      * zotero://connector/
-      *
-      * URI spoofing for transferring page data across boundaries
-      */
+   * zotero://connector/
+   *
+   * URI spoofing for transferring page data across boundaries
+   */
   var ConnectorExtension = new function () {
     this.loadAsChrome = false;
 
@@ -966,15 +1037,80 @@ function ZoteroProtocolHandler() {
   }();
 
 
+  /*
+  	zotero://pdf.js/viewer.html
+  	zotero://pdf.js/pdf/1/ABCD5678
+  */
+  var PDFJSExtension = {
+    loadAsChrome: true,
+
+    newChannel: function (uri) {
+      return new AsyncChannel(uri, function* () {
+        try {
+          uri = uri.spec;
+          // Proxy PDF.js files
+          if (uri.startsWith('zotero://pdf.js/') && !uri.startsWith('zotero://pdf.js/pdf/')) {
+            uri = uri.replace(/zotero:\/\/pdf.js\//, 'resource://zotero/pdf.js/');
+            let newURI = Services.io.newURI(uri, null, null);
+            return this.getURIInputStream(newURI);
+          }
+
+          // Proxy attachment PDFs
+          var pdfPrefix = 'zotero://pdf.js/pdf/';
+          if (!uri.startsWith(pdfPrefix)) {
+            return this._errorChannel("File not found");
+          }
+          var [libraryID, key] = uri.substr(pdfPrefix.length).split('/');
+          libraryID = parseInt(libraryID);
+
+          var item = yield Zotero.Items.getByLibraryAndKeyAsync(libraryID, key);
+          if (!item) {
+            return this._errorChannel("Item not found");
+          }
+          var path = yield item.getFilePathAsync();
+          if (!path) {
+            return this._errorChannel("File not found");
+          }
+          return this.getURIInputStream(OS.Path.toFileURI(path));
+        }
+        catch (e) {
+          Zotero.debug(e, 1);
+          throw e;
+        }
+      }.bind(this));
+    },
+
+
+    getURIInputStream: function (uri) {
+      return new Zotero.Promise((resolve, reject) => {
+        NetUtil.asyncFetch(uri, function (inputStream, result) {
+          if (!Components.isSuccessCode(result)) {
+            // TODO: Handle error
+            return;
+          }
+          resolve(inputStream);
+        });
+      });
+    },
+
+
+    _errorChannel: function (msg) {
+      this.status = Components.results.NS_ERROR_FAILURE;
+      this.contentType = 'text/plain';
+      return msg;
+    } };
+
+
+
   /**
-        * Open a PDF at a given page (or try to)
-        *
-        * zotero://open-pdf/library/items/[itemKey]?page=[page]
-        * zotero://open-pdf/groups/[groupID]/items/[itemKey]?page=[page]
-        *
-        * Also supports ZotFile format:
-        * zotero://open-pdf/[libraryID]_[key]/[page]
-        */
+   * Open a PDF at a given page (or try to)
+   *
+   * zotero://open-pdf/library/items/[itemKey]?page=[page]
+   * zotero://open-pdf/groups/[groupID]/items/[itemKey]?page=[page]
+   *
+   * Also supports ZotFile format:
+   * zotero://open-pdf/[libraryID]_[key]/[page]
+   */
   var OpenPDFExtension = {
     noContent: true,
 
@@ -1018,6 +1154,7 @@ function ZoteroProtocolHandler() {
       if (parseInt(page) != page) {
         page = null;
       }
+      var annotation = params.annotation;
 
       if (!results.length) {
         Zotero.warn(`No item found for ${uriPath}`);
@@ -1044,9 +1181,9 @@ function ZoteroProtocolHandler() {
       }
 
       var opened = false;
-      if (page) {
+      if (page || annotation) {
         try {
-          opened = await Zotero.OpenPDF.openToPage(path, page);
+          opened = await Zotero.OpenPDF.openToPage(item, page, annotation);
         }
         catch (e) {
           Zotero.logError(e);
@@ -1072,19 +1209,21 @@ function ZoteroProtocolHandler() {
     } };
 
 
+  this._extensions[ZOTERO_SCHEME + "://attachment"] = AttachmentExtension;
   this._extensions[ZOTERO_SCHEME + "://data"] = DataExtension;
   this._extensions[ZOTERO_SCHEME + "://report"] = ReportExtension;
   this._extensions[ZOTERO_SCHEME + "://timeline"] = TimelineExtension;
   this._extensions[ZOTERO_SCHEME + "://select"] = SelectExtension;
   this._extensions[ZOTERO_SCHEME + "://debug"] = DebugExtension;
   this._extensions[ZOTERO_SCHEME + "://connector"] = ConnectorExtension;
+  this._extensions[ZOTERO_SCHEME + "://pdf.js"] = PDFJSExtension;
   this._extensions[ZOTERO_SCHEME + "://open-pdf"] = OpenPDFExtension;
 }
 
 
 /*
-   * Implements nsIProtocolHandler
-   */
+ * Implements nsIProtocolHandler
+ */
 ZoteroProtocolHandler.prototype = {
   scheme: ZOTERO_SCHEME,
 
@@ -1121,6 +1260,16 @@ ZoteroProtocolHandler.prototype = {
   },
 
   newURI: function (spec, charset, baseURI) {
+    // A temporary workaround because baseURI.resolve(spec) just returns spec
+    if (baseURI) {
+      if (!spec.includes('://') && baseURI.spec.includes('/pdf.js/')) {
+        let parts = baseURI.spec.split('/');
+        parts.pop();
+        parts.push(spec);
+        spec = parts.join('/');
+      }
+    }
+
     return Components.classes["@mozilla.org/network/simple-uri-mutator;1"].
     createInstance(Components.interfaces.nsIURIMutator).
     setSpec(spec).
@@ -1187,9 +1336,9 @@ ZoteroProtocolHandler.prototype = {
 
 
 /**
-                                                 * nsIChannel implementation that takes a promise-yielding generator that returns a
-                                                 * string, nsIAsyncInputStream, or file
-                                                 */
+ * nsIChannel implementation that takes a promise-yielding generator that returns a
+ * string, nsIAsyncInputStream, or file
+ */
 function AsyncChannel(uri, gen) {
   this._generator = gen;
   this._isPending = true;
@@ -1269,57 +1418,57 @@ AsyncChannel.prototype = {
       }
       // If an async input stream is given, pass the data asynchronously to the stream listener
       else if (data instanceof Ci.nsIAsyncInputStream) {
-          //Zotero.debug("AsyncChannel: Got input stream from generator");
+        //Zotero.debug("AsyncChannel: Got input stream from generator");
 
-          var pump = Cc["@mozilla.org/network/input-stream-pump;1"].createInstance(Ci.nsIInputStreamPump);
-          try {
-            pump.init(data, 0, 0, true);
-          }
-          catch (e) {
-            pump.init(data, -1, -1, 0, 0, true);
-          }
-          pump.asyncRead(listenerWrapper, context);
-        } else
-        if (data instanceof Ci.nsIFile || data instanceof Ci.nsIURI) {
-          if (data instanceof Ci.nsIFile) {
-            //Zotero.debug("AsyncChannel: Got file from generator");
-            data = ios.newFileURI(data);
-          } else
-          {
-            //Zotero.debug("AsyncChannel: Got URI from generator");
-          }
-
-          let uri = data;
-          uri.QueryInterface(Ci.nsIURL);
-          this.contentType = Zotero.MIME.getMIMETypeFromExtension(uri.fileExtension);
-          if (!this.contentType) {
-            let sample = yield Zotero.File.getSample(data);
-            this.contentType = Zotero.MIME.getMIMETypeFromData(sample);
-          }
-
-          Components.utils.import("resource://gre/modules/NetUtil.jsm");
-          NetUtil.asyncFetch(data, function (inputStream, status) {
-            if (!Components.isSuccessCode(status)) {
-              reject();
-              return;
-            }
-
-            listenerWrapper.onStartRequest(channel, context);
-            try {
-              listenerWrapper.onDataAvailable(channel, context, inputStream, 0, inputStream.available());
-            }
-            catch (e) {
-              reject(e);
-            }
-            listenerWrapper.onStopRequest(channel, context, status);
-          });
-        } else
-        if (data === undefined) {
-          this.cancel(0x804b0002); // BINDING_ABORTED
+        var pump = Cc["@mozilla.org/network/input-stream-pump;1"].createInstance(Ci.nsIInputStreamPump);
+        try {
+          pump.init(data, 0, 0, true);
+        }
+        catch (e) {
+          pump.init(data, -1, -1, 0, 0, true);
+        }
+        pump.asyncRead(listenerWrapper, context);
+      } else
+      if (data instanceof Ci.nsIFile || data instanceof Ci.nsIURI) {
+        if (data instanceof Ci.nsIFile) {
+          //Zotero.debug("AsyncChannel: Got file from generator");
+          data = ios.newFileURI(data);
         } else
         {
-          throw new Error("Invalid return type (" + typeof data + ") from generator passed to AsyncChannel");
+          //Zotero.debug("AsyncChannel: Got URI from generator");
         }
+
+        let uri = data;
+        uri.QueryInterface(Ci.nsIURL);
+        this.contentType = Zotero.MIME.getMIMETypeFromExtension(uri.fileExtension);
+        if (!this.contentType) {
+          let sample = yield Zotero.File.getSample(data);
+          this.contentType = Zotero.MIME.getMIMETypeFromData(sample);
+        }
+
+        Components.utils.import("resource://gre/modules/NetUtil.jsm");
+        NetUtil.asyncFetch({ uri: data, loadUsingSystemPrincipal: true }, function (inputStream, status) {
+          if (!Components.isSuccessCode(status)) {
+            reject();
+            return;
+          }
+
+          listenerWrapper.onStartRequest(channel, context);
+          try {
+            listenerWrapper.onDataAvailable(channel, context, inputStream, 0, inputStream.available());
+          }
+          catch (e) {
+            reject(e);
+          }
+          listenerWrapper.onStopRequest(channel, context, status);
+        });
+      } else
+      if (data === undefined) {
+        this.cancel(0x804b0002); // BINDING_ABORTED
+      } else
+      {
+        throw new Error("Invalid return type (" + typeof data + ") from generator passed to AsyncChannel");
+      }
 
       if (this._isPending) {
         //Zotero.debug("AsyncChannel request succeeded in " + (new Date - t) + " ms");

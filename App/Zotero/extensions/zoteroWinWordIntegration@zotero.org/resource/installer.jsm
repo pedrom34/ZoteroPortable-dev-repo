@@ -155,7 +155,12 @@ var Plugin = new function() {
 				// Sometimes even with Word installed and having been launched before the Startup folder does not exist
 				// so we create it here if we have detected installed Word versions
 				if (installedVersions.length && startupFolder.path.toLowerCase() == defaultStartupFolder.path.toLowerCase()) {
-					Zotero.File.createDirectoryIfMissing(startupFolder.path);
+					try {
+						Zotero.File.createDirectoryIfMissing(startupFolder.path);
+					} catch (e) {
+						Zotero.debug('Failed to create the default Word startup folder -- skipping\n\n' + e, 1);
+						continue;
+					}
 				}
 				else {
 					Zotero.debug(`Potential Word startup location ${startupFolder.path} does not exist. Skipping`);

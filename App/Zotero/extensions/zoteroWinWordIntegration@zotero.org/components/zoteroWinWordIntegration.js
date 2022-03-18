@@ -134,9 +134,19 @@ function init() {
 		// statusCode importDocument(Document *doc, const jschar fieldType[], bool *returnValue);
 		importDocument: lib.declare("importDocument", ctypes.stdcall_abi, statusCode, document_t.ptr,
 			ctypes.jschar.ptr, ctypes.bool.ptr),
-		
+
+		// statusCode insertText(document_t *doc, const wchar_t htmlString[]);
+		insertText: lib.declare("insertText", ctypes.stdcall_abi, statusCode, document_t.ptr,
+			ctypes.jschar.ptr),
+
+		// statusCode convertPlaceholdersToFields(document_t *doc, wchar_t* placeholders[],
+		//		unsigned long nPlaceholders, unsigned short noteType, wchar_t fieldType[], listNode_t** returnNode);
+		convertPlaceholdersToFields: lib.declare("convertPlaceholdersToFields", ctypes.stdcall_abi, statusCode, document_t.ptr,
+			ctypes.jschar.ptr.ptr, ctypes.unsigned_long, ctypes.unsigned_short,
+			ctypes.jschar.ptr, fieldListNode_t.ptr.ptr),
+
 		// statusCode convert(document_t *doc, field_t* fields[], unsigned long nFields,
-		//				      const jschar toFieldType[], unsigned short noteType[]);
+		//				      const wchar_t toFieldType[], unsigned short noteType[]);
 		convert: lib.declare("convert", ctypes.stdcall_abi, statusCode, document_t.ptr,
 			field_t.ptr.ptr, ctypes.unsigned_long, ctypes.jschar.ptr, ctypes.unsigned_short.ptr),
 		
@@ -241,6 +251,7 @@ Application.prototype = {
 	secondaryFieldType: "Bookmark",
 	supportedNotes: ["footnote", "endnote"],
 	supportsImportExport: true,
+	supportsTextInsertion: true,
 	outputFormat: "rtf",
 	processorName: "Word"
 };
@@ -337,6 +348,36 @@ Document.prototype = {
 		Zotero.debug(`ZoteroWinWordIntegration: exportDocument`, 4);
 		checkIfFreed(this._documentStatus);
 		checkStatus(f.exportDocument(this._document_t, fieldType, importInstructions));
+	},
+
+	insertText: function(text) {
+		Zotero.debug(`ZoteroWinWordIntegration: insertText`, 4);
+		checkIfFreed(this._documentStatus);
+		checkStatus(f.insertText(this._document_t, text));
+	},
+
+	convertPlaceholdersToFields: async function(placeholderIDs, noteType, fieldType) {
+		Zotero.debug("ZoteroWinWordIntegration: convertPlaceholdersToFields", 4);
+		checkIfFreed(this._documentStatus);
+		var cPlaceholderIDs = placeholderIDs.map(placeholderID => ctypes.jschar.array()(placeholderID));
+		var fieldListNode = new fieldListNode_t.ptr();
+		checkStatus(
+			f.convertPlaceholdersToFields(
+				this._document_t,
+				ctypes.jschar.ptr.array()(cPlaceholderIDs),
+				placeholderIDs.length,
+				noteType,
+				fieldType,
+				fieldListNode.address()
+			)
+		);
+		var fnum = new FieldEnumerator(fieldListNode, this._documentStatus);
+		var fields = [];
+		while (fnum.hasMoreElements()) {
+			fields.push(fnum.getNext());
+			await Zotero.Promise.delay();
+		}
+		return fields;
 	},
 	
 	convert: function(fields, toFieldType, toNoteTypes, nFields) {

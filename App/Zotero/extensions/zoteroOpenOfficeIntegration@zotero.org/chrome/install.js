@@ -23,7 +23,7 @@
 */
 
 Components.utils.import("resource://gre/modules/osfile.jsm");
-var FilePicker = require('zotero/filePicker').default;
+var FilePicker = require('zotero/modules/filePicker').default;
 
 const UNOPKG_RELPATHS = {
 	Mac:[

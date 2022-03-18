@@ -38,36 +38,39 @@ const xpcomFilesAll = [
 'intl',
 'prefs',
 'dataDirectory',
-'date',
 'debug',
 'error',
-'utilities',
+'utilities/date',
+'utilities/utilities',
+'utilities/utilities_item',
+'utilities/openurl',
+'utilities/xregexp-all',
+'utilities/xregexp-unicode-zotero',
 'utilities_internal',
+'translate/src/utilities_translate',
 'file',
 'http',
 'mimeTypeHandler',
-'openurl',
+'pdfWorker/manager',
 'ipc',
 'profile',
 'progressWindow',
 'proxy',
-'translation/translate',
+'translate/src/translation/translate',
+'translate/src/translator',
+'translate/src/tlds',
 'translation/translate_firefox',
-'translation/translator',
-'translation/tlds',
-'isbn',
-'utilities_translate'];
+'isbn'];
 
 
 /** XPCOM files to be loaded only for local translation and DB access **/
 const xpcomFilesLocal = [
-'libraryTreeView',
-'collectionTreeView',
 'collectionTreeRow',
-'annotate',
+'annotations',
 'api',
 'attachments',
 'cite',
+'citeprocRsBridge',
 'cookieSandbox',
 'data/library',
 'data/libraries',
@@ -94,17 +97,20 @@ const xpcomFilesLocal = [
 'data/searches',
 'data/tags',
 'db',
+'dictionaries',
 'duplicates',
+'editorInstance',
 'feedReader',
+'fileDragDataProvider',
 'fulltext',
 'id',
 'integration',
-'itemTreeView',
 'locale',
 'locateManager',
 'mime',
 'notifier',
 'openPDF',
+'reader',
 'progressQueue',
 'progressQueueDialog',
 'quickCopy',
@@ -114,6 +120,7 @@ const xpcomFilesLocal = [
 'router',
 'schema',
 'server',
+'session',
 'streamer',
 'style',
 'sync',
@@ -166,8 +173,8 @@ ZoteroContext.prototype = {
   require,
 
   /**
-            * Convenience method to replicate window.alert()
-            **/
+   * Convenience method to replicate window.alert()
+   **/
   // TODO: is this still used? if so, move to zotero.js
   "alert": function alert(msg) {
     this.Zotero.debug("alert() is deprecated from Zotero XPCOM");
@@ -177,8 +184,8 @@ ZoteroContext.prototype = {
   },
 
   /**
-      * Convenience method to replicate window.confirm()
-      **/
+   * Convenience method to replicate window.confirm()
+   **/
   // TODO: is this still used? if so, move to zotero.js
   "confirm": function confirm(msg) {
     this.Zotero.debug("confirm() is deprecated from Zotero XPCOM");
@@ -191,8 +198,8 @@ ZoteroContext.prototype = {
   "Ci": Ci,
 
   /**
-             * Convenience method to replicate window.setTimeout()
-             **/
+   * Convenience method to replicate window.setTimeout()
+   **/
   "setTimeout": function setTimeout(func, ms) {
     return this.Zotero.setTimeout(func, ms);
   },
@@ -202,8 +209,8 @@ ZoteroContext.prototype = {
   },
 
   /**
-      * Switches in or out of connector mode
-      */
+   * Switches in or out of connector mode
+   */
   "switchConnectorMode": function (isConnector) {
     if (isConnector !== this.isConnector) {
       Services.obs.notifyObservers(zContext.Zotero, "zotero-before-reload", isConnector ? "connector" : "full");
@@ -218,10 +225,10 @@ ZoteroContext.prototype = {
   },
 
   /**
-      * Shuts down Zotero, calls a callback (that may return a promise),
-      * then reinitializes Zotero. Returns a promise that is resolved
-      * when this process completes.
-      */
+   * Shuts down Zotero, calls a callback (that may return a promise),
+   * then reinitializes Zotero. Returns a promise that is resolved
+   * when this process completes.
+   */
   "reinit": function (cb, isConnector, options = {}) {
     Services.obs.notifyObservers(zContext.Zotero, "zotero-before-reload", isConnector ? "connector" : "full");
     return zContext.Zotero.shutdown().then(function () {
@@ -237,13 +244,13 @@ ZoteroContext.prototype = {
 
 
 /**
-        * The class from which the Zotero global XPCOM context is constructed
-        *
-        * @constructor
-        * This runs when ZoteroService is first requested to load all applicable scripts and initialize
-        * Zotero. Calls to other XPCOM components must be in here rather than in top-level code, as other
-        * components may not have yet been initialized.
-        */
+ * The class from which the Zotero global XPCOM context is constructed
+ *
+ * @constructor
+ * This runs when ZoteroService is first requested to load all applicable scripts and initialize
+ * Zotero. Calls to other XPCOM components must be in here rather than in top-level code, as other
+ * components may not have yet been initialized.
+ */
 function makeZoteroContext(isConnector) {
   if (zContext) {
     // Swap out old zContext
@@ -270,23 +277,11 @@ function makeZoteroContext(isConnector) {
   // Load XRegExp object into Zotero.XRegExp
   const xregexpFiles = [
   /**Core functions**/
-  'xregexp',
-
-  /**Addons**/
-  'addons/build', //adds ability to "build regular expressions using named subpatterns, for readability and pattern reuse"
-  'addons/matchrecursive', //adds ability to "match recursive constructs using XRegExp pattern strings as left and right delimiters"
-
-  /**Unicode support**/
-  'addons/unicode/unicode-base', //required for all other unicode packages. Adds \p{Letter} category
-
-  //'addons/unicode/unicode-blocks',			//adds support for all Unicode blocks (e.g. InArabic, InCyrillic_Extended_A, etc.)
-  'addons/unicode/unicode-categories', //adds support for all Unicode categories (e.g. Punctuation, Lowercase_Letter, etc.)
-  //'addons/unicode/unicode-properties',	//adds Level 1 Unicode properties (e.g. Uppercase, White_Space, etc.)
-  //'addons/unicode/unicode-scripts'			//adds support for all Unicode scripts (e.g. Gujarati, Cyrillic, etc.)
-  'addons/unicode/unicode-zotero' //adds support for some Unicode categories used in Zotero
+  'xregexp-all',
+  'xregexp-unicode-zotero' //adds support for some Unicode categories used in Zotero
   ];
   for (var i = 0; i < xregexpFiles.length; i++) {
-    subscriptLoader.loadSubScript("chrome://zotero/content/xpcom/xregexp/" + xregexpFiles[i] + ".js", zContext, 'utf-8');
+    subscriptLoader.loadSubScript("chrome://zotero/content/xpcom/utilities/" + xregexpFiles[i] + ".js", zContext, 'utf-8');
   }
 
   // Load remaining xpcomFiles
@@ -319,14 +314,13 @@ function makeZoteroContext(isConnector) {
   'rdf/uri',
   'rdf/term',
   'rdf/identity',
-  'rdf/match',
   'rdf/n3parser',
   'rdf/rdfparser',
   'rdf/serialize'];
 
   zContext.Zotero.RDF = { Zotero: zContext.Zotero };
   for (var i = 0; i < rdfXpcomFiles.length; i++) {
-    subscriptLoader.loadSubScript("chrome://zotero/content/xpcom/" + rdfXpcomFiles[i] + ".js", zContext.Zotero.RDF, 'utf-8');
+    subscriptLoader.loadSubScript("chrome://zotero/content/xpcom/translate/src/" + rdfXpcomFiles[i] + ".js", zContext.Zotero.RDF, 'utf-8');
   }
 
   if (isStandalone()) {
@@ -341,8 +335,8 @@ function makeZoteroContext(isConnector) {
 };
 
 /**
-    * The class representing the Zotero service, and affiliated XPCOM goop
-    */
+ * The class representing the Zotero service, and affiliated XPCOM goop
+ */
 function ZoteroService() {
   try {
     var start = Date.now();
@@ -464,8 +458,8 @@ function addInitCallback(callback) {
 
 var _isStandalone = null;
 /**
-                           * Determine whether Zotero Standalone is running
-                           */
+ * Determine whether Zotero Standalone is running
+ */
 function isStandalone() {
   if (_isStandalone === null) {
     _isStandalone = Services.appinfo.ID === 'zotero@chnm.gmu.edu';
@@ -490,8 +484,8 @@ function isLinux() {
 }
 
 /**
-   * The class representing the Zotero command line handler
-   */
+ * The class representing the Zotero command line handler
+ */
 function ZoteroCommandLineHandler() {}
 ZoteroCommandLineHandler.prototype = {
   /* nsICommandLineHandler */
@@ -502,8 +496,8 @@ ZoteroCommandLineHandler.prototype = {
     }
     // Force debug output to text console
     else if (cmdLine.handleFlag("ZoteroDebugText", false)) {
-        zInitOptions.forceDebugLog = 1;
-      }
+      zInitOptions.forceDebugLog = 1;
+    }
 
     zInitOptions.forceDataDir = cmdLine.handleFlagWithParam("datadir", false);
 
@@ -531,8 +525,10 @@ ZoteroCommandLineHandler.prototype = {
 
       var command = cmdLine.handleFlagWithParam("ZoteroIntegrationCommand", false);
       var docId = cmdLine.handleFlagWithParam("ZoteroIntegrationDocument", false);
+      var templateVersion = parseInt(cmdLine.handleFlagWithParam("ZoteroIntegrationTemplateVersion", false));
+      templateVersion = isNaN(templateVersion) ? 0 : templateVersion;
 
-      zContext.Zotero.Integration.execCommand(agent, command, docId);
+      zContext.Zotero.Integration.execCommand(agent, command, docId, templateVersion);
     }
 
     // handler for Windows IPC commands
@@ -568,12 +564,12 @@ ZoteroCommandLineHandler.prototype = {
         }
         // See below
         else if (uri.schemeIs("file")) {
-            Components.utils.import("resource://gre/modules/osfile.jsm");
-            fileToOpen = OS.Path.fromFileURI(uri.spec);
-          } else
-          {
-            dump(`Not handling URL: ${uri.spec}\n\n`);
-          }
+          Components.utils.import("resource://gre/modules/osfile.jsm");
+          fileToOpen = OS.Path.fromFileURI(uri.spec);
+        } else
+        {
+          dump(`Not handling URL: ${uri.spec}\n\n`);
+        }
       }
 
       param = cmdLine.handleFlag("debugger", false);

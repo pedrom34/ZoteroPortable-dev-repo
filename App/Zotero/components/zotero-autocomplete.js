@@ -38,8 +38,8 @@ getService(Components.interfaces.nsISupports).
 wrappedJSObject;
 
 /*
-                  * Implements nsIAutoCompleteSearch
-                  */
+ * Implements nsIAutoCompleteSearch
+ */
 function ZoteroAutoComplete() {}
 
 ZoteroAutoComplete.prototype.startSearch = Zotero.Promise.coroutine(function* (searchString, searchParams, previousResult, listener) {
@@ -87,6 +87,9 @@ ZoteroAutoComplete.prototype.startSearch = Zotero.Promise.coroutine(function* (s
       break;
 
     case 'creator':
+    case 'author':
+    case 'bookAuthor':
+    case 'editor':
       // Valid fieldMode values:
       // 		0 == search two-field creators
       // 		1 == search single-field creators
@@ -95,15 +98,23 @@ ZoteroAutoComplete.prototype.startSearch = Zotero.Promise.coroutine(function* (s
         var sql = "SELECT DISTINCT CASE fieldMode WHEN 1 THEN lastName " +
         "WHEN 0 THEN firstName || ' ' || lastName END AS val, NULL AS id " +
         "FROM creators ";
+        if (fieldName != 'creator' || searchParams.libraryID) {
+          sql += "JOIN itemCreators USING (creatorID) ";
+        }
         if (searchParams.libraryID) {
-          sql += "JOIN itemCreators USING (creatorID) JOIN items USING (itemID) ";
+          sql += "JOIN items USING (itemID) ";
         }
         sql += "WHERE CASE fieldMode " +
         "WHEN 1 THEN lastName LIKE ?1 " +
         "WHEN 0 THEN (firstName || ' ' || lastName LIKE ?1) OR (lastName LIKE ?1) END ";
         var sqlParams = [searchString + '%'];
+        // Limit results to specific creator type
+        if (fieldName != 'creator') {
+          sql += "AND creatorTypeID=? ";
+          sqlParams.push(Zotero.CreatorTypes.getID(fieldName));
+        }
         if (searchParams.libraryID) {
-          sql += ` AND libraryID=?${sqlParams.length + 1}`;
+          sql += ` AND libraryID=? `;
           sqlParams.push(searchParams.libraryID);
         }
         sql += "ORDER BY val";
@@ -123,12 +134,12 @@ ZoteroAutoComplete.prototype.startSearch = Zotero.Promise.coroutine(function* (s
         // 		- 1 means the row uses only the specified field
         // 		- 2 means it uses both
         else {
-            sql += "CASE WHEN firstName='' OR firstName IS NULL THEN lastName " +
-            "ELSE lastName || ', ' || firstName END AS val, " +
-            "creatorID || '-' || CASE " +
-            "WHEN (firstName = '' OR firstName IS NULL) THEN 1 " +
-            "ELSE 2 END AS id";
-          }
+          sql += "CASE WHEN firstName='' OR firstName IS NULL THEN lastName " +
+          "ELSE lastName || ', ' || firstName END AS val, " +
+          "creatorID || '-' || CASE " +
+          "WHEN (firstName = '' OR firstName IS NULL) THEN 1 " +
+          "ELSE 2 END AS id";
+        }
 
         var fromSQL = " FROM creators ";
         if (searchParams.libraryID) {
@@ -255,8 +266,8 @@ ZoteroAutoComplete.prototype.startSearch = Zotero.Promise.coroutine(function* (s
     if (resultsCallback) {
       resultsCallback(results);
       this.updateResults(
-      Object.values(results).map(x => x.val),
-      Object.values(results).map(x => x.id),
+      Object.values(results).map((x) => x.val),
+      Object.values(results).map((x) => x.id),
       false);
 
     }

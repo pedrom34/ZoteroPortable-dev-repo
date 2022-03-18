@@ -23,11 +23,11 @@ locale	zotero	ca-AD		jar:zotero.jar!/chrome/locale/ca-AD/zotero/
 locale	zotero	cs-CZ		jar:zotero.jar!/chrome/locale/cs-CZ/zotero/
 locale	zotero	da-DK		jar:zotero.jar!/chrome/locale/da-DK/zotero/
 locale	zotero	de		jar:zotero.jar!/chrome/locale/de/zotero/
-#locale	zotero	el-GR		jar:zotero.jar!/chrome/locale/el-GR/zotero/
+locale	zotero	el-GR		jar:zotero.jar!/chrome/locale/el-GR/zotero/
 locale	zotero	en-GB		jar:zotero.jar!/chrome/locale/en-GB/zotero/
 locale	zotero	es-ES		jar:zotero.jar!/chrome/locale/es-ES/zotero/
 locale	zotero	et-EE		jar:zotero.jar!/chrome/locale/et-EE/zotero/
-#locale	zotero	eu-ES		jar:zotero.jar!/chrome/locale/eu-ES/zotero/
+locale	zotero	eu-ES		jar:zotero.jar!/chrome/locale/eu-ES/zotero/
 locale	zotero	fa		jar:zotero.jar!/chrome/locale/fa/zotero/
 locale	zotero	fi-FI		jar:zotero.jar!/chrome/locale/fi-FI/zotero/
 locale	zotero	fr-FR		jar:zotero.jar!/chrome/locale/fr-FR/zotero/
