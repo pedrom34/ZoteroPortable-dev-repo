@@ -31,7 +31,8 @@ Mise à jour :
 -----
 Pour mettre à jour Zotero, je vous recommande de télécharger la dernière version proposée ici et de la décompresser sur la version actuellement installée. Vos données ne seront pas touchées, seul le programme sera mis à jour.  
   
-Cette version de Zotero Portable contient toujours le module de mise à jour original : si vous cherchez des mises à jour, Zotero se mettra à jour.- Cliquez sur Aide > Vérifier les mises à jour...  
+Cette version de Zotero Portable contient toujours le module de mise à jour original : si vous cherchez des mises à jour, Zotero se mettra à jour.
+- Cliquez sur Aide > Vérifier les mises à jour...  
 >![screenshot1](https://i.imgur.com/kjEaErP.png)  
   
 - Cliquez sur Update Zotero, patientez pendant le téléchargement.  
