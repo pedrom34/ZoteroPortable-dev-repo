@@ -1,5 +1,7 @@
 Versions history:
 ----
+- 2022-04-22. Zotero is now an official PortableApps app! + update to Zotero 6.0.5.
+  
 - 2022-03-28. Version 6.0.4 - Development Test 81: Updated to Zotero 6.0.4.
   
 - 2022-03-25. Version 6.0.3 - Development Test 80: Updated to Zotero 6.0.3, fixed ZoteroPortable.ini to take into account absolute paths in prefs.js and extensions.json, + files left in %HOMEPATH%\Zotero folder in rare situations
