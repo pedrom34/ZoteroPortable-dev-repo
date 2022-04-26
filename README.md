@@ -3,6 +3,8 @@ Zotero in PortableApps.com Format
 
 Read in other langages: [Français 🇫🇷](README.fr.md), [English 🇬🇧](README.md)  
   
+Since ZoteroPortable is now an official PortableApp, you should download ZoteroPortable from [PortableApps™](https://portableapps.com/apps/office/zotero-portable). This Github repo is for development only.
+  
 Why?
 -----
 With Mozilla switching to webextensions, Zotero had to adapt: the developers dropped support of the legacy extension for Firefox, and focused their efforts on Zotero Standalone: when there was two programs, Zotero is now unified (from version 5 onwards).  
@@ -15,7 +17,7 @@ Note that I also made a [Juris-M](https://juris-m.github.io/) Portable, availabl
   
 How to use:
 -----
-- Download latest [release here](https://github.com/pedrom34/ZoteroPortable/releases/latest), or [from PortableApps](https://portableapps.com/apps/office/zotero-portable)
+- Download latest [release here](https://portableapps.com/apps/office/zotero-portable).  
 - Unpack Zotero by launching installer and selecting target folder (it can be an USB Key or a folder on your desktop...)
 - Install [Zotero Connector](https://www.zotero.org/download/) in your browser (I personnaly use [FirefoxPortable](https://portableapps.com/apps/internet/firefox_portable/localization))
 
