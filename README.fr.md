@@ -3,6 +3,8 @@ Zotero au format PortableApps.com
 
 Lire dans d'autres langues : [English 🇬🇧](README.md), [Français 🇫🇷](README.fr.md)  
   
+ZoteroPortable est maintenant une PortableApp officielle, vous devriez télécharger ZoteroPortable depuis [PortableApps™](https://portableapps.com/apps/office/zotero-portable). Ce repo Github est réservé au développement.
+
 ## Pourquoi ?
 
 Avec l'abandon des extensions classiques de Firefox, Zotero a dû s'adapter : les développeurs ont arrêté le support de l'extension, et se sont concentrés sur Zotero Standalone : là où il y avait deux programmes, Zotero propose désormais une expérience unifiée (à partir de la version 5).
