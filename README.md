@@ -3,7 +3,7 @@ Zotero in PortableApps.com Format
 
 Read in other langages: [Français 🇫🇷](README.fr.md), [English 🇬🇧](README.md)  
   
-Since ZoteroPortable is now an official PortableApp, you should download ZoteroPortable from [PortableApps™](https://portableapps.com/apps/office/zotero-portable)
+Since ZoteroPortable is now an official PortableApp, you should download ZoteroPortable from [PortableApps™](https://portableapps.com/apps/office/zotero-portable). This Github repo is for development only.
   
 Why?
 -----
