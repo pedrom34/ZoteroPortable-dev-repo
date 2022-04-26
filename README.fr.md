@@ -17,7 +17,7 @@ A noter, j'ai également adapté une version de [Juris-M](https://juris-m.github
 
 ## Mise en place :
 
-- Téléchargez la [dernière version ici](https://github.com/pedrom34/ZoteroPortable/releases), ou [sur PortableApps](https://portableapps.com/apps/office/zotero-portable).
+- Téléchargez la [dernière version ici](https://portableapps.com/apps/office/zotero-portable).
 - Décompressez Zotero en lançant l'installeur, et sélectionnez un dossier cible (une clé USB par exemple)
 - Installez [Zotero Connector](https://www.zotero.org/download/) sur votre navigateur (Personnellement, j'utilise [FirefoxPortable](https://portableapps.com/apps/internet/firefox_portable/localization))
 
