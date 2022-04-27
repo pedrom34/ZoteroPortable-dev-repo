@@ -41,6 +41,7 @@ pref("extensions.zotero.attachmentRenameFormatString", "{%c - }{%y - }{%t{50}}")
 pref("extensions.zotero.capitalizeTitles", false);
 pref("extensions.zotero.launchNonNativeFiles", false);
 pref("extensions.zotero.sortNotesChronologically", false);
+pref("extensions.zotero.sortNotesChronologically.reader", true);
 pref("extensions.zotero.sortAttachmentsChronologically", false);
 pref("extensions.zotero.showTrashWhenEmpty", true);
 pref("extensions.zotero.trashAutoEmptyDays", 30);
@@ -100,6 +101,7 @@ pref("extensions.zotero.search.useLeftBound", true);
 pref("extensions.zotero.note.fontFamily", "Lucida Grande, Tahoma, Verdana, Helvetica, sans-serif");
 pref("extensions.zotero.note.fontSize", "14");
 pref("extensions.zotero.note.css", "");
+pref("extensions.zotero.note.smartQuotes", true);
 
 // Reports
 pref("extensions.zotero.report.includeAllChildItems", true);
