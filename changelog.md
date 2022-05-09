@@ -1,5 +1,7 @@
 Versions history:
 ----
+- 2022-05-09. Update to Zotero 6.0.7.
+  
 - 2022-04-27. Update to Zotero 6.0.6.
   
 - 2022-04-22. Zotero is now an official PortableApps app! + update to Zotero 6.0.5.
