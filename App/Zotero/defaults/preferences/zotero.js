@@ -78,7 +78,7 @@ pref("extensions.zotero.sortCreatorAsString", false);
 pref("extensions.zotero.tagSelector.showAutomatic", true);
 pref("extensions.zotero.tagSelector.displayAllTags", false);
 
-pref("extensions.zotero.downloadPDFViaBrowser.onLoadTimeout", 1500);
+pref("extensions.zotero.downloadPDFViaBrowser.onLoadTimeout", 3000);
 pref("extensions.zotero.downloadPDFViaBrowser.downloadTimeout", 60000);
 
 // Keyboard shortcuts
@@ -205,7 +205,7 @@ pref("extensions.zotero.retractions.recentItems", "[]");
 
 // Annotations
 pref("extensions.zotero.annotations.noteTemplates.title", "<h1>{{title}}<br/>({{date}})</h1>");
-pref("extensions.zotero.annotations.noteTemplates.highlight", "<p>{{highlight quotes='true'}} {{citation}} {{comment}}</p>");
+pref("extensions.zotero.annotations.noteTemplates.highlight", "<p>{{highlight}} {{citation}} {{comment}}</p>");
 pref("extensions.zotero.annotations.noteTemplates.note", "<p>{{citation}} {{comment}}</p>");
 
 // Scaffold
