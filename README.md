@@ -60,6 +60,11 @@ If you still want to use ZoteroPortable, one solution is to check "unblock" opti
   
 Another solution is to use the [official PortableApps.org platform](https://portableapps.com/download) and install Zotero from the app store.
   
+## Custom profile folder:
+
+Some users want to use a custom profile folder (see [#24](https://github.com/pedrom34/ZoteroPortable-dev-repo/issues/24)). This is possible with Zotero, but with ZoteroPortable, this possibility is limited by the ZoteroPortable.ini file.  
+I don't recommend changing this file. However, if you know what you are doing, you can modify the line [3](https://github.com/pedrom34/ZoteroPortable-dev-repo/blob/fbfa5a9cdebdf48e15c26f8f06af259c722456f7/App/AppInfo/Launcher/ZoteroPortable.ini#L3) in the ZoteroPortable.ini file to specify the folder of your choice.
+
 Versions history:
 ----
 [See here](changelog.md).

@@ -61,12 +61,17 @@ Et ensuite sur Exécuter quand même :
 
 > ![screenshot5](https://i.imgur.com/7kOC96A.png)
 
-Cependant, certaines organisations bloquent cette possibilité de contournement (voir [#20](https://github.com/pedrom34/ZoteroPortable/issues/20) pour plus d'infos).
+Cependant, certaines organisations bloquent cette possibilité de contournement (voir [#20](https://github.com/pedrom34/ZoteroPortable-dev-repo/issues/20) pour plus d'infos).
 
-Si vous souhaitez tout de même utiliser ZoteroPortable, une solution est d'utiliser de cocher la case "Débloquer" dans les propriétés du fichier exécutable, voir [la réponse de AndhikaWB](https://github.com/pedrom34/ZoteroPortable/issues/20#issuecomment-854317929) pour les détails.
+Si vous souhaitez tout de même utiliser ZoteroPortable, une solution est d'utiliser de cocher la case "Débloquer" dans les propriétés du fichier exécutable, voir [la réponse de AndhikaWB](https://github.com/pedrom34/ZoteroPortable-dev-repo/issues/20#issuecomment-854317929) pour les détails.
 
 Une autre est d'utiliser la [plateforme officielle de PortableApps](https://portableapps.com/download) et d'installer Zotero via le store.
   
+## Dossier de profil personnalisé :
+
+Certains utilisateurs souhaitent utiliser un dossier de profil personnalisé (cf [#24](https://github.com/pedrom34/ZoteroPortable-dev-repo/issues/24)). C'est tout à fait possible avec Zotero, mais avec ZoteroPortable, cette possibilité est limitée par le fichier ZoteroPortable.ini.  
+Je ne conseille pas de modifier ce fichier. Cependant, si vous savez ce que vous faites, vous pouvez modifier la ligne [3](https://github.com/pedrom34/ZoteroPortable-dev-repo/blob/fbfa5a9cdebdf48e15c26f8f06af259c722456f7/App/AppInfo/Launcher/ZoteroPortable.ini#L3) dans le fichier ZoteroPortable\App\AppInfo\Launcher\ZoteroPortable.ini pour indiquer le dossier de votre choix.
+
 Historique des versions :
 ----
 [Voir ici](changelog.fr.md).
