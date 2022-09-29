@@ -6,18 +6,21 @@ Zotero LibreOffice Integration comprises extensions for LibreOffice/OpenOffice.o
 
 - [Eclipse](https://www.eclipse.org/downloads/?)
 - [LibreOffice 5.3+](http://www.libreoffice.org/download/download/)
-- [Oracle JDK](http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html) (currently 1.8.0u121)
+- [Oracle JDK](https://www.oracle.com/java/technologies/downloads/) (currently version 18) (NOTE: it won't work with OpenJDK) 
 
 LibreOffice SDK is not required.
 
 To build:
 
-1.  Run `scripts/symlink_sdk`
+1.  Run `scripts/symlink_sdk`.
 1.  Open Eclipse and import this project into your workspace.
-1.  Right-click the project in the Eclipse Package Explorer and select "Java Build Path." Click the libraries tab and ensure that all referenced files exist, or else correct the paths.
+1.  Right-click the project in the Eclipse Package Explorer, click "Properties", select "Java Build Path", then select the "Libraries" tab. Click on "Add JARs" and expand the "Zotero OpenOffice Integration" folder. Make sure there is no "lib" subfolder underneath it. If there is:
+	1. Expand "Zotero OpenOffice Integration" -> "lib" -> "libreoffice-sdk" and select all the JARs underneath it.
+	1. Click "Ok" and then "Apply and Close".
 1.  Double-click Zotero.jardesc. Click "Finish" to build Zotero.jar.
-1.  Run `buildoxt.sh` from within the `build` directory to build `install/Zotero_OpenOffice_Integration.oxt`
+1.  Run `buildoxt.sh` from within the `build` directory to build `install/Zotero_OpenOffice_Integration.oxt`.
 1.  Install `Zotero_OpenOffice_Integration.oxt` into LibreOffice, either by choosing "Reinstall Extension" from within the Zotero preferences, by installing it manually from within LibreOffice, or by using `unopkg` from the command line.
+	1. If, when you try to install the extension in LibreOffice, you get an error like "Could not create Java implementation loader", it means that LibreOffice is not configured to use Java. Follow [these](https://help.libreoffice.org/Common/Java) instructions to set up a Java VM in LibreOffice. 
 
 ## Development Starter's Guide
 
@@ -30,8 +33,18 @@ Communication between Zotero and LibreOffice is mediated in [zoteroOpenOfficeInt
 where a TCP socket is initialized and used for both sending and receiving messages. The complimentary socket connection on the 
 LibreOffice extension end is found in [CommServer.java](https://github.com/zotero/zotero-libreoffice-integration/blob/2183efa/build/source/org/zotero/integration/ooo/comp/CommServer.java#L14).
 
-The Java extension code can be debugged directly during runtime. Follow [these](https://help.libreoffice.org/Common/Start_Parameters#Java_Start_parameter)
-instructions to enable debugging in LibreOffice. Attempt performing a Zotero action in LibreOffice, which will freeze the
-process until a debugging client connects. Create a remote debugging configuration in Eclipse and run it. LibreOffice will
-unfreeze. If you add breakpoints in Eclipse they will be triggered freezing the LibreOffice process and allowing you to
+The Java extension code can be debugged directly during runtime. 
+
+Follow [these](https://help.libreoffice.org/Common/Start_Parameters#Java_Start_parameter) instructions to enable debugging in LibreOffice. 
+After restarting, LibreOffice will freeze the until a debugging client connects. 
+Create a remote debugging configuration in Eclipse and run it:
+
+1. In Eclipse, click on "Run" -> "Debug Configurations...".
+2. In the left list, select "Remote Java Application".
+3. In the button bar, press the first button "New launch configuration".
+4. Use the same port you configured LibreOffice with. The default is port 8000.
+5. Press "Debug".
+
+LibreOffice will unfreeze. If you add breakpoints in Eclipse they will be triggered freezing the LibreOffice process and allowing you to
 inspect the execution environment. This technique can be used to debug on remote or virtual machines too.
+

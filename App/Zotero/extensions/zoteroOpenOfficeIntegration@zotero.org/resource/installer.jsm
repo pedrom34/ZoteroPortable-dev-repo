@@ -87,6 +87,11 @@ const UNOPKG_LOCATIONS = {
 		"/opt/libreoffice6.2/program/unopkg",
 		"/opt/libreoffice6.3/program/unopkg",
 		"/opt/libreoffice6.4/program/unopkg",
+		"/opt/libreoffice7.0/program/unopkg",
+		"/opt/libreoffice7.1/program/unopkg",
+		"/opt/libreoffice7.2/program/unopkg",
+		"/opt/libreoffice7.3/program/unopkg",
+		"/opt/libreoffice7.4/program/unopkg"
 	]
 };
 
@@ -114,7 +119,7 @@ var Plugin = new function() {
 	this.REQUIRED_ADDONS = [];
 	
 	// Bump if you want to trigger auto-update
-	this.LAST_INSTALLED_FILE_UPDATE = "6.0.0pre";
+	this.LAST_INSTALLED_FILE_UPDATE = "6.0.2pre";
 	this.DISABLE_PROGRESS_WINDOW = true;
 	
 	var zoteroPluginInstaller, pathToAddon, installing, prefBranch, wizardWindow;
