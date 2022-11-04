@@ -119,7 +119,7 @@ var Plugin = new function() {
 	this.REQUIRED_ADDONS = [];
 	
 	// Bump if you want to trigger auto-update
-	this.LAST_INSTALLED_FILE_UPDATE = "6.0.2pre";
+	this.LAST_INSTALLED_FILE_UPDATE = "6.0.3pre";
 	this.DISABLE_PROGRESS_WINDOW = true;
 	
 	var zoteroPluginInstaller, pathToAddon, installing, prefBranch, wizardWindow;

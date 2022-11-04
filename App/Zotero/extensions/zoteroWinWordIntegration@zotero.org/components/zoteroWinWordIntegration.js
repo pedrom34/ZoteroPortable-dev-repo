@@ -58,7 +58,7 @@ function init() {
 		{ noteType: ctypes.unsigned_short },
 		{ bookmarkName: ctypes.jschar.ptr },
 		{ textLocation: ctypes.long },
-		{ noteLocation: ctypes.long }
+		{ noteLocation: ctypes.long },
 		// There's more here, but we will never access it, and we do not create field_t objects
 		// from JavaScript
 	]);
@@ -180,6 +180,10 @@ function init() {
 		// statusCode getNoteIndex(Field* field, unsigned long *returnValue);
 		getNoteIndex: lib.declare("getNoteIndex", ctypes.stdcall_abi, statusCode,
 			field_t.ptr, ctypes.unsigned_long.ptr),
+			
+		// statusCode isAdjacentToNextField(Field* field, unsigned long *returnValue);
+		isAdjacentToNextField: lib.declare("isAdjacentToNextField", ctypes.stdcall_abi, statusCode,
+			field_t.ptr, ctypes.bool.ptr),
 		
 		// statusCode freeData(void* ptr);
 		freeData: lib.declare("freeData", ctypes.stdcall_abi, statusCode, ctypes.void_t.ptr)
@@ -415,6 +419,7 @@ Document.prototype = {
  */
 var FieldEnumerator = function(startNode, documentStatus) {
 	this._currentNode = startNode;
+	this._previousField = null;
 	this._documentStatus = documentStatus;
 };
 FieldEnumerator.prototype = {
@@ -516,6 +521,14 @@ Field.prototype = {
 		var returnValue = new ctypes.unsigned_long();
 		checkStatus(f.getNoteIndex(this._field_t, returnValue.address()));
 		return parseInt(returnValue.value);
+	},
+	
+	isAdjacentToNextField: function() {
+		Zotero.debug("ZoteroWinWordIntegration: isAdjacentToNextField", 4);
+		checkIfFreed(this._documentStatus);
+		var returnValue = new ctypes.bool();
+		checkStatus(f.isAdjacentToNextField(this._field_t, returnValue.address()));
+		return returnValue.value;
 	}
 }
 
