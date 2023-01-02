@@ -59,8 +59,8 @@
 	label="Install Required Components"
 	next="openoffice-installations">
 		<description>
-			The Zotero LibreOffice Plugin requires the Java
-			Runtime Environment. Visit <label class="zotero-text-link" href="https://java.com/inc/BrowserRedirect1.jsp">Java.com</label>
+			The Zotero LibreOffice Plugin requires the Java Development Kit. Visit
+			<label class="zotero-text-link" href="https://www.oracle.com/java/technologies/downloads/">oracle.com</label>
 			to download it.
 		</description>
 	</wizardpage>
@@ -69,8 +69,8 @@
 	label="Install Required Components"
 	next="openoffice-installations">
 		<description>
-			The Zotero LibreOffice Plugin requires the Java Development Kit to work
-			on macOS. Visit <label class="zotero-text-link" href="https://www.oracle.com/java/technologies/javase-downloads.html">Oracle.com</label>
+			The Zotero LibreOffice Plugin requires the Java Development Kit to work.
+			Visit <label class="zotero-text-link" href="https://www.oracle.com/java/technologies/downloads/">oracle.com</label>
 			to download it.
 		</description>
 	</wizardpage>
