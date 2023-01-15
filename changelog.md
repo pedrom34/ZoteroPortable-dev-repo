@@ -1,5 +1,7 @@
 Versions history:
 ----
+- 2023-01-02. Update to Zotero 6.0.20.
+  
 - 2023-01-02. Update to Zotero 6.0.19.
   
 - 2022-11-10. Update to Zotero 6.0.18.
