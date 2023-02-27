@@ -177,7 +177,7 @@ async function checkMacJDK() {
  */
 function checkJRE() {
 	var isInstalled = false,
-		keys = ['Java Runtime Environment', 'JRE'],
+		keys = ['Java Runtime Environment', 'JRE', 'JDK'],
 		wrk = Components.classes["@mozilla.org/windows-registry-key;1"]
 			.createInstance(Components.interfaces.nsIWindowsRegKey);
 
