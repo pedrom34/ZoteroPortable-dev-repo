@@ -52,7 +52,8 @@ var Plugin = new function() {
 		minVersion: "3.5b2.SVN",
 		required: false
 	}];
-	this.LAST_INSTALLED_FILE_UPDATE = "6.0.0pre";
+	// Bump to make Zotero update the template (Zotero.dotm) for existing installs. Do not remove "pre"
+	this.LAST_INSTALLED_FILE_UPDATE = "6.0.3pre";
 	
 	var zoteroPluginInstaller;
 	

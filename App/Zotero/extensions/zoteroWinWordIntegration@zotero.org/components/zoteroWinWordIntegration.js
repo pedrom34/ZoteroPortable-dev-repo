@@ -242,7 +242,7 @@ Application.prototype = {
 		// For OneDrive stored documents we receive the in the form:
 		// https://[username]-my.sharepoint.com/personal/[username_url_thing]/Documents\Document1.docx
 		// But the document url is all stored with forward slashes in running-object table
-		if (documentName.indexOf('https://') == 0) {
+		if (documentName && (documentName.indexOf('https://') == 0)) {
 			documentName = documentName.replace(/\\/g, '/');
 		}
 		checkStatus(f.getDocument(documentName, docPtr.address()));
