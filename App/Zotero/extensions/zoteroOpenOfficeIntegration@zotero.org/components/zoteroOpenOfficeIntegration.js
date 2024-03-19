@@ -216,7 +216,7 @@ var Comm = new function() {
 		/**
 		 * Processes a completed frame
 		 */
-		"_processFrame":function() {
+		_processFrame: async function() {
 			this._frameHeader = "";
 			this._frameRemaining = null;
 			var input = _converter.ConvertToUnicode(this._frameContent);
@@ -244,13 +244,12 @@ var Comm = new function() {
 				}
 				
 				// Transmit to callback
-				Zotero.setTimeout(function() {
-					if(err) {
-						callbacks[1](err);
-					} else {
-						callbacks[0](payload);
-					}
-				}, 0);
+				await Zotero.Promise.delay();
+				if (err) {
+					callbacks[1](err);
+				} else {
+					callbacks[0](payload);
+				}
 			}
 		},
 		

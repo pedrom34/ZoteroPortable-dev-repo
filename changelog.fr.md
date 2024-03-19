@@ -1,5 +1,7 @@
 Historique des versions :
 ----
+- 2024-03-19. Mise à jour vers Zotero 6.0.36 + modification plugin MS Word (merci @AndhikaWB)
+  
 - 2023-11-03. Mise à jour vers Zotero 6.0.30.
   
 - 2023-09-05. Mise à jour vers Zotero 6.0.27.

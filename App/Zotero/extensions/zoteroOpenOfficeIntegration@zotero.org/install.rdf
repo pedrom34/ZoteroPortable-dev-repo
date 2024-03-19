@@ -4,7 +4,7 @@
 <Description about="urn:mozilla:install-manifest">
 	<em:id>zoteroOpenOfficeIntegration@zotero.org</em:id>
 	<em:name>Zotero LibreOffice Integration</em:name>
-	<em:version>6.0.4.SA.6.0.30</em:version>
+	<em:version>6.0.4.SA.6.0.36</em:version>
 	<em:creator>Zotero</em:creator>
 	<em:developer>Simon Kornblith</em:developer>
 	<em:homepageURL>https://www.zotero.org</em:homepageURL>

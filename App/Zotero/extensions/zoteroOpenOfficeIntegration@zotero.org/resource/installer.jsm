@@ -34,28 +34,14 @@ const UNOPKG_LOCATIONS = {
 		"/Applications/LibreOffice.app/Contents/MacOS/unopkg",
 	],
 	Win:[
+		"C:\\Program Files\\LibreOffice\\program\\unopkg.exe",
+		"C:\\Program Files (x86)\\LibreOffice\\program\\unopkg.exe",
+		"C:\\Program Files\\LibreOffice 7\\program\\unopkg.exe",
+		"C:\\Program Files (x86)\\LibreOffice 7\\program\\unopkg.exe",
 		"C:\\Program Files\\LibreOffice 6\\program\\unopkg.exe",
 		"C:\\Program Files (x86)\\LibreOffice 6\\program\\unopkg.exe",
 		"C:\\Program Files\\LibreOffice 5\\program\\unopkg.exe",
 		"C:\\Program Files (x86)\\LibreOffice 5\\program\\unopkg.exe",
-		"C:\\Program Files\\LibreOffice 4\\program\\unopkg.exe",
-		"C:\\Program Files (x86)\\LibreOffice 4\\program\\unopkg.exe",
-		"C:\\Program Files\\LibreOffice 4.0\\program\\unopkg.exe",
-		"C:\\Program Files (x86)\\LibreOffice 4.0\\program\\unopkg.exe",
-		"C:\\Program Files\\LibreOffice 4.1\\program\\unopkg.exe",
-		"C:\\Program Files (x86)\\LibreOffice 4.1\\program\\unopkg.exe",
-		"C:\\Program Files\\LibreOffice 3\\program\\unopkg.exe",
-		"C:\\Program Files (x86)\\LibreOffice 3\\program\\unopkg.exe",
-		"C:\\Program Files\\LibreOffice 3.3\\program\\unopkg.exe",
-		"C:\\Program Files (x86)\\LibreOffice 3.3\\program\\unopkg.exe",
-		"C:\\Program Files\\LibreOffice 3.4\\program\\unopkg.exe",
-		"C:\\Program Files (x86)\\LibreOffice 3.4\\program\\unopkg.exe",
-		"C:\\Program Files\\LibreOffice 3.5\\program\\unopkg.exe",
-		"C:\\Program Files (x86)\\LibreOffice 3.5\\program\\unopkg.exe",
-		"C:\\Program Files\\LibreOffice 3.6\\program\\unopkg.exe",
-		"C:\\Program Files (x86)\\LibreOffice 3.6\\program\\unopkg.exe",
-		"C:\\Program Files\\LibreOffice 3.7\\program\\unopkg.exe",
-		"C:\\Program Files (x86)\\LibreOffice 3.7\\program\\unopkg.exe",
 	],
 	Other:[
 		"/usr/bin/unopkg",
@@ -67,31 +53,6 @@ const UNOPKG_LOCATIONS = {
 		"/usr/lib64/libreoffice4/program/unopkg",
 		"/usr/lib/libreoffice3/program/unopkg",
 		"/usr/lib64/libreoffice3/program/unopkg",
-		
-		"/opt/libreoffice/program/unopkg",
-		"/opt/libreoffice3/program/unopkg",
-		"/opt/libreoffice3.4/program/unopkg",
-		"/opt/libreoffice3.5/program/unopkg",
-		"/opt/libreoffice3.6/program/unopkg",
-		"/opt/libreoffice3.7/program/unopkg",
-		"/opt/libreoffice4.0/program/unopkg",
-		"/opt/libreoffice4.1/program/unopkg",
-		"/opt/libreoffice4.2/program/unopkg",
-		"/opt/libreoffice5.0/program/unopkg",
-		"/opt/libreoffice5.1/program/unopkg",
-		"/opt/libreoffice5.2/program/unopkg",
-		"/opt/libreoffice5.3/program/unopkg",
-		"/opt/libreoffice5.4/program/unopkg",
-		"/opt/libreoffice6.0/program/unopkg",
-		"/opt/libreoffice6.1/program/unopkg",
-		"/opt/libreoffice6.2/program/unopkg",
-		"/opt/libreoffice6.3/program/unopkg",
-		"/opt/libreoffice6.4/program/unopkg",
-		"/opt/libreoffice7.0/program/unopkg",
-		"/opt/libreoffice7.1/program/unopkg",
-		"/opt/libreoffice7.2/program/unopkg",
-		"/opt/libreoffice7.3/program/unopkg",
-		"/opt/libreoffice7.4/program/unopkg"
 	]
 };
 
@@ -135,7 +96,7 @@ var Plugin = new function() {
 		return "Other";
 	});
 	
-	this.install = function(zpi) {
+	this.install = async function(zpi) {
 		if(wizardWindow && !wizardWindow.closed) {
 			wizardWindow.focus();
 			return;
@@ -146,7 +107,7 @@ var Plugin = new function() {
 		this.pathToAddon = zoteroPluginInstaller.getAddonPath(this.EXTENSION_ID);
 		
 		// look for installations
-		var installations = this.getInstallations(),
+		var installations = await this.getInstallations(),
 			haveSelectedPaths = false,
 			havePaths = false;
 		for(var i in installations) {
@@ -198,7 +159,7 @@ var Plugin = new function() {
 	 * has not selected in the past, and installations that were not
 	 * previously known, respectively.
 	 */
-	this.getInstallations = function() {
+	this.getInstallations = async function() {
 		// First try getting unopkg paths pref
 		var previousPaths, paths = {};
 		try {
@@ -247,6 +208,13 @@ var Plugin = new function() {
 				potentialLocations = potentialLocations.slice();
 				potentialLocations.push(path);
 			}
+		}
+		else if (Zotero.isLinux) {
+			await Zotero.File.iterateDirectory('/opt', async (entry) => {
+				if (entry.name.startsWith('libreoffice')) {
+					potentialLocations.push(entry.path + '/program/unopkg');
+				}
+			});
 		}
 
 		for (let potentialLocation of potentialLocations) {

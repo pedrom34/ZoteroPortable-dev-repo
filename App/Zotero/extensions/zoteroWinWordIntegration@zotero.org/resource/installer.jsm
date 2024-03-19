@@ -53,7 +53,7 @@ var Plugin = new function() {
 		required: false
 	}];
 	// Bump to make Zotero update the template (Zotero.dotm) for existing installs. Do not remove "pre"
-	this.LAST_INSTALLED_FILE_UPDATE = "6.0.3pre";
+	this.LAST_INSTALLED_FILE_UPDATE = "6.0.4pre";
 	
 	var zoteroPluginInstaller;
 	
