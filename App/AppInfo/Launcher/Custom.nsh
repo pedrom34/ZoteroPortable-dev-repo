@@ -1,4 +1,18 @@
+Var strCustomBits
+
 ${SegmentFile}
+
+${SegmentInit}
+	${If} $Bits = 64
+		StrCpy $strCustomBits ""
+		Rename "$EXEDIR\App\Zotero32\app" "$EXEDIR\App\Zotero\app"
+		Rename "$EXEDIR\App\Zotero32\fonts" "$EXEDIR\App\Zotero\fonts"
+	${Else}
+		StrCpy $strCustomBits "32"
+		Rename "$EXEDIR\App\Zotero\app" "$EXEDIR\App\Zotero32\app"
+		Rename "$EXEDIR\App\Zotero\fonts" "$EXEDIR\App\Zotero32\fonts"
+	${EndIf}
+!macroend
 
 ${SegmentPre}
 	; Environment variables that can be used in the INI file
@@ -15,7 +29,7 @@ ${SegmentPre}
 
 ${SegmentPreExecPrimary}
 	; Shortcut to Zotero Word plugin directory
-	StrCpy $1 '$EXEDIR\App\Zotero\extensions\zoteroWinWordIntegration@zotero.org\install'
+	StrCpy $1 '$EXEDIR\App\Zotero$strCustomBits\extensions\zoteroWinWordIntegration@zotero.org\install'
 
 	${IfNot} ${FileExists} '$APPDATA\Microsoft\Word\Startup\Zotero.dotm'
 		; Always copy the latest version of Zotero Word plugin

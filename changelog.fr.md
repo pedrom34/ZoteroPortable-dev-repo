@@ -1,6 +1,12 @@
 Historique des versions :
 ----
-- 2024-03-19. Mise à jour vers Zotero 6.0.36 + modification plugin MS Word (merci @AndhikaWB)
+- 2024-08-21. Mise à jour vers Zotero 7.0.2.
+  
+- 2024-08-21. Mise à jour vers Zotero 7.0.1. Packaging des versions x64 et x86 (merci @JohnTHaller). Version non publiée.
+  
+- 2024-08-09. Mise à jour vers Zotero 7.0.0. Version non publiée.
+  
+- 2024-03-19. Mise à jour vers Zotero 6.0.36 + modification plugin MS Word (merci @AndhikaWB).
   
 - 2023-11-03. Mise à jour vers Zotero 6.0.30.
   
