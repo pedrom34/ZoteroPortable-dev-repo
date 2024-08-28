@@ -1,5 +1,7 @@
 Historique des versions :
 ----
+- 2024-08-28. Mise à jour vers Zotero 7.0.3.
+
 - 2024-08-21. Mise à jour vers Zotero 7.0.2.
   
 - 2024-08-21. Mise à jour vers Zotero 7.0.1. Packaging des versions x64 et x86 (merci @JohnTHaller). Version non publiée.
