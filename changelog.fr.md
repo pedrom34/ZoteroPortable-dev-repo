@@ -1,5 +1,7 @@
 Historique des versions :
 ----
+- 2024-09-11. Mise à jour vers Zotero 7.0.5.
+
 - 2024-08-28. Mise à jour vers Zotero 7.0.3.
 
 - 2024-08-21. Mise à jour vers Zotero 7.0.2.
