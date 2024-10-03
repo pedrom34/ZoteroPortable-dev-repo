@@ -1,15 +1,15 @@
-2024-08-28 12:26:20+0200: Performing a replace request
-2024-08-28 12:26:20+0200: PATCH DIRECTORY C:\ProgramData\Zotero\updates\53CE17280153AA06\updates\0
-2024-08-28 12:26:20+0200: INSTALLATION DIRECTORY C:\Users\Pierre\Desktop\zotero\PortableApps\ZoteroPortable\App\Zotero
-2024-08-28 12:26:20+0200: WORKING DIRECTORY C:\Users\Pierre\Desktop\zotero\PortableApps\ZoteroPortable\App\Zotero\updated
-2024-08-28 12:26:20+0200: Begin moving destDir (C:\Users\Pierre\Desktop\zotero\PortableApps\ZoteroPortable\App\Zotero) to tmpDir (C:\Users\Pierre\Desktop\zotero\PortableApps\ZoteroPortable\App\Zotero.bak)
-2024-08-28 12:26:20+0200: rename_file: proceeding to rename the directory
-2024-08-28 12:26:20+0200: Begin moving newDir (C:\Users\Pierre\Desktop\zotero\PortableApps\ZoteroPortable\App\Zotero.bak/updated) to destDir (C:\Users\Pierre\Desktop\zotero\PortableApps\ZoteroPortable\App\Zotero)
-2024-08-28 12:26:20+0200: rename_file: proceeding to rename the directory
-2024-08-28 12:26:20+0200: Now, remove the tmpDir
-2024-08-28 12:26:20+0200: ensure_remove: failed to remove file: C:\Users\Pierre\Desktop\zotero\PortableApps\ZoteroPortable\App\Zotero.bak/updater.exe, rv: -1, err: 13
-2024-08-28 12:26:20+0200: ensure_remove_recursive: unable to remove directory: C:\Users\Pierre\Desktop\zotero\PortableApps\ZoteroPortable\App\Zotero.bak, rv: -1, err: 41
-2024-08-28 12:26:20+0200: Removing tmpDir failed, err: -1
-2024-08-28 12:26:20+0200: remove_recursive_on_reboot: failed to schedule OS reboot removal of file: C:\Users\Pierre\Desktop\zotero\PortableApps\ZoteroPortable\App\Zotero\tobedeleted\rep7bc4d683-1cda-4369-b9ae-1eb908f182f6
-2024-08-28 12:26:20+0200: succeeded
-2024-08-28 12:26:20+0200: calling QuitProgressUI
+2024-10-03 10:24:13+0200: Performing a replace request
+2024-10-03 10:24:13+0200: PATCH DIRECTORY C:\ProgramData\Zotero\updates\53CE17280153AA06\updates\0
+2024-10-03 10:24:13+0200: INSTALLATION DIRECTORY C:\Users\Pierre\Desktop\zotero\PortableApps\ZoteroPortable\App\Zotero
+2024-10-03 10:24:13+0200: WORKING DIRECTORY C:\Users\Pierre\Desktop\zotero\PortableApps\ZoteroPortable\App\Zotero\updated
+2024-10-03 10:24:13+0200: Begin moving destDir (C:\Users\Pierre\Desktop\zotero\PortableApps\ZoteroPortable\App\Zotero) to tmpDir (C:\Users\Pierre\Desktop\zotero\PortableApps\ZoteroPortable\App\Zotero.bak)
+2024-10-03 10:24:13+0200: rename_file: proceeding to rename the directory
+2024-10-03 10:24:13+0200: Begin moving newDir (C:\Users\Pierre\Desktop\zotero\PortableApps\ZoteroPortable\App\Zotero.bak/updated) to destDir (C:\Users\Pierre\Desktop\zotero\PortableApps\ZoteroPortable\App\Zotero)
+2024-10-03 10:24:13+0200: rename_file: proceeding to rename the directory
+2024-10-03 10:24:13+0200: Now, remove the tmpDir
+2024-10-03 10:24:13+0200: ensure_remove: failed to remove file: C:\Users\Pierre\Desktop\zotero\PortableApps\ZoteroPortable\App\Zotero.bak/updater.exe, rv: -1, err: 13
+2024-10-03 10:24:13+0200: ensure_remove_recursive: unable to remove directory: C:\Users\Pierre\Desktop\zotero\PortableApps\ZoteroPortable\App\Zotero.bak, rv: -1, err: 41
+2024-10-03 10:24:13+0200: Removing tmpDir failed, err: -1
+2024-10-03 10:24:13+0200: remove_recursive_on_reboot: failed to schedule OS reboot removal of file: C:\Users\Pierre\Desktop\zotero\PortableApps\ZoteroPortable\App\Zotero\tobedeleted\repa1bf749c-19cd-49d4-8bc6-d0307e53fc50
+2024-10-03 10:24:13+0200: succeeded
+2024-10-03 10:24:13+0200: calling QuitProgressUI
